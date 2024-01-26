@@ -1,0 +1,11 @@
+{
+  "name": "cra-template-brightsign-app",
+  "version": "1.0.0",
+  "description": "Create and publish a web app onto a BrightSign player.",
+  "main": "index.js",
+  "keywords": [
+    "BrightSign"
+  ],
+  "author": "Diego Benitez <dbenitez@brightsign.biz>",
+  "license": "SEE LICENSE IN License.txt"
+}
