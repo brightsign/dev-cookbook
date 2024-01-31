@@ -4,10 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  entry: './src/index',
+  entry: {
+    frontend: './src/index',
+    backend: './src/server/index',
+  },
   target: 'node',
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
   },
   mode: isProduction ? 'production' : 'development',

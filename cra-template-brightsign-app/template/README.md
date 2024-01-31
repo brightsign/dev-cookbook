@@ -20,7 +20,7 @@ v14.17.6
 > node -p process.arch
 arm64
 > arch -x86_64 zsh
-> nvm uninstall 14.17.6 && nvm install 14.17.6
+> nvm remove 14.17.6 && nvm install 14.17.6
 ```
 
 You might need to do this each time you restart your terminal.

@@ -9,8 +9,11 @@ function main()
   ' Create HTML Widget
 	widget = createHTMLWidget(mp)
 	widget.Show()
+  
+  	' Initialize roNodeJs with path or correct filename, whether webpack is used or not.
+  	node_js = CreateObject("roNodeJs", "sd:/dist/backend.js", {message_port: mp, node_arguments: ["--inspect=0.0.0.0:2999"], arguments: []})
 
-  'Event Loop
+  	'Event Loop
 	while true
 		msg = wait(0,mp)
 		print "msg received - type=";type(msg)
