@@ -7,9 +7,18 @@ const os = require('os');
 function App() {
   const networkInterfaces = os.networkInterfaces() || {};
   const [ipAddress, setIpAddress] = useState('');
+  const [header, setHeader] = useState('');
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const interval = setInterval(async () => {
+
+      const [body] = await fetch('/text');
+
+      if(body) {
+        setHeader(body);
+      }
+
+      // Get network interface data
       Object.keys(networkInterfaces).forEach((interfaceName) => {
         networkInterfaces[interfaceName].forEach((interfaceInfo) => {
           if (interfaceInfo.family === 'IPv4') {
@@ -31,7 +40,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>BrightSign React Web App Example</h1>
+      <h1>{header || "BrightSign React Web App Example"}</h1>
       <div id="info">
         <div id="ipAddress">
           <span class="label">IP Address:</span>
