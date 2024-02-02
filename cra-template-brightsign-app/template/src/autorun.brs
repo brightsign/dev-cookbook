@@ -44,7 +44,7 @@ function createHTMLWidget(mp as object) as object
 		inspector_server: {
 			port: 3000
 		}
-		url: "file:///sd:/dist/index.html"
+		url: "http://localhost:8020"
 		port: mp
 	}
   
