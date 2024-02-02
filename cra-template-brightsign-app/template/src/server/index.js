@@ -14,8 +14,6 @@ app.post('/text', (req, res) => {
       res.status(400).send("Bad request: no body provided.");
     }
     
-    console.log(`${req}`);
-    
     latestText = req.body.text;
 
     res.status(200).send("done");
