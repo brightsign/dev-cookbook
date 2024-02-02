@@ -1,6 +1,7 @@
 const express = require("express");
 
-const path = __dirname + '../public';
+// Path: `__dirname` on player == /storage/sd/dist
+const path = __dirname; 
 const app = express();
 
 app.use(express.json());
