@@ -12,10 +12,10 @@ function App() {
   useEffect(() => {
     const interval = setInterval(async () => {
 
-      const [body] = await fetch('/text');
+      const {text} = await (await fetch('/text')).json();
 
-      if(body) {
-        setHeader(body);
+      if(text) {
+        setHeader(text);
       }
 
       // Get network interface data
