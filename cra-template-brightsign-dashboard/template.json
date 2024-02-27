@@ -8,7 +8,7 @@
             "watch": "webpack --watch",
             "put": "npm run build && ./scripts/put",
             "put:prod": "npm run build:prod && ./scripts/put",
-            "put:watch": "nodemon --watch src --watch package.json --exec 'npm put:prod'"
+            "put:watch": "nodemon -e js,brs,css --watch src --watch package.json --exec 'npm put:prod'"
           },
           "devDependencies": {
             "@babel/core": "^7.23.0",

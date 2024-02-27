@@ -44,5 +44,12 @@ do
 	curl $AUTH --location --request PUT "http://$PLAYER/api/v1/files/sd/dist" --form "=@"$f"" | jq -r .data
 done
 
+for f in public/*
+do
+	echo $f
+	curl $AUTH  --location --request PUT "http://$PLAYER/api/v1/files/sd/dist" --form "=@"$f"" | jq -r .data
+done
+
+
 # reboot the player to restart the application
 curl $AUTH --location --request PUT "http://$PLAYER/api/v1/control/reboot/" | jq -r .data

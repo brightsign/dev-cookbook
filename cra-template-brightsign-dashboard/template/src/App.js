@@ -1,72 +1,99 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
-const DeviceInfo = require('@brightsign/deviceinfo');
-const os = require('os');
+const DeviceInfo = require("@brightsign/deviceinfo");
+const os = require("os");
 
 function App() {
   const networkInterfaces = os.networkInterfaces() || {};
-  const [ipAddress, setIpAddress] = useState('');
-  const [header, setHeader] = useState('');
+  const [ipAddress, setIpAddress] = useState({});
+  const [header, setHeader] = useState("");
+  const [uptime, setUptime] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(async () => {
+      const { text } = await (await fetch("/text")).json();
 
-      const {text} = await (await fetch('/text')).json();
-
-      if(text) {
+      if (text) {
         setHeader(text);
       }
+
+      const deviceInfo = new DeviceInfo();
+      const { deviceUptime } = deviceInfo;
+
+      setUptime(deviceUptime);
 
       // Get network interface data
       Object.keys(networkInterfaces).forEach((interfaceName) => {
         networkInterfaces[interfaceName].forEach((interfaceInfo) => {
-          if (interfaceInfo.family === 'IPv4') {
-            setIpAddress(`${interfaceName}: ${interfaceInfo.address} `);
-            console.log(
-              `Network Interface - ${interfaceName}: ${interfaceInfo.address}`
-            );
+          if (interfaceInfo.family === "IPv4") {
+            setIpAddress((currentIpAddress) => ({
+              ...currentIpAddress,
+              [interfaceName]: interfaceInfo.address,
+            }));
           }
         });
       });
+    }, 1000);
 
-    }, 5000)
-
-    return () => clearInterval(interval)
-  })
+    return () => clearInterval(interval);
+  });
 
   const deviceInfo = new DeviceInfo();
   const { model, osVersion, serialNumber } = deviceInfo;
 
-  return (
-    <div className="App">
-      <ul class="container">
-        <li class="column"/>
-        <li class="column">
-            <li class="row">  model: {model}, version: {osVersion} {/** model, serial, os */}</li>
-            <li class="row"> location {/** location */} </li>
-            <li class="row"> 
-              <li class="column"> 
-                <li class="row"> ipAddress {ipAddress} {/** ip, mac wired */} </li>
-                <li class="row"> ipAddress {ipAddress}{/** ip, mac wireless */}</li>
-              </li>
-              <li class="column">
-                <li class="row"> bsn cloud status{/** bsn cloud status, network, deployment type */} </li>
-              </li>
-            </li>
+  const uptimeDate = new Date(uptime * 1000);
 
-            <li class="row"> 
-              <li class="column"> 
-                <li class="row"> screen resolution{/** resolution, edid */} </li>
-              
-              </li>
-              <li class="column">
-                <li class="row"> storage capacity {/** storage, capacity */} </li>
-              </li>
-            </li>
-            
-            </li>
-      </ul>
+  const uptimeStr =
+    uptimeDate.getUTCHours() +
+    " hours, " +
+    uptimeDate.getUTCMinutes() +
+    " minutes and " +
+    uptimeDate.getUTCSeconds() +
+    " second(s)";
+
+  return (
+    <div className="container">
+      <div className="column">
+        <div className="row">
+          <div className="column">
+            <h1>{model}</h1>
+          </div>
+          <div className="column">
+            Version: {osVersion} Serial: {serialNumber}
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">Uptime: {uptimeStr}</div>
+        </div>
+        <div className="row">
+          <div className="column">
+            {ipAddress["eth0"] && (
+              <div key="eth0" className="row">
+                <img src="ethernet.png" alt="Ethernet" />
+                Ethernet : {ipAddress["eth0"]}
+              </div>
+            )}
+
+            {ipAddress["wlan0"] && (
+              <div key="wlan0" className="row">
+                <img src="wifi.png" alt="Wifi" />
+                Wifi : {ipAddress["wlan0"]}
+              </div>
+            )}
+          </div>
+          <div className="column">
+            <div className="row">
+              <img src="bsn-cloud-logo.png" alt="cloud" />
+              bsn cloud status
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="column">resolution</div>
+          <div className="column">storage</div>
+        </div>
+      </div>
     </div>
   );
 }
