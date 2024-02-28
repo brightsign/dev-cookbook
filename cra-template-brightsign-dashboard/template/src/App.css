@@ -39,18 +39,18 @@ h1 {
 }
 
 .column {
-  width: 100%; /* Each column takes full width of the container */
-  margin: 10px; /* Spacing between columns */
-  padding: 10%;
+  width: 100%;
+  margin: 10px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
 }
 
 .row {
-  background-color: rgba(48,27,105,.1);
+  background-color: rgba(48,27,105,.5);
   border-radius: 15px; 
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-start; 
   align-items: center;
   width: 100%; 
   height: max-content;
@@ -62,15 +62,13 @@ h1 {
 }
 
 .column img {
-  width: 10%; /* Full width of the column */
-  height: auto; /* Maintain aspect ratio */
+  height: auto;
   margin-right: 10px;
 }
 
-/* Placeholder styles for when actual images are added */
-.placeholder-image {
-  width: 100%;
-  height: 150px; /* Adjust based on your layout needs */
-  background-color: #cccccc; /* Placeholder color */
-  display: block;
+.background-img {
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  z-index: -1;
 }
