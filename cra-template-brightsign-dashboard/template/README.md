@@ -7,6 +7,7 @@ The app builds two bundles via Webpack: `frontend.js` and `backend.js`.
 - `backend.js` runs an Express server that serves `index.html` and other static files as well as any API endpoints that you wish to build. This is built from the code in `src/server/index.js`.
 - `frontend.js` is built from `src/index.js` and contains all the React dependencies and code. `index.html` loads it from the statically hosted files. 
 
+When the project is built, generated code is placed in the `/dist` directory. This code and everything in the `public` directory needs to be pushed to the device at `/sd/dist` and run by the `autorun.brs` script.
 
 ## Using the sample
 
