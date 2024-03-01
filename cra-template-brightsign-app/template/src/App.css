@@ -6,7 +6,8 @@ html {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #301b69;
+  background: rgb(16,9,34);
+  background: linear-gradient(90deg, rgba(16,9,34,1) 0%, rgba(48,27,105,1) 38%);
   color: white;
   display: flex;
   align-items: center;
