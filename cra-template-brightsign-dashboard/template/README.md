@@ -1,6 +1,13 @@
 ## Intro
 This sample shows how you can run a dashboard that hosts an API and a React frontend on the same port. This displays device information, API data, and can be extended for your use case.
 
+## How it works
+The app builds two bundles via Webpack: `frontend.js` and `backend.js`.
+
+- `backend.js` runs an Express server that serves `index.html` and other static files as well as any API endpoints that you wish to build. This is built from the code in `src/server/index.js`.
+- `frontend.js` is built from `src/index.js` and contains all the React dependencies and code. `index.html` loads it from the statically hosted files. 
+
+
 ## Using the sample
 
 To deploy your code, you will need the device to be configured for DWS access, the device's IP address, and its serial number. Simply navigate to the root of the directory and run the following command to push the code and restart the device.
@@ -15,7 +22,14 @@ curl -d '{"text": "hello world" }' -H 'Content-Type: application/json' -X POST y
 
 ## How to check for logs
 
-You can check for `console.log` messages in your device log file.
+Using the BrightSign CLI:
+
+```
+bsc getlogs playerName | grep "my message" | tail
+```
+
+
+If you are not using the BrightSign CLI, you can check for `console.log` messages in your device log file.
 
 1. Find your device in BrightAuthor: Connected and click the gear icon. 
 2. Go to the "LOG" tab and click "Download Log"
@@ -24,7 +38,10 @@ Search for a string like the following:
 
 `[   12.858] [INFO]   [source file:///sd:/dist/bundle.js:2]: console log message...`
 
-### Building on M1 
+
+You can also use SSH to access the device and view log messages in realtime.
+
+### Building on Mac M1 
 You might see an error like `npm ERR! Error: Cannot find module 'node-bin-darwin-arm64/package.json'`
 
 Run the following commands
