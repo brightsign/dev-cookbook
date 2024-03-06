@@ -35,3 +35,13 @@
 - [ ] PR follows all linting and coding standards
 - [ ] Github Issue exists (if applicable)
 - [ ] Team member has been assigned
+- [ ] At least one commit message is in [Conventional Commit](https://www.conventionalcommits.org/) format
+
+<!-- 
+
+The most important prefixes you should have in mind are:
+
+fix: which represents bug fixes, and correlates to a SemVer patch.
+feat: which represents a new feature, and correlates to a SemVer minor.
+feat!:, or fix!:, refactor!:, etc., which represent a breaking change (indicated by the !) and will result in a SemVer major.
+-->
