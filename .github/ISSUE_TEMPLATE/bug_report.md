@@ -23,7 +23,7 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
+**BrightSign Device (please complete the following information):**
  - OS Version: [e.g. 9.0.123]
  - Device model: [e.g. XC4055...]
 
