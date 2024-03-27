@@ -4,9 +4,7 @@ on: [push]
 
 jobs:
   install_and_test:
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
@@ -16,3 +14,20 @@ jobs:
           cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: yarn workspaces run test
+
+  format_all:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14.17.6'
+          cache: 'yarn'
+      - run: yarn --frozen-lockfile
+      - run: yarn workspaces run format
+      - name: Commit formatting changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+            commit_message: Applied automatic formatting changes
+            branch: ${{ github.head_ref }}
