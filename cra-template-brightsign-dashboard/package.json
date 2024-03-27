@@ -9,6 +9,6 @@
   "author": "Diego Benitez <dbenitez@brightsign.biz>",
   "license": "SEE LICENSE IN License.txt",
   "scripts": {
-    "test": "echo 'running dashboard tests'"
+    "test": "jest --config jest.config.js template/src/"
   }
 }
