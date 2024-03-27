@@ -19,6 +19,11 @@ function main() {
     server.listen(port, () => {
         console.log(`Server running at http://localhost:${port}`);
     });
+
+    return server;
 }
 
-main();
+const server = main();
+
+module.exports = server;
+
