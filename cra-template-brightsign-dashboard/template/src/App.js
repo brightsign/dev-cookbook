@@ -58,18 +58,12 @@ function App() {
 
     const uptimeDate = new Date(uptime * 1000);
 
-    const uptimeStr =
-        uptimeDate.getUTCHours() +
-        " hours, " +
-        uptimeDate.getUTCMinutes() +
-        " minutes and " +
-        uptimeDate.getUTCSeconds() +
-        " second(s)";
+    const uptimeStr = `${uptimeDate.getUTCHours()} hours, ${uptimeDate.getUTCMinutes()} minutes and ${uptimeDate.getUTCSeconds()} second(s)`;
 
     function displayBytes(n) {
         const k = n > 0 ? Math.floor(Math.log2(n) / 10) : 0;
-        const rank = (k > 0 ? "KMGT"[k - 1] : "") + "b";
-        const count = Math.ceil(n / Math.pow(1000, k));
+        const rank = `${k > 0 ? "KMGT"[k - 1] : ""}b`;
+        const count = Math.ceil(n / 1000 ** k);
         return count + rank;
     }
 
@@ -101,17 +95,17 @@ function App() {
                 </div>
                 <div className="row">
                     <div className="column">
-                        {ipAddress["eth0"] && (
+                        {ipAddress.eth0 && (
                             <div key="eth0">
                                 <img src="ethernet.png" alt="Ethernet" />
-                                <b>Ethernet</b>: {ipAddress["eth0"]}
+                                <b>Ethernet</b>: {ipAddress.eth0}
                             </div>
                         )}
 
-                        {ipAddress["wlan0"] && (
+                        {ipAddress.wlan0 && (
                             <div key="wlan0">
                                 <img src="wifi.png" alt="Wifi" />
-                                <b>Wifi</b>: {ipAddress["wlan0"]}
+                                <b>Wifi</b>: {ipAddress.wlan0}
                             </div>
                         )}
                     </div>

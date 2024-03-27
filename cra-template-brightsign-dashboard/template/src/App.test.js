@@ -20,7 +20,7 @@ test("renders expected dashboard properties text", async () => {
         render(<App />);
     });
 
-    let linkElement = screen.getByText(/MockOSVersion/i);
+    const linkElement = screen.getByText(/MockOSVersion/i);
     expect(linkElement).toBeInTheDocument();
 
     await waitFor(() => {
