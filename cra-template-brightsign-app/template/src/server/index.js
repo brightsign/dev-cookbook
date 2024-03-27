@@ -1,7 +1,7 @@
 const express = require("express");
 
 // Path: `__dirname` on player == /storage/sd/dist
-const path = __dirname; 
+const path = __dirname;
 const app = express();
 
 app.use(express.json());
@@ -10,9 +10,9 @@ app.use(express.static(path));
 let text = "";
 
 // POST endpoint to receive updates
-app.post('/text', (req, res) => {
+app.post("/text", (req, res) => {
     if (req === undefined) {
-      res.status(400).send("Bad request: no body provided.");
+        res.status(400).send("Bad request: no body provided.");
     }
 
     text = req.body.text;
@@ -20,8 +20,8 @@ app.post('/text', (req, res) => {
     res.status(200).send("done");
 });
 
-app.get('/text', (req, res) => {
-    res.status(200).json({text}); 
+app.get("/text", (req, res) => {
+    res.status(200).json({ text });
 });
 
 const PORT = 8020;

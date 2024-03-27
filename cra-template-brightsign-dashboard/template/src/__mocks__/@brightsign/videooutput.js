@@ -2,8 +2,9 @@
 
 class VideoOutput {
     constructor() {
-      this.getEdidIdentity = () => Promise.resolve({monitorName: 'jestMonitor'});
+        this.getEdidIdentity = () =>
+            Promise.resolve({ monitorName: "jestMonitor" });
     }
-  }
-  
+}
+
 module.exports = VideoOutput;

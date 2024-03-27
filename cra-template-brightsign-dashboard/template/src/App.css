@@ -1,74 +1,78 @@
 body,
 html {
-  margin: 0;
-  height: 100%;
+    margin: 0;
+    height: 100%;
 }
 
 body {
-  font-family: Arial, sans-serif;
-  background: rgb(16,9,34);
-  background: linear-gradient(90deg, rgba(48,27,105,1) 0%, rgba(16,9,34,1) 38%);
-  color: white;
-  padding: 16px;
+    font-family: Arial, sans-serif;
+    background: rgb(16, 9, 34);
+    background: linear-gradient(
+        90deg,
+        rgba(48, 27, 105, 1) 0%,
+        rgba(16, 9, 34, 1) 38%
+    );
+    color: white;
+    padding: 16px;
 }
 
 h1 {
-  font-size: 48px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 #info {
-  margin-top: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 32px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 32px;
 }
 
 .label {
-  font-weight: bold;
-  margin-right: 8px;
+    font-weight: bold;
+    margin-right: 8px;
 }
 
 .container {
-  display: flex;
-  padding: 16px;
-  margin-left: 50%;
-  margin-right: 5%;
-  height: 100vh;
+    display: flex;
+    padding: 16px;
+    margin-left: 50%;
+    margin-right: 5%;
+    height: 100vh;
 }
 
 .column {
-  width: 100%;
-  margin: 10px;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
+    width: 100%;
+    margin: 10px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .row {
-  background-color: rgba(48,27,105,.5);
-  border-radius: 15px; 
-  display: flex;
-  justify-content: flex-start; 
-  align-items: center;
-  width: 100%; 
-  height: max-content;
-  margin: 10px
+    background-color: rgba(48, 27, 105, 0.5);
+    border-radius: 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    margin: 10px;
 }
 
 .header {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .column img {
-  height: auto;
-  margin-right: 10px;
+    height: auto;
+    margin-right: 10px;
 }
 
 .background-img {
-  position: absolute;
-  top: 25%;
-  left: 20%;
-  z-index: -1;
+    position: absolute;
+    top: 25%;
+    left: 20%;
+    z-index: -1;
 }

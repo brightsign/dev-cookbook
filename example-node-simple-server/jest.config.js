@@ -1,6 +1,6 @@
 const config = {
     verbose: true,
-    testRegex: '(test|spec)\\.[jt]sx?$',
-  };
-  
+    testRegex: "(test|spec)\\.[jt]sx?$",
+};
+
 module.exports = config;

@@ -1,14 +1,16 @@
 {
-  "name": "cra-template-brightsign-dashboard",
-  "version": "1.0.0",
-  "description": "Create and publish a rich dashboard onto a BrightSign player.",
-  "main": "index.js",
-  "keywords": [
-    "BrightSign"
-  ],
-  "author": "Diego Benitez <dbenitez@brightsign.biz>",
-  "license": "SEE LICENSE IN License.txt",
-  "scripts": {
-    "test": "jest --config jest.config.js template/src/"
-  }
+    "name": "cra-template-brightsign-dashboard",
+    "version": "1.0.0",
+    "description": "Create and publish a rich dashboard onto a BrightSign player.",
+    "main": "index.js",
+    "keywords": [
+        "BrightSign"
+    ],
+    "author": "Diego Benitez <dbenitez@brightsign.biz>",
+    "license": "SEE LICENSE IN License.txt",
+    "scripts": {
+        "test": "jest --config jest.config.js template/src/",
+        "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+        "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache"
+    }
 }

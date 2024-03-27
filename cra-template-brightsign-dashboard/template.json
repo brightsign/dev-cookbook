@@ -9,8 +9,8 @@
             "put": "npm run build && ./scripts/put",
             "put:prod": "npm run build:prod && ./scripts/put",
             "put:watch": "nodemon -e js,brs,css --watch src --watch package.json --exec 'npm put:prod'"
-          },
-          "devDependencies": {
+        },
+        "devDependencies": {
             "@babel/core": "^7.23.0",
             "@babel/preset-env": "^7.22.20",
             "@babel/preset-react": "^7.23.3",
@@ -22,13 +22,13 @@
             "nodemon": "^3.0.3",
             "css-loader": "^6.10.0",
             "style-loader": "^3.3.4"
-          },
-          "engines": {
+        },
+        "engines": {
             "node": "<=14.17.6"
-          },
-          "dependencies": {
+        },
+        "dependencies": {
             "node": "^14.17.6",
             "nvm": "^0.39.1"
-          }
+        }
     }
-  }
+}

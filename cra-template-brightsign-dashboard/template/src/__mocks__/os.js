@@ -1,7 +1,7 @@
 // __mocks__/os.js
 
 class OS {
-    networkInterfaces = () => ({})
-  }
-  
+    networkInterfaces = () => ({});
+}
+
 module.exports = OS;
