@@ -1,12 +1,19 @@
 const http = require("http");
 const diClass = require("@brightsign/deviceinfo");
+const main = require("./app");
 
 describe("HTTP Server Response", () => {
-    let server = require("./index");
+    let server;
     const port = 13131;
 
+    beforeAll(async () => {
+        server = await main();
+    });
+
     afterAll(() => {
-        server.close();
+        if (server) {
+            server.close();
+        }
     });
 
     it("should respond with JSON containing mocked device info", (done) => {

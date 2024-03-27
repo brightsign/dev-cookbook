@@ -8,7 +8,8 @@
         "build:prod": "webpack --mode=production --node-env=production",
         "build": "webpack --mode=development",
         "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
-        "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache"
+        "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}"
     },
     "keywords": [],
     "author": "",

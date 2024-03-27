@@ -43,20 +43,23 @@ function App() {
             <h1>{header || "BrightSign React Web App Example"}</h1>
             <div id="info">
                 <div id="ipAddress">
-                    <span class="label">IP Address:</span>
-                    <span class="value">{ipAddress || "loading..."}</span>
+                    <span className="label">IP Address:</span>
+                    <span className="value">{ipAddress || "loading..."}</span>
                 </div>
                 <div id="model">
-                    <span class="label">Model:</span>
-                    <span class="value">{model || "loading..."}</span>
+                    <span className="label">Model:</span>
+                    <span className="value">{model || "loading..."}</span>
                 </div>
                 <div id="osVersion">
-                    <span class="label">OS Version:</span>
-                    <span class="value">{osVersion || "loading..."}</span>
+                    <span className="label">OS Version:</span>
+                    <span className="value">{osVersion || "loading..."}</span>
                 </div>
                 <div id="serialNumber">
-                    <span class="label">Serial Number:</span>
-                    <span class="value">{serialNumber || "loading..."}</span>
+                    <span className="label">Serial Number:</span>
+                    <span className="value">
+                        {" "}
+                        {serialNumber || "loading..."}
+                    </span>
                 </div>
             </div>
         </div>
