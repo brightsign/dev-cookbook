@@ -5,7 +5,8 @@
       "prettier/prettier": ["warn"],
       "import/no-unresolved": ["off"],
       "import/no-extraneous-dependencies": ["off"],
-      "no-console": ["off"]
+      "no-console": ["off"],
+      "react/jsx-filename-extension": ["off"]
     },
     "env" : {
         "browser": true
