@@ -1,12 +1,12 @@
 import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen, act, waitFor } from "@testing-library/react";
-
 import App from "./App";
+
+const DeviceInfo = require("@brightsign/deviceinfo");
 
 describe("Device Info Mock", () => {
     it("should return mocked device info", () => {
-        const DeviceInfo = require("@brightsign/deviceinfo");
         const deviceInfo = new DeviceInfo();
 
         expect(deviceInfo.model).toBe("MockModel");
