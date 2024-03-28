@@ -68,6 +68,10 @@ function App() {
         }, 1000);
 
         return () => clearInterval(interval);
+
+
+
+        
     });
 
     const deviceInfo = new DeviceInfo();
