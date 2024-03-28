@@ -6,7 +6,9 @@
       "import/no-unresolved": ["off"],
       "import/no-extraneous-dependencies": ["off"],
       "no-console": ["off"],
-      "react/jsx-filename-extension": ["off"]
+      "react/jsx-filename-extension": ["off"],
+      "jest/no-mocks-import": ["off"],
+      "global-require": ["off"]
     },
     "env" : {
         "browser": true
