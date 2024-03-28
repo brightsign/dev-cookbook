@@ -9,10 +9,9 @@ const { execSync } = require("child_process");
 const { existsSync } = require("fs");
 const path = require("path");
 
-const mainBranchName = "main"; 
+const mainBranchName = "origin/main"; 
 const commandsToRun = process.argv.slice(2); // Commands passed as arguments
 
-// Calculate the monorepo root directory based on this script's location assuming it is in monorepo_root/scripts
 const repoRoot = path.resolve(__dirname, "..");
 
 function exec(command, captureOutput = false) {
