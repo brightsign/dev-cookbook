@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-let DeviceInfo 
+let DeviceInfo;
 let os;
 
 // Import mocked @brightsign modules when developing locally
 // When running on a device, these modules are pre-installed globally
 // Feel free to modify the mocks as needed for your use case.
-if (process.env.NODE_ENV === 'development') {
-    DeviceInfo = require('./__mocks__/@brightsign/deviceinfo');
-    os = require('./__mocks__/os')
+if (process.env.NODE_ENV === "development") {
+    DeviceInfo = require("./__mocks__/@brightsign/deviceinfo");
+    os = require("./__mocks__/os");
 } else {
-    DeviceInfo = require('@brightsign/deviceinfo');
+    DeviceInfo = require("@brightsign/deviceinfo");
     os = require("os");
 }
 
