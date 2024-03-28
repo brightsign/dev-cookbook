@@ -3,7 +3,7 @@
 class VideoOutput {
     constructor() {
         this.getEdidIdentity = () =>
-            Promise.resolve({ monitorName: "jestMonitor" });
+            Promise.resolve({ monitorName: "mockMonitor" });
     }
 }
 
