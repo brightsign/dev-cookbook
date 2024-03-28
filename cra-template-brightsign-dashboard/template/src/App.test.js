@@ -24,7 +24,7 @@ test("renders expected dashboard properties text", async () => {
     expect(linkElement).toBeInTheDocument();
 
     await waitFor(() => {
-        expect(screen.getByText(/jestMonitor/i)).toBeInTheDocument();
+        expect(screen.getByText(/mockMonitor/i)).toBeInTheDocument();
         expect(screen.getByText(/1080x1920@60hz/i)).toBeInTheDocument();
         expect(screen.getByText(/1000b/i)).toBeInTheDocument();
     });
