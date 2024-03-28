@@ -5,10 +5,9 @@ class OSClass {
         return {
             eth0: [
                 {
-                    family: 'IPv4',
-                    address: '0.0.0.0',
+                    family: "IPv4",
+                    address: "0.0.0.0",
                 },
-                
             ],
         };
     }
