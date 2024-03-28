@@ -2,7 +2,15 @@
 
 class OSClass {
     static networkInterfaces() {
-        return {};
+        return {
+            eth0: [
+                {
+                    family: 'IPv4',
+                    address: '0.0.0.0',
+                },
+                
+            ],
+        };
     }
 }
 
