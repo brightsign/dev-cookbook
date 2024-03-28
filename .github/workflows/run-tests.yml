@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+      - name: Fetch latest main branch commit
+        run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -20,6 +24,10 @@ jobs:
     needs: install_and_test
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - name: Fetch latest main branch commit
+        run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
