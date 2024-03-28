@@ -13,6 +13,8 @@ When the project is built, generated code is placed in the `/dist` directory. Th
 
 ## Using the sample
 
+You can run the React app locally using mocked device data with `yarn start`. Once the code is pushed to the device it will use the built-in @brightsign modules for real data.
+
 To deploy your code, you will need the device to be configured for DWS access, the device's IP address, and its serial number. Simply navigate to the root of the directory and run the following command to push the code and restart the device.
 
 ```

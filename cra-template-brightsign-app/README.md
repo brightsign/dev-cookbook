@@ -8,7 +8,7 @@ This project is a custom `create-react-app` template. Clone the repo and then ru
 npx create-react-app bsignapp --template file:/path/to/dev-cookbook/cra-template-brightsign-app
 ```
 
-Once the app is ready, simply follow the instructions in the project `readme` to deploy to your device. Be aware that it is not possible to build and run the app locally if you are using `@brightsign/` packages (for example in `src/App.js`), since they are currently only available on-device.
+Once the app is ready, simply follow the instructions in the project `readme` to deploy to your device. When you run the app locally using `yarn start`, mocked `@brightsign/` packages will be used.
 
 ## Contributing to the template
 

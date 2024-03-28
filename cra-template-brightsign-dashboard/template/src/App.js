@@ -1,11 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
-const DeviceInfo = require("@brightsign/deviceinfo");
-const os = require("os");
-const VideoOutput = require("@brightsign/videooutput");
-const VideoModeConfiguration = require("@brightsign/videomodeconfiguration");
-const FileSystemInfo = require("@brightsign/filesysteminfo");
+let DeviceInfo 
+let os;
+let VideoOutput;
+let VideoModeConfiguration;
+let FileSystemInfo;
+
+// Import mocked @brightsign modules when developing locally
+// When running on a device, these modules are pre-installed globally
+// Feel free to modify the mocks as needed for your use case.
+if (process.env.NODE_ENV === 'development') {
+    DeviceInfo = require('./__mocks__/@brightsign/deviceinfo');
+    os = require('./__mocks__/os')
+    VideoOutput = require("./__mocks__/@brightsign/videooutput");
+    VideoModeConfiguration = require("./__mocks__/@brightsign/videomodeconfiguration");
+    FileSystemInfo = require("./__mocks__/@brightsign/filesysteminfo");
+} else {
+    DeviceInfo = require('@brightsign/deviceinfo');
+    os = require("os");
+    VideoOutput = require("@brightsign/videooutput");
+    VideoModeConfiguration = require("@brightsign/videomodeconfiguration");
+    FileSystemInfo = require("@brightsign/filesysteminfo");
+}
 
 function App() {
     const networkInterfaces = os.networkInterfaces() || {};
