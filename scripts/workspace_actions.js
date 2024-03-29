@@ -2,7 +2,7 @@
  * This script runs the specifed yarn commands only on workspaces that have changes
  * against the `main` branch.
  *
- * Usage: ./workspace_actions.js test format
+ * Usage: node ./workspace_actions.js test format
  *
  */
 const { execSync } = require("child_process");
