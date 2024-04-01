@@ -1,21 +1,26 @@
 # Introduction
 
-Welcome to the BrightSign Dev Cookbook! Here you will find example code and projects for your BrightSign devices that demonstrate various capabilities. 
+Welcome to the BrightSign Dev Cookbook! Here you will find example code and projects for your [BrightSign](https://www.brightsign.biz/) digital signage devices that demonstrate various capabilities.
+
+Whether you're a beginner eager to dive into BrightSign development, or an advanced developer looking to expand your skills, this cookbook offers a wide range of examples to demonstrate the capabilities of these devices.
 
 # Project structure
 
-```
-cra-template-*    # React templates
-example-*         # Examples demonstrating different capabilities
-.github/          # Github Actions configuration for build and deploy
-scripts/          # Utility scripts for build and deploy
-.eslintrc         # Lint configuration
-package.json
-```
+Here's an overview of the project structure and what each part is responsible for:
+
+`cra-template-*`    : React templates for new projects with custom configurations tailored for BrightSign development.
+`example-*`         : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+`.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
+`scripts/`          : Utility scripts to facilitate build, deployment, and development workflows.
+`.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
+`package.json`      : Manages project dependencies and scripts for an efficient development workflow.
+
 
 # Prerequisites
 
-We recommend managing your node.js version using `nvm`. The preferred version is `14.17.6`.
+This repo is intended for developers who are familiar with Node.js, React, and running scripts that connect to devices over a local network.
+
+We recommend managing your node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). The preferred version is `14.17.6` since this is the version currently pre-installed on most Brightsign devices.
 
 # Quickstart
 
