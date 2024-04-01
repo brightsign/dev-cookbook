@@ -74,7 +74,7 @@ To run the tests for every example, run `yarn workspaces run test` or the shortc
 You might see an error like `npm ERR! Error: Cannot find module 'node-bin-darwin-arm64/package.json'`
 
 Run the following commands
-```
+```zsh
 > node -v
 v14.17.6
 > node -p process.arch
