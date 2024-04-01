@@ -24,14 +24,14 @@ We recommend managing your node.js version using [nvm](https://github.com/nvm-sh
 
 # Quickstart
 
-```
+```zsh
 # Install the correct node.js version
 nvm install 14.17.6
 
 # Clone the repo
 git clone https://github.com/brightsign/dev-cookbook.git
 
-# Use create-react-app
+# Bootstrap a new React application:
 npx create-react-app bs-app --template file:./dev-cookbook/cra-template-brightsign-app
 
 # Run the example locally
@@ -42,6 +42,8 @@ yarn && yarn start
 PLAYER=your.device.ip.address PLAYER_PW=yourdeviceserialnumber yarn run put:prod 
 
 ```
+
+Replace `your.device.ip.address` and `yourdeviceserialnumber` with your actual device IP and serial number. The serial number is typically the default password.
 
 # What are the cra-template-* examples?
 They are React [Custom Templates](https://create-react-app.dev/docs/custom-templates/). They allow developers to quickly bootstrap a React application with custom code tailored to Brightsign development. 
@@ -54,7 +56,13 @@ COMING SOON: You can install any of our templates by running `npx create-react-a
 
 # Feedback/Contributing
 
-If you find any bugs or have suggestions for new examples, please let us know by opening an issue.
+## Contributing Guidelines
+
+- **Code Style:** Please adhere to the coding conventions as defined in `.eslintrc`. Run `yarn format` before submitting.
+- **Commit Messages:** Write clear, concise commit messages that explain the changes made.
+- **Pull Requests:** For substantial changes, it's best to open an issue for discussion before submitting a pull request.
+
+We look forward to your contributions and suggestions!
 
 ## Getting Started
 
