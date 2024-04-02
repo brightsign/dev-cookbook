@@ -56,13 +56,7 @@ COMING SOON: You can install any of our templates by running `npx create-react-a
 
 # Feedback/Contributing
 
-## Contributing Guidelines
-
-- **Code Style:** Please adhere to the coding conventions as defined in `.eslintrc`. Run `yarn format` before submitting.
-- **Commit Messages:** Write clear, concise commit messages that explain the changes made.
-- **Pull Requests:** For substantial changes, it's best to open an issue for discussion before submitting a pull request.
-
-We look forward to your contributions and suggestions!
+Feel free to open an issue or submit a PR, see `CONTRIBUTING.MD` further information.
 
 ## Getting Started
 
