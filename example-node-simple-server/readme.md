@@ -1,6 +1,6 @@
 # Hosting a Node.js server on your player
 
-This example shows you how to host a node.js server on your player. In this example, the server serves the device info object from the `@brightsign/deviceinfo` API when a request is made to the player on port `13131`. 
+This example shows you how to host a node.js server on your player. In this example, the server serves the device info object from the `@brightsign/deviceinfo` API when a request is made to the player on port `13131`.
 
 ## Deployment
 

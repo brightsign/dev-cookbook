@@ -1,11 +1,17 @@
 {
-  "name": "cra-template-brightsign-app",
-  "version": "1.0.0",
-  "description": "Create and publish a web app onto a BrightSign player.",
-  "main": "index.js",
-  "keywords": [
-    "BrightSign"
-  ],
-  "author": "Diego Benitez <dbenitez@brightsign.biz>",
-  "license": "SEE LICENSE IN License.txt"
+    "name": "cra-template-brightsign-app",
+    "version": "1.0.0",
+    "description": "Create and publish a web app onto a BrightSign player.",
+    "main": "index.js",
+    "keywords": [
+        "BrightSign"
+    ],
+    "author": "Diego Benitez <dbenitez@brightsign.biz>",
+    "license": "SEE LICENSE IN License.txt",
+    "scripts": {
+        "test": "jest --config jest.config.js template/src/",
+        "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+        "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}"
+    }
 }

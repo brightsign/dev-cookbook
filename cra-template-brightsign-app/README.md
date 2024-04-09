@@ -4,13 +4,24 @@ Ensure that you have the right version of Node.js installed (`14.17.6`) as this 
 
 This project is a custom `create-react-app` template. Clone the repo and then run the following command in the root of your project directory to instantiate the project. Be sure to set the `file:/` path correctly.
 
-
 ```
 npx create-react-app bsignapp --template file:/path/to/dev-cookbook/cra-template-brightsign-app
 ```
 
-Once the app is ready, simply follow the instructions in the project `readme` to deploy to your device. Be aware that it is not possible to build and run the app locally if you are using `@brightsign/` packages (for example in `src/App.js`), since they are currently only available on-device. 
+Once the app is ready, simply follow the instructions in the project `readme` to deploy to your device. When you run the app locally using `yarn start`, mocked `@brightsign/` JavaScript APIs will be used.
 
 ## Contributing to the template
 
-If you wish to make changes to the template, make your changes in `dev-cookbook` and run `npx create-react-app` again to copy your changes over. Feel free to submit a PR if you want to contribute to the main project.
+To contribute enhancements or fixes to the template, please follow these steps:
+
+1. Fork and Clone: Start by forking the `dev-cookbook` repository. Then, clone your fork locally to make changes.
+
+2. Make Changes: Navigate to the specific template you wish to improve within the dev-cookbook directory. Apply your changes there.
+
+3. Test Locally: Test the template by instantiating using the command mentioned in the "Using the Template" section. This step ensures your changes work as expected within the create-react-app workflow.
+
+4. Commit Changes: After testing your changes, commit them to your fork. Ensure your commit messages clearly describe the enhancements or fixes made. Push your commits to GitHub.
+
+5. Submit a Pull Request (PR): Submit a pull request to the main dev-cookbook repository. Be sure to fill out the predefined PR sections as fully as possible.
+
+6. Code Review: Once your PR is submitted, it will be reviewed by a BrightSign team member. Be open to feedback and ready to make further adjustments based on their suggestions.

@@ -1,26 +1,29 @@
 {
-  "name": "example-node-simple-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:prod": "webpack --mode=production --node-env=production",
-    "build": "webpack --mode=development"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "webpack": "^5.82.0",
-    "webpack-cli": "^5.1.0"
-  },
-  "engines": {
-    "node": "<14.17.6"
-  },
-  "dependencies": {
-    "node": "^14.17.6",
-    "nvm": "^0.0.4",
-    "http": "^0.0.1-security"
-  }
+    "name": "example-node-simple-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest --config jest.config.js src/",
+        "build:prod": "webpack --mode=production --node-env=production",
+        "build": "webpack --mode=development",
+        "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+        "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "webpack": "^5.82.0",
+        "webpack-cli": "^5.1.0"
+    },
+    "engines": {
+        "node": "<14.17.6"
+    },
+    "dependencies": {
+        "node": "^14.17.6",
+        "nvm": "^0.0.4",
+        "http": "^0.0.1-security"
+    }
 }
