@@ -1,6 +1,6 @@
 {
     "name": "cra-template-brightsign-dashboard",
-    "version": "1.1.0",
+    "version": "1.0.0",
     "description": "Create and publish a rich dashboard onto a BrightSign player.",
     "main": "index.js",
     "keywords": [
