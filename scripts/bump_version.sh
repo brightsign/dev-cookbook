@@ -8,7 +8,6 @@ for dir in $workspace_dirs; do
   cd $dir
   echo "Current directory: $(pwd)"
 
-  
   PACKAGE_NAME=$(jq -r '.name' package.json)
   
   # Run the GitHub API command to get the latest package version
@@ -16,7 +15,7 @@ for dir in $workspace_dirs; do
   if echo "$response" | jq -e '.message' >/dev/null; then
     # If there is an error message in the response, use the default version
     version_name="1.0.0"
-    echo "Using default version 1.0.0 for $PACKAGE_NAME due to: $(echo "$response" | jq -r '.message')"
+    echo "Using default version 1.0.0 for $PACKAGE_NAME"
   else
     # Extract version name, if possible, otherwise use default
     version_name=$(echo "$response" | jq -r '.[0].name // "1.0.0"')
