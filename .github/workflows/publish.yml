@@ -25,6 +25,6 @@ jobs:
           cache: 'yarn'
       - run: yarn --frozen-lockfile
       - run: ./scripts/bump_version.sh
-      - run: yarn workspaces run publish --patch
+      - run: yarn workspaces run npm publish --patch
         env:
          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
