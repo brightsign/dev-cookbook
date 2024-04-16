@@ -68,7 +68,7 @@ To run the tests for every example, run `yarn workspaces run test` or the shortc
 
 ## Feedback/Contributing
 
-Feel free to open an issue or submit a PR, see `CONTRIBUTING.MD` further information.
+Feel free to open an issue or submit a PR, see `CONTRIBUTING.MD` for further information.
 
 ## Building on M1 Mac
 

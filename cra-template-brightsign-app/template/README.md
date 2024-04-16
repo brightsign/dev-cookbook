@@ -29,7 +29,7 @@ curl -d '{"text": "hello world" }' -H 'Content-Type: application/json' -X POST y
 
 ## Debugging
 
-To debug your web application you can enable the`Inspector Server` allowing the Chrome DevTools to connect over the local network. See the _Debugging Webpages_ section in [HTML Best Practices](https://brightsign.atlassian.net/wiki/x/ngIYFg) for more info.
+To debug your web application, you can enable the`Inspector Server`, allowing the Chrome DevTools to connect over the local network. See the _Debugging Webpages_ section in [HTML Best Practices](https://brightsign.atlassian.net/wiki/x/ngIYFg) for more info.
 
 ## Bundling
 

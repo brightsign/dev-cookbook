@@ -2,7 +2,7 @@
 
 Ensure that you have the right version of Node.js installed (`14.17.6`) as this is what is best supported by BrightSign devices at the moment.
 
-This project is a custom `create-react-app` template. Clone the repo and then run the following command in the root of your project directory to instantiate the project. Be sure to set the `file:/` path to the location as where `/template` and `/template.json` reside.
+This project is a custom `create-react-app` template. Clone the repo and then run the following command in the root of your project directory to instantiate the project. Be sure to set the `file:/` path to the location where `/template` and `/template.json` reside.
 
 ```
 npx create-react-app bs-app --template file:/path/to/dev-cookbook/cra-template-brightsign-app
