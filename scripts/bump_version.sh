@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script bumps the version of every package in preparation for release
+# This script bumps the version of every package to the current latest version in preparation for publishing to Github Packages
 
 workspace_dirs=$(yarn workspaces --json info | jq -r '.data | fromjson | to_entries[] | .value.location')
 
@@ -21,12 +21,9 @@ for dir in $workspace_dirs; do
     # Extract version name, if possible, otherwise use default
     version_name=$(echo "$response" | jq -r '.[0].name // "1.0.0"')
   fi
-  
+
   # Update the package.json with the latest version 
   jq --indent 4 ".version = \"$version_name\"" package.json > temp.json && mv temp.json package.json
-
-  # Bump version
-  yarn version --patch --no-git-tag-version
   
   cd ..
 done
