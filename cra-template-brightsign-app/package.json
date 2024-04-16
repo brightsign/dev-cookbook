@@ -12,6 +12,7 @@
         "test": "jest --config jest.config.js template/src/",
         "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
         "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
-        "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}"
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}",
+        "publish": "npm publish"
     }
 }
