@@ -1,0 +1,30 @@
+name: Node.js Packages Publishing
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish-gpr:
+    runs-on: ubuntu-latest
+    permissions:
+        packages: write
+        contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+            node-version: '14.17.6'
+            fetch-depth: 1
+            registry-url: https://npm.pkg.github.com/
+      - name: Fetch latest main branch commit
+        run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '14.17.6'
+          cache: 'yarn'
+      - run: yarn --frozen-lockfile
+      - run: ./scripts/bump_version.sh
+      - run: yarn workspaces run publish --patch
+        env:
+         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
