@@ -2,7 +2,6 @@
 
 ## 1.0.0 (2024-04-16)
 
-
 ### Features
 
 * Add tests for templates and nodejs examples ([#10](https://github.com/brightsign/dev-cookbook/issues/10)) ([3fe286c](https://github.com/brightsign/dev-cookbook/commit/3fe286c92a32e841b1900403d3f783565a1e9407))

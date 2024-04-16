@@ -25,6 +25,31 @@ Updating the header text
 curl -d '{"text": "hello world" }' -H 'Content-Type: application/json' -X POST your.device.ip.address:8020/text
 ```
 
+## Debugging
+
+To debug your web application you can enable the `Inspector Server` allowing the Chrome DevTools to connect over the local network. See the _Debugging Webpages_ section in [HTML Best Practices](https://brightsign.atlassian.net/wiki/x/ngIYFg) for more info.
+
+## Bundling
+
+For most use cases, leveraging a bundling tool like [webpack](https://webpack.js.org/) is recommended to minimize the dependency graph from one or more entry points and many modules, into either 1 or a few entry points.
+
+## Deployment for Local Development
+
+There are many means of deploying software to a BrightSign player. Common methods include:
+
+1. Push your software to the Local Diagnostic Web Server (DWS) either through the Local DWS UI or a REST Client Tool.
+    1. The `~/scripts/put` shell script could be leveraged.
+    2. Coming soon: Improved tooling to push software to the Player independent of BrightAuthor:connected
+
+## Deploy through an Authoring Application
+
+1. Leverage a CMS to run HTML, CSS, JS and / or Node.js managing the application as content is running.
+2. Author a BrightAuthor:connected Presentation to load your local application(s).
+
+HTML 5 Widget in a Presentation loads locally provided .html file. The .html file is the entry file for HTML, CSS, JavaScript. To execute within the Node.js runtime, then _Enable Node.js_.
+
+A Node.js Zone in a Presentation is used to execute within the Node.js runtime when the entry file is JavaScript.
+
 ## How to check for logs
 
 Using the BrightSign CLI:
