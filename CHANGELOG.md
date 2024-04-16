@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/brightsign/dev-cookbook/compare/v1.0.2...v1.1.0) (2024-04-16)
+
+
+### Features
+
+* publish to github package registry ([aef07e5](https://github.com/brightsign/dev-cookbook/commit/aef07e5f2cd9a154baff02ea3b2d9f9f28eb0868))
+
 ## 1.0.0 (2024-04-16)
 
 ### Features
