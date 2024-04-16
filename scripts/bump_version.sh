@@ -5,7 +5,7 @@
 workspace_dirs=$(yarn workspaces --json info | jq -r '.data | fromjson | to_entries[] | .value.location')
 
 for dir in $workspace_dirs; do
-  cd $dir
+  pushd $dir
   echo "Current directory: $(pwd)"
 
   
@@ -25,5 +25,5 @@ for dir in $workspace_dirs; do
   # Update the package.json with the latest version 
   jq --indent 4 ".version = \"$version_name\"" package.json > temp.json && mv temp.json package.json
   
-  cd ..
+  popd
 done
