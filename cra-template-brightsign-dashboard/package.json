@@ -16,6 +16,6 @@
         "publish": "npm publish"
     },
     "publishConfig": {
-      "@brightsign:registry": "https://npm.pkg.github.com"
+        "@brightsign:registry": "https://npm.pkg.github.com"
     }
 }
