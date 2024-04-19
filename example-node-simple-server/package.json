@@ -26,5 +26,8 @@
         "node": "^14.17.6",
         "nvm": "^0.0.4",
         "http": "^0.0.1-security"
+    },
+    "publishConfig": {
+        "@brightsign:registry": "https://npm.pkg.github.com"
     }
 }
