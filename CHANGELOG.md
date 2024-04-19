@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/brightsign/dev-cookbook/compare/v1.1.1...v1.1.2) (2024-04-19)
+
+
+### Bug Fixes
+
+* update publish config and release PAT ([7985339](https://github.com/brightsign/dev-cookbook/commit/79853392c84093c5d449affdf828fc1f3b2a6fa1))
+
 ## [1.1.0](https://github.com/brightsign/dev-cookbook/compare/v1.0.2...v1.1.0) (2024-04-16)
 
 
