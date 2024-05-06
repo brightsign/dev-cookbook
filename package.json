@@ -19,6 +19,7 @@
         "react-dom": "^18.2.0"
     },
     "scripts": {
+        "commit": "cz",
         "prepare": "husky install",
         "test": "yarn workspaces run test",
         "format": "yarn workspaces run format",
@@ -26,6 +27,7 @@
     },
     "license": "SEE LICENSE IN LICENSE.txt",
     "devDependencies": {
+        "commitizen": "^4.3.0",
         "eslint": "8.57.0",
         "eslint-config-airbnb": "19.0.4",
         "eslint-config-prettier": "9.1.0",
