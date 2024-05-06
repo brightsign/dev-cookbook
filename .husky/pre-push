@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-node ./scripts/workspace_actions.js format
-git add -u
+node ./scripts/workspace_actions.js test
