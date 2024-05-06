@@ -19,9 +19,10 @@
         "react-dom": "^18.2.0"
     },
     "scripts": {
-      "test": "yarn workspaces run test",
-      "format": "yarn workspaces run format",
-      "lint": "yarn workspaces run lint"
+        "prepare": "husky install",
+        "test": "yarn workspaces run test",
+        "format": "yarn workspaces run format",
+        "lint": "yarn workspaces run lint"
     },
     "license": "SEE LICENSE IN LICENSE.txt",
     "devDependencies": {
@@ -33,6 +34,7 @@
         "eslint-plugin-jsx-a11y": "6.8.0",
         "eslint-plugin-prettier": "4",
         "eslint-plugin-react": "7.34.1",
+        "husky": "8.0.3",
         "prettier": "2.8.8"
     }
 }
