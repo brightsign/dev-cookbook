@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "development") {
 function App() {
     const networkInterfaces = os.networkInterfaces() || {};
     const [ipAddress, setIpAddress] = useState("");
-    const [header, setHeader] = useState("")
+    const [header, setHeader] = useState("");
 
     useEffect(() => {
         const interval = setInterval(async () => {
