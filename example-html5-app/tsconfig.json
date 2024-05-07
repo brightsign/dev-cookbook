@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "es2022",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "target": "es5",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["tmp", "dist", "coverage", "node_modules"],
+  "watchOptions": {
+    "excludeDirectories": ["tmp", "dist", "coverage", "**/node_modules"]
+  }
+}
