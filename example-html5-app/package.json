@@ -12,10 +12,12 @@
     "put": "npm run build:prod && npm run cp",
     "clean": "rm -rf dist",
     "reinstall": "npm run clean && rm -rf node_modules && npm install",
-    "lint": "eslint src --ext js,jsx,ts,tsx,json",
+    "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc src/**/*.{ts,tsx}",
     "lint:fix": "eslint --fix src --ext js,jsx,ts,tsx,json",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format:check": "prettier 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ../.prettierrc.js && npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "npm publish"
   },
   "author": "BrightSign LLC",
   "license": "ISC",

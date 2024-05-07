@@ -1,42 +1,46 @@
-import { getConfig } from '../config';
+import { getConfig } from "../config.ts";
 
 const config = getConfig();
 
 const initializePlayer = async () => {
-  console.log('initializePlayer()');
+    console.log("initializePlayer()");
 
-  return {
-    // @ts-expect-error: Should accept import
-    deviceInfo: (await import('@brightsign/deviceinfo')).default,
-    // @ts-expect-error: Should accept import
-    registryClass: (await import('@brightsign/registry')).default,
-  };
+    return {
+        // @ts-expect-error: Should accept import
+        DeviceInfo: (await import("@brightsign/deviceinfo")).default,
+        // @ts-expect-error: Should accept import
+        RegistryClass: (await import("@brightsign/registry")).default,
+    };
 };
 
 const initializeDesktop = async () => {
-  console.log('initializeDesktop()');
+    console.log("initializeDesktop()");
 
-  return {
-    deviceInfo: (await import('./device-info')).default,
-    mockPlayer: (await import('./device-mock/raptor')).info,
-  };
+    return {
+        DeviceInfo: (await import("./device-info.ts")).default,
+        mockPlayer: (await import("./device-mock/raptor.ts")).info,
+    };
 };
 
 export interface BrightSignPlayer {
-  BSDeviceInfo: any;
-  registry?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    BSDeviceInfo: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    registry?: any;
 }
 
 export async function bsPlayer() {
-  const player = <BrightSignPlayer>{};
+    const player = <BrightSignPlayer>{};
 
-  if (config.isDesktop) {
-    const playerModule = await initializeDesktop();
-    player.BSDeviceInfo = new playerModule.deviceInfo(playerModule.mockPlayer);
-  } else {
-    const playerModule = await initializePlayer();
-    player.BSDeviceInfo = new playerModule.deviceInfo();
-    player.registry = new playerModule.registryClass();
-  }
-  return player;
+    if (config.isDesktop) {
+        const playerModule = await initializeDesktop();
+        player.BSDeviceInfo = new playerModule.DeviceInfo(
+            playerModule.mockPlayer
+        );
+    } else {
+        const playerModule = await initializePlayer();
+        player.BSDeviceInfo = new playerModule.DeviceInfo();
+        player.registry = new playerModule.RegistryClass();
+    }
+    return player;
 }
