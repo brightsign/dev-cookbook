@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/brightsign/dev-cookbook/compare/v1.1.2...v1.2.0) (2024-05-08)
+
+
+### Features
+
+* Husky Pre-commit hooks ([#18](https://github.com/brightsign/dev-cookbook/issues/18)) ([de35ee0](https://github.com/brightsign/dev-cookbook/commit/de35ee051e119fe0fa8f133abfcc83e6a72840b1))
+
 ## [1.1.2](https://github.com/brightsign/dev-cookbook/compare/v1.1.1...v1.1.2) (2024-04-19)
 
 
