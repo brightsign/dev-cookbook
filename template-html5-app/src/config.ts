@@ -5,8 +5,6 @@ interface Config {
     version: string;
     isDesktop: boolean;
     nodeEnv: string;
-    reconnectionDelay: number;
-    reconnectionDelayMax: number;
     dwsBaseRoute: string;
     dwsPassword: string;
 }
@@ -16,14 +14,6 @@ const getFromEnv = (): Config => {
         version,
         isDesktop: process.env.IS_DESKTOP == "true",
         nodeEnv: process.env.NODE_ENV || "development",
-        reconnectionDelay: parseInteger(
-            process.env.WS_RECONNECTION_DELAY,
-            1000
-        ),
-        reconnectionDelayMax: parseInteger(
-            process.env.WS_RECONNECTION_DELAY_max,
-            12 * 60 * 60 * 1000
-        ),
         dwsBaseRoute: process.env.DWS_BASE_ROUTE || "http://localhost",
         dwsPassword: process.env.DWS_PASSWORD || "",
     };
