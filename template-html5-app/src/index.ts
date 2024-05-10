@@ -1,6 +1,11 @@
 import { displayCurrentNetwork, displayDeviceInfo } from "./info";
 import { getConfig } from "./config";
+import express from "express";
+import path from "path";
+const spawn = require("child_process").spawn;
 
+const app = express();
+const port = 9000;
 const config = getConfig();
 
 const start = async () => {
@@ -11,6 +16,13 @@ const start = async () => {
     if (!config.isDesktop) {
         displayCurrentNetwork();
         await displayDeviceInfo();
+    } else {
+        // open default browser
+        app.use(express.static(path.join(__dirname)));
+        app.listen(port, () => {
+            console.log(`Server running at http://localhost:${port}/`);
+        });
+        spawn("open", [`http://localhost:${port}/`]);
     }
 };
 
