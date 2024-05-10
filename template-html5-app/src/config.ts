@@ -7,7 +7,6 @@ interface Config {
     nodeEnv: string;
     reconnectionDelay: number;
     reconnectionDelayMax: number;
-    wsServerUrl: string;
     dwsBaseRoute: string;
     dwsPassword: string;
 }
@@ -25,7 +24,6 @@ const getFromEnv = (): Config => {
             process.env.WS_RECONNECTION_DELAY_max,
             12 * 60 * 60 * 1000
         ),
-        wsServerUrl: process.env.WS_SERVER_URL || "ws://localhost:8082/",
         dwsBaseRoute: process.env.DWS_BASE_ROUTE || "http://localhost",
         dwsPassword: process.env.DWS_PASSWORD || "",
     };

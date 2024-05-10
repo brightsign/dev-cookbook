@@ -1,5 +1,4 @@
 import { displayCurrentNetwork, displayDeviceInfo } from "./info";
-import { createSocket } from "./ws-client";
 import { getConfig } from "./config";
 
 const config = getConfig();
@@ -13,8 +12,6 @@ const start = async () => {
         displayCurrentNetwork();
         await displayDeviceInfo();
     }
-
-    await createSocket();
 };
 
 declare global {

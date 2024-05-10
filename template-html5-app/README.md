@@ -1,4 +1,4 @@
-# bs-example-wss - player-app
+# template-html5 - player-app
 
 In this directory, you'll discover how to develop a straightforward web application tailored for BrightSign players and deploy it onto the player. This web app boasts full functionality and is constructed similarly to any other web application. It incorporates HTML and Node.js TypeScript, alongside a simple BrightScript autorun file to configure the player to execute your app.
 
@@ -124,20 +124,7 @@ registry write networking bsnce false
 
 ## Building your Code
 
-BrightSign recommends using webpack to actually build your web app. Webpack will combine all javascript code (including libraries) into a single file. This is necessary for JavaScript to run on the player. For more information on webpack, refer to their [documentation](https://webpack.js.org/concepts/). 
-
-### Settings Environment Variables
-To set up the necessary environment variables, follow these steps:
-
-1. Open `src/config.ts` in your preferred text editor.
-2. Review the file to identify which environment variables require updating.
-
-One variable must be updated before building the project:
-```sh
-export WS_SERVER_URL=[websocket_server_ip]
-
-# e.g.export WS_SERVER_URL=ws://192.168.86.100:8082/
-```
+BrightSign recommends using webpack to actually build your web app. Webpack will combine all javascript code (including libraries) into a single file. This is necessary for JavaScript to run on the player. For more information on webpack, refer to their [documentation](https://webpack.js.org/concepts/).
 
 ### Build commands
 You can choose to compile the code in either development or production mode.

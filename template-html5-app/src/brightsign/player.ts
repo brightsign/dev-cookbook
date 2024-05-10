@@ -1,4 +1,4 @@
-import { getConfig } from "../config.ts";
+import { getConfig } from "../config";
 
 const config = getConfig();
 
@@ -17,8 +17,8 @@ const initializeDesktop = async () => {
     console.log("initializeDesktop()");
 
     return {
-        DeviceInfo: (await import("./device-info.ts")).default,
-        mockPlayer: (await import("./device-mock/raptor.ts")).info,
+        DeviceInfo: (await import("./device-info")).default,
+        mockPlayer: (await import("./device-mock/raptor")).info,
     };
 };
 
