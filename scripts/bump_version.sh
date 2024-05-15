@@ -8,6 +8,10 @@ for dir in $workspace_dirs; do
   pushd $dir
   echo "Current directory: $(pwd)"
 
+  # add package registry configuration
+  echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
+  echo "@brightsign:registry=https://npm.pkg.github.com" >> .npmrc
+
   PACKAGE_NAME=$(jq -r '.name' package.json)
   
   # Run the GitHub API command to get the latest package version
