@@ -28,8 +28,9 @@ jobs:
         with:
           node-version: '14.17.6'
           cache: 'yarn'
+          token: ${{steps.app-token.outputs.token}}
+          registry-url: 'https://npm.pkg.github.com'
+          always-auth: 'true'
       - run: yarn --frozen-lockfile
       - run: ./scripts/bump_version.sh
       - run: yarn workspaces run publish
-        env:
-         NODE_AUTH_TOKEN: ${{steps.app-token.outputs.token}}
