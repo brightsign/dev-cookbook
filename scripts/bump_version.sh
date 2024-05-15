@@ -8,9 +8,8 @@ for dir in $workspace_dirs; do
   pushd $dir
   echo "Current directory: $(pwd)"
 
-  # add package registry configuration
-  echo "//npm.pkg.github.com/:_authToken=$NODE_AUTH_TOKEN" > .npmrc
-  echo "@brightsign:registry=https://npm.pkg.github.com" >> .npmrc
+  # add package registry configuration from setup-node at the root of the repo
+  cp ../.npmrc .npmrc
 
   PACKAGE_NAME=$(jq -r '.name' package.json)
   
