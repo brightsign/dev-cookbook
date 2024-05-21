@@ -8,14 +8,13 @@ In this directory, you'll discover how to develop a straightforward web applicat
 3. [Familiarize yourself with the project, customize it if wanted](#contained-in-this-folder)
 4. [Build your code with webpack](#building-your-code)
 5. [Deploy the built code to your player](#deploying-code-to-the-player)
-6. [Run the code on your player](#restarting-the-app-on-the-player)
 
 ## Development Prerequisites
 Node.js and nvm are required for installation, as specified in the README at the root of the repository.
 
 Then initialize for node:
 ```sh
-nvm use 14.16.7
+nvm use 14.17.6
 npm install
 ```
 
@@ -234,18 +233,5 @@ For more information on the local DWS, refer to BrightSign's [DWS Documentation]
 BrightSign's LAN API's are exposed to the public, so you can create your own UI for interacting with the player. You can find the LAN API documentation here: [local DWS API reference](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/1172734089/Local+DWS+APIs).
 
 [Back to deployment options](#deploying-code-to-the-player)
-
-[Back to Step by Step](#step-by-step)
-
-## Restarting the App on the Player
-
-Just copying the files will not restart your application on the player. From a serial or SSH/Telnet session to the player:
-> ctrl-C\
- **BrightScript Debugger>** exit
- **BrightSign>** script autorun.brs
-
-*Ctrl-C* will break out of the autorun into the debugger, which you then `exit` and then run the command `script autorun.brs` to start the autorun. Note that for this to work, debugging must be on on the player. 
-
-Alternatively, re-applying power or hitting the "Reset" button on the device will also result in the autorun being run. 
 
 [Back to Step by Step](#step-by-step)
