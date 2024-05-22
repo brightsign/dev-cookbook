@@ -19,14 +19,20 @@ To contribute enhancements or fixes to `dev-cookbook`, please follow these steps
 
 2. Make Changes: Navigate to the specific template or example you wish to improve within the `dev-cookbook` directory. Apply your changes there.
 
-3. Test Locally: Test the template by instantiating using the command mentioned in the "Using the Template" section. This step ensures your changes work as expected within the create-react-app workflow. If it is an `example-*`, test your changes according to the instructions in the example Readme.
+3. Test Locally: Test the template by instantiating using the command mentioned in the "Using the Template" section. This step ensures your changes work as expected within the `create-react-app` workflow. If it is an `example-*`, test your changes according to the instructions in the example Readme.
 
 4. Commit Changes: After testing your changes, commit them to your fork. Ensure your commit messages clearly describe the enhancements or fixes made. Push your commits to GitHub.
 
 5. Submit a Pull Request (PR): Submit a pull request to the main dev-cookbook repository. Be sure to fill out the predefined PR sections as fully as possible.
 
 6. Code Review: Once your PR is submitted, it will be reviewed by a BrightSign team member. Be open to feedback and ready to make further adjustments based on their suggestions.
-   
+
+# Modifying cra-template-* examples
+
+`cra-template-*` examples can be run on your development machine for rapid iteration with some caveats. `@brightsign` modules are 
+
+
+
 # How to report a bug
 
 Create a new issue. Be sure to describe the bug and provide clear repro steps.

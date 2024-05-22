@@ -1,6 +1,6 @@
 # Using Node.js with your project
 
-As you work with the sample code in this repo, you will find references to `@brightsign` JavaScript modules. These modules provide BrightSign specific functionality and are built in to the device firmware. 
+As you work with the sample code in this repo, you will find references to `@brightsign` JavaScript modules. These modules provide BrightSign specific functionality and are built in to the device firmware. These modules can be integrated with your code to provide rich experiences on the device.
 
 There are two main ways to run Node.js on your Brightsign device.
 
