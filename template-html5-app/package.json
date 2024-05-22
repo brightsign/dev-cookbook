@@ -1,8 +1,8 @@
 {
-  "name": "player-ws-app",
+  "name": "template-html5-app",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "template/src/index.ts",
   "scripts": {
     "start": "IS_DESKTOP=true NODE_PATH=./dist node dist/bundle.js",
     "build:dev": "npm run clean && webpack --mode development",
@@ -12,11 +12,11 @@
     "put": "npm run build:prod && npm run cp",
     "clean": "rm -rf dist",
     "reinstall": "npm run clean && rm -rf node_modules && npm install",
-    "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc src/**/*.{ts,tsx}",
-    "lint:fix": "eslint --fix src --ext js,jsx,ts,tsx,json",
-    "format:check": "prettier 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ../.prettierrc.js && npm run lint",
-    "test": "jest --config jest.config.js src/",
+    "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{ts,tsx}",
+    "lint:fix": "eslint --fix template/src --ext js,jsx,ts,tsx,json",
+    "format:check": "prettier 'template/src/**/*.{js,jsx,ts,tsx,css,md,json}' --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+    "format": "prettier --write 'template/src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ../.prettierrc.js && npm run lint",
+    "test": "jest --config jest.config.js template/src/",
     "publish": "npm publish"
   },
   "author": "BrightSign LLC",
