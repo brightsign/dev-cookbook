@@ -5,12 +5,12 @@
     "esModuleInterop": true,
     "target": "es5",
     "outDir": "./dist",
-    "rootDir": "template/src",
+    "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["template/src/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["tmp", "dist", "coverage", "node_modules"],
   "watchOptions": {
     "excludeDirectories": ["tmp", "dist", "coverage", "**/node_modules"]
