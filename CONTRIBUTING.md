@@ -31,7 +31,7 @@ To contribute enhancements or fixes to `dev-cookbook`, please follow these steps
 
 `cra-template-*` examples can be run on your development machine (via `yarn start`) for rapid iteration, with some caveats. The full functionality of `@brightsign` API modules are only available on the device, but we have added partial mock implementations for you to develop with locally. Please refer to the [JavaScript API Documentation](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/370678188/JavaScript+APIs) for further details on each API so that you may extend the existing mocks.
 
-You can also extend or create new tests (`App.test.js`) and run them with `yarn run test` in each examples directory `dev-cookbook`, or in every workspace by running `yarn run test` at the root of the project.
+You can also extend or create new tests (`App.test.js`) and run them with `yarn run test` in each example directory `dev-cookbook`, or in every workspace by running `yarn run test` at the root of the project.
 
 If you want to contribute improvements back to `dev-cookbook`, either make your changes directly in the repo or copy them from your `create-react-app` project after you have verified them locally and on a device. Be sure to maintain the same directory structure.
 
