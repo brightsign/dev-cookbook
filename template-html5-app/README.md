@@ -20,7 +20,7 @@ npm install
 
 ## Contained in this folder
 
-This `player-app` folder contains the code base of the example web app, the simple BrightScript autorun, a simple script to deploy code to the player, and the webpack configuration file.
+This `template-html5-app` folder contains the code base of the template app, the simple BrightScript autorun, a simple script to deploy code to the player, and the webpack configuration file.
 
 ### src
 
@@ -32,36 +32,7 @@ The index.html and index.ts files contained in ./src are the files that make up 
 
 The index.ts TypeScript file uses BrightSign's javascript API to interact with the player. Documentation on this API can be found [here](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/370678188/JavaScript+API). This template web app uses the DeviceInfo API to retrieve information about the device running the app. Please note that every JS API interacted with must be defined as an external package in [webpack.config.js](#webpack-config). 
 
-### scripts
-
-Contained in ./scripts is the bash script that deploys code to the player. BrightSign has a set of built in API's that allow users to interact with it over the local network, documentation found [here](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/1172734089/Local+DWS+APIs). The **put** script in ./scripts uses these API's to move the desired files from your dev environment to the player. Which files to put on the player are found in ./scripts/put lines 34 and line 40: 
-
-```sh
-for f in src/autorun.brs
-
-for f in dist/*
-```
-
-Every file in ./dist and autorun.brs in ./src will be transferred to the player. If you want to specify which types of files to include, simply edit the line(s).
-```sh
-for f in dist/*.js src/*.html src/*.brs
-```
-
-[Back to Step by Step](#step-by-step)
-
-#### Prerequisites for bash ./scripts
-
-The shell scripts in this project use [jq](https://jqlang.github.io/jq/download/), if you don't already have it download using:
-```sh
-sudo apt-get install jq
-```
-
-This repository uses environment variables to define the player. An easy way to organize environment variables is with [direnv](https://direnv.net/). Install direnv with:
-```sh
-curl -sfL https://direnv.net/install.sh | bash
-```
-
-**Alternatively, [use BrightSign's Player CLI](#brightsign-player-cli) to push files.**
+**[Use BrightSign's Player CLI](#brightsign-player-cli) to push files.**
 
 ### Webpack Config
 
@@ -225,12 +196,6 @@ npm run put:dev
 Access the local DWS by typing the IP address of your player into a web browser. From there, you can view, upload and delete files on the player from the 'SD' tab. 
 
 For more information on the local DWS, refer to BrightSign's [DWS Documentation](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/370673541/Diagnostic+Web+Server)
-
-[Back to deployment options](#deploying-code-to-the-player)
-
-#### Building your own deployment pipeline
-
-BrightSign's LAN API's are exposed to the public, so you can create your own UI for interacting with the player. You can find the LAN API documentation here: [local DWS API reference](https://brightsign.atlassian.net/wiki/spaces/DOC/pages/1172734089/Local+DWS+APIs).
 
 [Back to deployment options](#deploying-code-to-the-player)
 
