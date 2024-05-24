@@ -32,6 +32,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           always-auth: 'true'
       - run: yarn --frozen-lockfile
-      - run: echo '//npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token  }}' > ${{ github.workspace }}/.npmrc
+      - run: echo '@brightsign://npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token  }}' > ${{ github.workspace }}/.npmrc
       - run: ./scripts/bump_version.sh
       - run: yarn workspaces run publish
