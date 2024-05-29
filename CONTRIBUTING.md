@@ -38,7 +38,7 @@ If you want to contribute improvements back to `dev-cookbook`, either make your 
 
 # Git hooks
 
-`dev-cookbook` uses [husky](https://typicode.github.io/husky/) run `eslint` and `prettier` on commit to maintain code quality. There is also a hook to run tests before pushing to a remote branch. If you would like to suggest improvements, take a look at the hooks configuration in the `.husky` directory.
+`dev-cookbook` uses [husky](https://typicode.github.io/husky/) to automatically run `eslint` and `prettier` on commit to maintain code quality. There is also a hook to run tests before pushing to a remote branch. If you would like to suggest improvements, take a look at the hooks configuration in the `.husky` directory.
 
 
 # How to report a bug
