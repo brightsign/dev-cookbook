@@ -1,5 +1,5 @@
 {
-    "name": "example-node-simple-server",
+    "name": "@brightsign/example-node-simple-server",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
