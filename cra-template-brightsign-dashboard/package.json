@@ -1,5 +1,5 @@
 {
-    "name": "cra-template-brightsign-dashboard",
+    "name": "@brightsign/cra-template-brightsign-dashboard",
     "version": "1.0.0",
     "description": "Create and publish a rich dashboard onto a BrightSign player.",
     "main": "index.js",
@@ -14,7 +14,5 @@
         "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
         "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}"
     },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
     }
 }

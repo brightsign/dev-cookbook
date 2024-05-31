@@ -8,19 +8,13 @@ jobs:
   publish-gpr:
     runs-on: ubuntu-latest
     permissions:
-        packages: write
-        contents: read
+      packages: write
+      contents: read
     steps:
-      - uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v4
         with:
-            node-version: '14.17.6'
-            fetch-depth: 1
-            registry-url: https://npm.pkg.github.com/
+          fetch-depth: 1
+          registry-url: https://npm.pkg.github.com/
       - name: Fetch latest main branch commit
         run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
       - name: Use Node.js
@@ -28,11 +22,10 @@ jobs:
         with:
           node-version: '14.17.6'
           cache: 'yarn'
-          token: ${{steps.app-token.outputs.token}}
           registry-url: 'https://npm.pkg.github.com'
           always-auth: 'true'
       - run: yarn --frozen-lockfile
-      - run: echo '@brightsign://npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token  }}' > ${{ github.workspace }}/.npmrc
+      - run: echo '//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' > ${{ github.workspace }}/.npmrc
       - run: ./scripts/bump_version.sh
         env:
           GH_REF_VERSION: ${{ github.ref_name }}

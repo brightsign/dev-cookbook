@@ -1,5 +1,5 @@
 {
-    "name": "example-node-simple-server",
+    "name": "@brightsign/example-node-simple-server",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -24,8 +24,5 @@
     "dependencies": {
         "node": "14.17.6",
         "http": "^0.0.1-security"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
     }
 }
