@@ -34,4 +34,6 @@ jobs:
       - run: yarn --frozen-lockfile
       - run: echo '@brightsign://npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token  }}' > ${{ github.workspace }}/.npmrc
       - run: ./scripts/bump_version.sh
+        env:
+          GH_REF_VERSION: ${{ github.ref_name }}
       - run: yarn workspaces run publish
