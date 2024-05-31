@@ -29,4 +29,4 @@ jobs:
       - run: ./scripts/bump_version.sh
         env:
           GH_REF_VERSION: ${{ github.ref_name }}
-      - run: yarn workspaces run publish
+      - run: yarn workspaces run publish-package
