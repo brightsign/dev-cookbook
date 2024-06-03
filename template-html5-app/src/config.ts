@@ -19,16 +19,6 @@ const getFromEnv = (): Config => {
     };
 };
 
-const parseInteger = (value: any, theDefault: number): number => {
-    try {
-        const result = parseInt(value, 10);
-        if (!isNaN(result)) return result;
-    } catch (error) {
-        console.error(`Error parsing integer: ${error}`);
-    }
-    return theDefault;
-};
-
 const getConfig = (): Config => {
     if (!config) config = getFromEnv();
     return config;

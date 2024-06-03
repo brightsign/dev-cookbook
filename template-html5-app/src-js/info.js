@@ -1,7 +1,5 @@
 import os from "os";
-
-import { DeviceInfo } from "./device-info";
-import { bsPlayer, BrightSignPlayer } from "./player";
+import { bsPlayer } from "./player";
 
 const displayCurrentNetwork = () => {
     const networkInterfaces = os.networkInterfaces() || {};
