@@ -1,0 +1,57 @@
+{
+  "name": "template-html5-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "IS_DESKTOP=true NODE_PATH=./dist node dist/bundle.js",
+    "build:dev": "npm run clean && webpack --mode development",
+    "build:prod": "npm run clean && webpack --mode production --node-env=production",
+    "cp": "./scripts/put",
+    "put:dev": "npm run build:dev && npm run cp",
+    "put": "npm run build:prod && npm run cp",
+    "clean": "rm -rf dist",
+    "reinstall": "npm run clean && rm -rf node_modules && npm install",
+    "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc src/**/*.{ts,tsx}",
+    "lint:fix": "eslint --fix src --ext js,jsx,ts,tsx,json",
+    "format:check": "prettier 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ../.prettierrc.js && npm run lint",
+    "test": "jest --config jest.config.js src/",
+    "publish": "npm publish"
+  },
+  "author": "BrightSign LLC",
+  "license": "ISC",
+  "dependencies": {
+    "digest-fetch": "^3.1.1",
+    "express": "^4.19.2",
+    "form-data": "^4.0.0",
+    "http-status-codes": "^2.3.0",
+    "lodash": "^4.17.21",
+    "node-fetch": "^2.7.0",
+    "socket.io-client": "^4.7.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-typescript": "^7.24.1",
+    "@types/express": "^4.17.21",
+    "@types/lodash": "^4.17.0",
+    "@types/node": "^14.18.63",
+    "@types/node-fetch": "^2.6.11",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^9.1.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.5",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "5.1.6",
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  },
+  "engine": {
+    "node": "14.17.6"
+  }
+}
