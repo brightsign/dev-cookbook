@@ -9,7 +9,7 @@ for dir in $workspace_dirs; do
   echo "Current directory: $(pwd)"
 
   # add package registry configuration from setup-node at the root of the repo
-  cp ../.npmrc .npmrc
+  cp ../../.npmrc .npmrc
 
   npm version $GH_REF_VERSION
   
