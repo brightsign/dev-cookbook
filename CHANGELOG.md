@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.14](https://github.com/brightsign/dev-cookbook/compare/v1.2.13...v1.2.14) (2024-06-07)
+
+
+### Miscellaneous Chores
+
+* release 1.2.14 ([c555268](https://github.com/brightsign/dev-cookbook/commit/c555268edba2a443cff6486c4dbfeb3655c64f3b))
+
 ## [1.2.7](https://github.com/brightsign/dev-cookbook/compare/v1.2.6...v1.2.7) (2024-05-31)
 
 
