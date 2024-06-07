@@ -24,6 +24,7 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           scope: '@brightsign'
       - run: yarn --frozen-lockfile
+      - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.GITHUB_TOKEN }}' > ${{ github.workspace }}/.npmrc
       - run: ./scripts/bump_version.sh
         env:
           GH_REF_VERSION: ${{ github.ref_name }}
