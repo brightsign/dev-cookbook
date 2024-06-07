@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.7](https://github.com/brightsign/dev-cookbook/compare/v1.2.6...v1.2.7) (2024-05-31)
+
+
+### Bug Fixes
+
+* quick publish fix ([2cc4a65](https://github.com/brightsign/dev-cookbook/commit/2cc4a65ef4fbb1e1f671aa890e37f5ae62f96faf))
+
 ## [1.2.0](https://github.com/brightsign/dev-cookbook/compare/v1.1.2...v1.2.0) (2024-05-08)
 
 
