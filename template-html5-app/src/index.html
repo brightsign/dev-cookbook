@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template-html5-app</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #301b69;
+        color: white;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px;
+      }
+
+      h1 {
+        font-size: 48px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      #info {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        font-size: 32px;
+      }
+
+      .label {
+        font-weight: bold;
+        margin-right: 8px;
+      }
+    </style>
+    <script type="text/javascript" src="./dist/bundle.js"></script>
+  </head>
+  <body onload="window.main()">
+    <h1>BrightSign Web App</h1>
+    <div id="info">
+      <div id="ipAddress">
+        <span class="label">IP Address:</span>
+        <span class="value">loading...</span>
+      </div>
+      <div id="model">
+        <span class="label">Model:</span>
+        <span class="value">loading...</span>
+      </div>
+      <div id="osVersion">
+        <span class="label">OS Version:</span>
+        <span class="value">loading...</span>
+      </div>
+      <div id="serialNumber">
+        <span class="label">Serial Number:</span>
+        <span class="value">loading...</span>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 {
-    "name": "example-node-simple-server",
+    "name": "@brightsign/example-node-simple-server",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -10,7 +10,7 @@
         "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
         "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
         "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}",
-        "publish": "npm publish"
+        "publish-package": "npm publish"
     },
     "keywords": [],
     "author": "",
@@ -25,8 +25,5 @@
     "dependencies": {
         "node": "14.17.6",
         "http": "^0.0.1-security"
-    },
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
     }
 }
