@@ -18,20 +18,15 @@ jobs:
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
       - uses: actions/checkout@v4
         with:
-            node-version: '14.17.6'
-            fetch-depth: 1
-            registry-url: https://npm.pkg.github.com/
-      - name: Fetch latest main branch commit
-        run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
+          fetch-depth: 1
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '14.17.6'
           cache: 'yarn'
-          token: ${{steps.app-token.outputs.token}}
-          registry-url: 'https://npm.pkg.github.com'
           always-auth: 'true'
+          registry-url: 'https://registry.npmjs.org'
+          token: ${{ secrets.NPM_TOKEN }}
       - run: yarn --frozen-lockfile
-      - run: echo '@brightsign://npm.pkg.github.com/:_authToken=${{ steps.app-token.outputs.token  }}' > ${{ github.workspace }}/.npmrc
       - run: ./scripts/bump_version.sh
       - run: yarn workspaces run publish
