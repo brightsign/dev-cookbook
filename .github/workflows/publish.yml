@@ -22,6 +22,7 @@ jobs:
           cache: 'yarn'
           always-auth: 'true'
           token: ${{ secrets.NPM_TOKEN }}
+          scope: '@brightsign'
       - run: yarn --frozen-lockfile
       - run: ./scripts/bump_version.sh
         env:
