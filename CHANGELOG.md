@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.15](https://github.com/brightsign/dev-cookbook/compare/v1.2.14...v1.2.15) (2024-06-10)
+
+
+### Bug Fixes
+
+* rename packages for npm publishing ([9347f66](https://github.com/brightsign/dev-cookbook/commit/9347f66ff3aa02a1d5c34b4789a4c2925b84a8c9))
+
 ## [1.2.14](https://github.com/brightsign/dev-cookbook/compare/v1.2.13...v1.2.14) (2024-06-07)
 
 
