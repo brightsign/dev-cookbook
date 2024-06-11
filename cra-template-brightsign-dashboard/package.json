@@ -8,6 +8,14 @@
     ],
     "author": "Diego Benitez <dbenitez@brightsign.biz>",
     "license": "SEE LICENSE IN License.txt",
+    "repository": {
+        "url": "https://github.com/brightsign/dev-cookbook.git",
+        "type": "git",
+        "directory": "cra-template-brightsign-dashboard/"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
     "scripts": {
         "test": "jest --config jest.config.js template/src/",
         "format:check": "prettier . --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
