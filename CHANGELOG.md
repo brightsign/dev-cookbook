@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.16](https://github.com/brightsign/dev-cookbook/compare/v1.2.15...v1.2.16) (2024-06-11)
+
+
+### Bug Fixes
+
+* add publishconfig and repository info for npm package publish ([c64f728](https://github.com/brightsign/dev-cookbook/commit/c64f728b7dc6f92b3464833350f079d7084d9a6e))
+
 ## [1.2.15](https://github.com/brightsign/dev-cookbook/compare/v1.2.14...v1.2.15) (2024-06-10)
 
 
