@@ -12,6 +12,14 @@
         "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}",
         "publish-package": "npm publish"
     },
+    "repository": {
+        "url": "https://github.com/brightsign/dev-cookbook.git",
+        "type": "git",
+        "directory": "example-node-simple-server/"
+    },
+    "publishConfig": {
+        "registry": "https://registry.npmjs.org"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",

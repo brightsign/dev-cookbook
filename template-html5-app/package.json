@@ -19,6 +19,14 @@
     "test": "jest --config jest.config.js src/",
     "publish": "npm publish"
   },
+  "repository": {
+    "url": "https://github.com/brightsign/dev-cookbook.git",
+    "type": "git",
+    "directory": "template-html5-app/"
+  },
+  "publishConfig": {
+      "registry": "https://registry.npmjs.org"
+  },
   "author": "BrightSign LLC",
   "license": "ISC",
   "dependencies": {
