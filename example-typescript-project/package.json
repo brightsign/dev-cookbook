@@ -13,7 +13,7 @@
     "lint:fix": "eslint --fix src --ext js,jsx,ts,tsx,json",
     "format:check": "prettier 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --check --config ../.prettierrc.js --cache --cache-location=../prettiercache",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ../.prettierrc.js && npm run lint",
-    "test": "jest --config jest.config.js src/",
+    "test": "jest --config jest.config.js src/ --passWithNoTests",
     "publish": "npm publish"
   },
   "repository": {
@@ -55,7 +55,7 @@
     "typescript": "5.1.6",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "tsup": "^8.0.2"
+    "tsup": "6.3.0"
   },
   "engine": {
     "node": "14.17.6"
