@@ -55,7 +55,7 @@
     "typescript": "5.1.6",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
-    "tsup": "6.3.0"
+    "tsup": "5.0.0"
   },
   "engine": {
     "node": "14.17.6"
