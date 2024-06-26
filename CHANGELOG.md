@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.20](https://github.com/brightsign/dev-cookbook/compare/v1.2.19...v1.2.20) (2024-06-26)
+
+
+### Bug Fixes
+
+* **package.json:** rename publish command ([#55](https://github.com/brightsign/dev-cookbook/issues/55)) ([11b6f73](https://github.com/brightsign/dev-cookbook/commit/11b6f7398cf086537b35399045b143e0ab96610e))
+
 ## [1.2.19](https://github.com/brightsign/dev-cookbook/compare/v1.2.18...v1.2.19) (2024-06-26)
 
 
