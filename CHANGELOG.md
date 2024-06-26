@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.17](https://github.com/brightsign/dev-cookbook/compare/v1.2.16...v1.2.17) (2024-06-26)
+
+
+### Bug Fixes
+
+* set public package publishing flag ([#49](https://github.com/brightsign/dev-cookbook/issues/49)) ([b223e09](https://github.com/brightsign/dev-cookbook/commit/b223e09a34e40f0ff3e7f09809ccccab2d6f4841))
+
 ## [1.2.16](https://github.com/brightsign/dev-cookbook/compare/v1.2.15...v1.2.16) (2024-06-11)
 
 
