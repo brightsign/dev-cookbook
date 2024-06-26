@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.19](https://github.com/brightsign/dev-cookbook/compare/v1.2.18...v1.2.19) (2024-06-26)
+
+
+### Bug Fixes
+
+* renaming due to package name conflict ([#53](https://github.com/brightsign/dev-cookbook/issues/53)) ([6c940de](https://github.com/brightsign/dev-cookbook/commit/6c940de7e2c57d16248293e2c75b080dff78a77c))
+
 ## [1.2.18](https://github.com/brightsign/dev-cookbook/compare/v1.2.17...v1.2.18) (2024-06-26)
 
 
