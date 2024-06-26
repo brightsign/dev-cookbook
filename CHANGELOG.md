@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.18](https://github.com/brightsign/dev-cookbook/compare/v1.2.17...v1.2.18) (2024-06-26)
+
+
+### Bug Fixes
+
+* .npmrc token overrides env var token ([#51](https://github.com/brightsign/dev-cookbook/issues/51)) ([9d70660](https://github.com/brightsign/dev-cookbook/commit/9d7066052c342a8816099d78be42fb08618459e5))
+
 ## [1.2.17](https://github.com/brightsign/dev-cookbook/compare/v1.2.16...v1.2.17) (2024-06-26)
 
 
