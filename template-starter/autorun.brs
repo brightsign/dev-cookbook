@@ -23,7 +23,6 @@ function CreateHTMLWidget(mp as object) as object
 	reg = CreateObject("roRegistrySection","html")
 	reg.Write("enable_web_inspector","1")
 	reg.Flush()
-
 	' Get Screen Resolution
 	vidmode = CreateObject("roVideoMode")
 	width = vidmode.GetResX()
