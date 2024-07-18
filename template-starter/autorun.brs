@@ -1,12 +1,13 @@
 function main()
-	mp = CreateObject("roMessagePort") 
+	mp = CreateObject("roMessagePort")
+
 	'Enable lDWS
 	EnableLDWS()
-	' Enable SSH
-	EnableSSH()
+
 	' Create HTML Widget
 	widget = CreateHTMLWidget(mp)
 	widget.Show()
+
 	'Event Loop
 	while true
 		msg = wait(0,mp)
@@ -19,15 +20,18 @@ function main()
 end function
 
 function CreateHTMLWidget(mp as object) as object
+
 	' Enable Web Inspector
 	reg = CreateObject("roRegistrySection","html")
 	reg.Write("enable_web_inspector","1")
 	reg.Flush()
+
 	' Get Screen Resolution
 	vidmode = CreateObject("roVideoMode")
 	width = vidmode.GetResX()
 	height = vidmode.GetResY()
 	r = CreateObject("roRectangle",0,0,width,height)
+
 	' Create HTML Widget config
 	config = {
 		nodejs_enabled: true
@@ -37,6 +41,7 @@ function CreateHTMLWidget(mp as object) as object
 		url: "file:///sd:/index.js"
 		port: mp
 	}
+
 	' Create HTML Widget
 	h = CreateObject("roHtmlWidget",r,config)
 	return h
@@ -48,15 +53,4 @@ function EnableLDWS()
 		registrySection.Write("http_server", "80")
 	end if
 	registrySection.Flush()
-end function
-
-function EnableSSH()
-	regSSH = CreateObject("roRegistrySection", "networking")
-	if type(regSSH) = "roRegistrySection" then
-		regSSH.Write("ssh","22")
-	end if
-	n = CreateObject("roNetworkConfiguration", 0)
-	n.SetLoginPassword("password")
-	n.Apply()
-	regSSH.Flush()
 end function
