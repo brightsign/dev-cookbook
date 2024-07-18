@@ -4,43 +4,35 @@ Welcome to the BrightSign Dev Cookbook! Here you will find example code and proj
 
 Whether you're a beginner eager to dive into BrightSign development, or an advanced developer looking to expand your skills, this cookbook offers a wide range of examples to demonstrate the capabilities of these devices.
 
-## Prerequisites
+## Using this resource locally
 
-This repo is intended for developers who are familiar with Node.js, React, and running scripts that connect to devices over a local network.
+To use this repository locally, use the `git clone` functionality. To do this, click the green `<> Code` button in the top right and copy the http or ssh url to your clipboard. Then in your terminal or command line, run the following:
+```zsh
+git clone https://github.com/brightsign/dev-cookbook.git
+```
+
+## Learning the basics with examples
+
+If you've never worked with a BrightSign before, we recommend starting with a [barebones example](simple_html_example).
+
+After this, we recommend integrating node into the application on the BrightSign player. An example of this can be found in [html_node_example](Link to simple html and node example).
+
+Once this seems familiar, we recommend adding auxiliary tools to make the development experience smoother. This includes introducing a script to copy files to the player's sd card, defining multiple environments to develop locally rather than needing to only rely on the player for visibility, and therefore, a mock library for populating values when running the example locally. This can be found [here](robust_example)
+
+From here, we recommend using one of the templates to start developing your own project!
+
+## Hit the ground running with templates
+The templates in this repository are intended for developers who are familiar with Node.js, React, and running scripts that connect to devices over a local network.
 
 We recommend managing your node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). The preferred version is `14.17.6` since this is the version currently pre-installed on most Brightsign devices.
-
-## Quickstart
-
-```zsh
-# Install the correct node.js version
-nvm install 14.17.6
-
-# Clone the repo
-git clone https://github.com/brightsign/dev-cookbook.git
-
-# Bootstrap a new React application:
-npx create-react-app bs-app --template file:./dev-cookbook/cra-template-brightsign-app
-
-# Run the example locally
-cd bs-app
-yarn && yarn start
-```
-
-The example can be quickly published to your BrightSign with the DWS enabled. Replace `your.device.ip.address` and `yourdeviceserialnumber` with your actual device IP and serial number. The serial number is typically the default password.
-
-```
-# (Optional) Push the example to your Brightsign device
-PLAYER=your.device.ip.address PLAYER_PW=yourdeviceserialnumber yarn run put:prod 
-```
 
 ## Project structure
 
 Here's an overview of the project structure and what each part is responsible for:
 
-`cra-template-*`    : React templates for new projects with custom configurations tailored for BrightSign development.
+`templates`         : React templates for new projects with custom configurations tailored for BrightSign development.
 
-`example-*`         : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+`examples`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
 
 `.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
 
@@ -49,16 +41,6 @@ Here's an overview of the project structure and what each part is responsible fo
 `.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
 
 `package.json`      : Manages project dependencies and scripts for an efficient development workflow.
-
-## What are the cra-template-* examples?
-
-They are React [Custom Templates](https://create-react-app.dev/docs/custom-templates/). They allow developers to quickly bootstrap a React application with custom code tailored to Brightsign development.
-
-COMING SOON: You can install any of our templates by running `npx create-react-app bs-app --template [template-name]`, without having to pull the `dev-cookbook` repo.
-
-`cra-template-brightsign-app` is a minimal example of displaying a web app on a device.
-
-`cra-template-brightsign-dashboard` is a more complete example that leverages `@brightsign/` built-in packages to display device data.
 
 ### Getting Started
 
