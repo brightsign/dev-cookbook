@@ -1,9 +1,8 @@
 {
     "private": true,
     "workspaces": [
-        "cra-template-*",
-        "example-*",
-        "template-*"
+        "examples/**",
+        "templates/**"
     ],
     "dependencies": {
         "@babel/plugin-syntax-jsx": "^7.24.1",
