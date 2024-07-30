@@ -30,9 +30,9 @@ We recommend managing your node.js version using [nvm](https://github.com/nvm-sh
 
 Here's an overview of the project structure and what each part is responsible for:
 
-`templates`         : React templates for new projects with custom configurations tailored for BrightSign development.
+`templates/`         : React templates for new projects with custom configurations tailored for BrightSign development.
 
-`examples`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+`examples/`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
 
 `.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
 
