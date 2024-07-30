@@ -1,22 +1,9 @@
 function main()
 	mp = CreateObject("roMessagePort")
 
-	'Enable lDWS
-	EnableLDWS()
-
 	' Create HTML Widget
 	widget = CreateHTMLWidget(mp)
 	widget.Show()
-
-	'Event Loop
-	while true
-		msg = wait(0,mp)
-		print "msg received - type=";type(msg)
-
-		if type(msg) = "roHtmlWidgetEvent" then
-			print "msg: ";msg
-		end if
-	end while
 end function
 
 function CreateHTMLWidget(mp as object) as object
@@ -38,19 +25,11 @@ function CreateHTMLWidget(mp as object) as object
 		inspector_server: {
 			port: 3000
 		}
-		url: "file:///sd:/index.js"
+		url: "file:///sd:/index.html"
 		port: mp
 	}
 
 	' Create HTML Widget
 	h = CreateObject("roHtmlWidget",r,config)
 	return h
-end function
-
-function EnableLDWS()
-	registrySection = CreateObject("roRegistrySection", "networking")
-	if type(registrySection) = "roRegistrySection" then 
-		registrySection.Write("http_server", "80")
-	end if
-	registrySection.Flush()
 end function
