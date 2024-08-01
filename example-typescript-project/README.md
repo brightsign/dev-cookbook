@@ -4,7 +4,7 @@ This template directory holds all files needed to begin your BrightSign Typescri
 
 ## Build Process
 
-Brightsign uses [`tsc`](https://www.npmjs.com/package/tsc), [`tsup`](https://www.npmjs.com/package/tsup) and [`webpack`](https://www.npmjs.com/package/webpack) to build our typescript projects. These three build steps are combined into one npm command: `npm run build`. 
+BrightSign uses [`tsc`](https://www.npmjs.com/package/tsc), [`tsup`](https://www.npmjs.com/package/tsup) and [`webpack`](https://www.npmjs.com/package/webpack) to build our typescript projects. These three build steps are combined into one npm command: `npm run build`. 
 
 ### Build Outputs
 
