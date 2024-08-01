@@ -1,6 +1,6 @@
 # TypeScript Template Project
 
-This template directory holds all files needed to begin your BrightSign Typescript project. Use these Brightsign-recommended typescript workflows to make on-player development incredibly easy.
+This template directory holds all files needed to begin your BrightSign Typescript project. Use these BrightSign-recommended typescript workflows to make on-player development incredibly easy.
 
 ## Build Process
 
