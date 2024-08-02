@@ -4,6 +4,15 @@ function main()
 	' Create HTML Widget
 	widget = CreateHTMLWidget(mp)
 	widget.Show()
+
+	'Event Loop
+	while true
+		msg = wait(0,mp)
+		print "msg received - type=";type(msg)
+		if type(msg) = "roHtmlWidgetEvent" then
+			print "msg: ";msg
+		end if
+	end while
 end function
 
 function CreateHTMLWidget(mp as object) as object

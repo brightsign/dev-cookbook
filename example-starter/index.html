@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Example HTML App</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        #color-change {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <p id="color-change">Congratulations on setting up a simple html application with your BrightSign!</p>
+
+    <script>
+        const helloWorldText = document.getElementById('color-change');
+        let isPurple = true;
+
+        setInterval(() => {
+            helloWorldText.style.color = isPurple ? 'purple' : 'black';
+            isPurple = !isPurple;
+        }, 2000);
+    </script>
+
+</body>
+</html>
