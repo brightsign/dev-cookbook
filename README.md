@@ -1,90 +1,80 @@
-# Introduction
 
-Welcome to the BrightSign Dev Cookbook! Here you will find example code and projects for your [BrightSign](https://www.brightsign.biz/) digital signage devices that demonstrate various capabilities.
+---
 
-Whether you're a beginner eager to dive into BrightSign development, or an advanced developer looking to expand your skills, this cookbook offers a wide range of examples to demonstrate the capabilities of these devices.
+![Powered By Purple](PoweredByPurple.jpg)
 
-## Prerequisites
+# BrightSign Dev Cookbook
 
-This repo is intended for developers who are familiar with Node.js, React, and running scripts that connect to devices over a local network.
+[![License](https://img.shields.io/github/license/brightsign/dev-cookbook)](LICENSE)
+[![Build Status](https://img.shields.io/github/workflow/status/brightsign/dev-cookbook/CI)](https://github.com/brightsign/dev-cookbook/actions)
 
-We recommend managing your node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). The preferred version is `14.17.6` since this is the version currently pre-installed on most Brightsign devices.
 
-## Quickstart
+BrightSign Dev Cookbook provides a collection of examples and templates for developing on BrightSign players. Whether you are new to BrightSign development or looking for starter projects, this repository has resources to help you get started quickly.
 
-```zsh
-# Install the correct node.js version
-nvm install 14.17.6
+## Table of Contents
 
-# Clone the repo
+- [BrightSign Dev Cookbook](#brightsign-dev-cookbook)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Examples](#examples)
+    - [Overview](#overview)
+    - [Getting Started](#getting-started)
+  - [Templates](#templates)
+    - [Overview](#overview-1)
+    - [Using a Template](#using-a-template)
+  - [Contributing](#contributing)
+  - [Support](#support)
+  - [License](#license)
+
+## Installation
+
+To use the examples and templates in this repository, you'll need to clone the repository and navigate to the relevant directory.
+
+```bash
 git clone https://github.com/brightsign/dev-cookbook.git
-
-# Bootstrap a new React application:
-npx create-react-app bs-app --template file:./dev-cookbook/cra-template-brightsign-app
-
-# Run the example locally
-cd bs-app
-yarn && yarn start
+cd dev-cookbook
 ```
 
-The example can be quickly published to your BrightSign with the DWS enabled. Replace `your.device.ip.address` and `yourdeviceserialnumber` with your actual device IP and serial number. The serial number is typically the default password.
+## Examples
 
-```
-# (Optional) Push the example to your Brightsign device
-PLAYER=your.device.ip.address PLAYER_PW=yourdeviceserialnumber yarn run put:prod 
-```
+### Overview
 
-## Project structure
-
-Here's an overview of the project structure and what each part is responsible for:
-
-`cra-template-*`    : React templates for new projects with custom configurations tailored for BrightSign development.
-
-`example-*`         : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
-
-`.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
-
-`scripts/`          : Utility scripts to facilitate build, deployment, and development workflows.
-
-`.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
-
-`package.json`      : Manages project dependencies and scripts for an efficient development workflow.
-
-## What are the cra-template-* examples?
-
-They are React [Custom Templates](https://create-react-app.dev/docs/custom-templates/). They allow developers to quickly bootstrap a React application with custom code tailored to Brightsign development.
-
-COMING SOON: You can install any of our templates by running `npx create-react-app bs-app --template [template-name]`, without having to pull the `dev-cookbook` repo.
-
-`cra-template-brightsign-app` is a minimal example of displaying a web app on a device.
-
-`cra-template-brightsign-dashboard` is a more complete example that leverages `@brightsign/` built-in packages to display device data.
+The examples in this repository are designed to help you get started with developing on a BrightSign player. These examples serve as stepping stones, allowing you to build and expand your understanding of the platform.
 
 ### Getting Started
 
-This monorepo uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage dependencies and run commands. Simply run `yarn install` from the workspace root and explore the examples!
+Each example includes a README file with detailed instructions on how to set up and run the project. Start by navigating to the example you are interested in and following the instructions provided.
 
-To run the tests for every example, run `yarn workspaces run test` or the shortcut `yarn test`.
-
-## Feedback/Contributing
-
-Feel free to open an issue or submit a PR, see `CONTRIBUTING.MD` for further information.
-
-## Building on M1 Mac
-
-You might see an error like `npm ERR! Error: Cannot find module 'node-bin-darwin-arm64/package.json'`
-
-Run the following commands
-
-```zsh
-> node -v
-v14.17.6
-> node -p process.arch
-arm64
-> arch -x86_64 zsh
-> nvm uninstall 14.17.6 && nvm install 14.17.6
+```bash
+cd examples/example-name
 ```
 
-You might need to do this each time you restart your terminal.
+## Templates
 
-https://stackoverflow.com/questions/68896696/having-trouble-installing-npm-on-mac-m1
+### Overview
+
+The templates in this repository are starter projects that you can use to begin development on top of existing setups. These templates are designed to provide a solid foundation, allowing you to hit the ground running with your BrightSign projects.
+
+### Using a Template
+
+To use a template, navigate to the desired template directory and follow the setup instructions in the README file.
+
+```bash
+cd templates/template-name
+```
+
+You can then customize the template to suit your specific project needs.
+
+## Contributing
+
+We welcome contributions to the BrightSign Dev Cookbook! Please see our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## Support
+
+If you have any questions or need help, please open an issue on this repository or contact BrightSign support.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
