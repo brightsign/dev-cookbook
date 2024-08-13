@@ -22,6 +22,7 @@ BrightSign Dev Cookbook provides a collection of examples and templates for deve
   - [Templates](#templates)
     - [Overview](#overview-1)
     - [Using a Template](#using-a-template)
+  - [Poject Structure](#project-structure)
   - [Contributing](#contributing)
   - [Support](#support)
   - [License](#license)
@@ -64,6 +65,22 @@ cd templates/template-name
 ```
 
 You can then customize the template to suit your specific project needs.
+
+## Project structure
+
+Here's an overview of the project structure and what each part is responsible for:
+
+`templates/`         : React templates for new projects with custom configurations tailored for BrightSign development.
+
+`examples/`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+
+`.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
+
+`scripts/`          : Utility scripts to facilitate build, deployment, and development workflows.
+
+`.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
+
+`package.json`      : Manages project dependencies and scripts for an efficient development workflow.
 
 ## Contributing
 
