@@ -8,4 +8,4 @@ The HTML application is defined in `index.html` and is a simplified version of t
 
 ## How to run on a player
 
-Since this example is simplified, there are only two files you will need to copy to the root of the player's sd card. Upon the player booting successfully, it will run the autorun.brs file. This file instantiates an html object which points the player to the index.html file to display.
+Since this example is simplified, there are only two files you will need to copy to the root of the player's sd card. Upon the player booting successfully, it will run the `autorun.brs` file. This file instantiates an html object which points the player to the `index.html` file to display.
