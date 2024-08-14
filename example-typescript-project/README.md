@@ -19,7 +19,6 @@ SD .
 `-- misc
   +-- media.jpg
   +-- supportingData.json
-
 ```
 
 __Uploading with the CLI__:
