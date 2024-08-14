@@ -25,7 +25,7 @@ __Uploading with the CLI__:
 
 v1:
 
-```
+```bash
 bsc putfile playerName bin/bundle.js
 bsc putfile playerName src/autorun.brs
 ```
