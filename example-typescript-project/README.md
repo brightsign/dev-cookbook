@@ -32,7 +32,7 @@ bsc putfile playerName src/autorun.brs
 
 v2:
 
-```
+```bash
 bslc file --upload --player playerName -d SD/ -f bin/bundle.js
 bslc file --upload --player playerName -d SD/ -f src/autorun.brs
 ```
