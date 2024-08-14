@@ -12,7 +12,7 @@ The build results will be compiled into two directories: `dist/` and `bin/`. The
 
 ### SD File Structure
 
-```
+```bash
 SD .
 +-- bundle.js
 +-- autorun.brs
