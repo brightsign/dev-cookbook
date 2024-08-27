@@ -23,9 +23,11 @@ test("renders expected dashboard properties text", async () => {
     const linkElement = screen.getByText(/MockOSVersion/i);
     expect(linkElement).toBeInTheDocument();
 
-    await waitFor(() => {
-        expect(screen.getByText(/mockMonitor/i)).toBeInTheDocument();
-        expect(screen.getByText(/1080x1920@60hz/i)).toBeInTheDocument();
-        expect(screen.getByText(/1000b/i)).toBeInTheDocument();
-    });
+   const mockMonitorElement = await screen.findByText((content, element) => content.includes('mockMonitor'));
+   const resolutionElement = await screen.findByText((content, element) => content.includes('1080x1920@60hz'));
+   const sizeElement = await screen.findByText((content, element) => content.includes('1000b'));
+
+   expect(mockMonitorElement).toBeInTheDocument();
+   expect(resolutionElement).toBeInTheDocument();
+   expect(sizeElement).toBeInTheDocument();
 });
