@@ -1,35 +1,40 @@
 # Templates
 
-## Quickstart
+Welcome to the templates directory! This guide will help you understand the purpose of the templates and where to find specific instructions for each template.
 
-```zsh
-# Install the correct node.js version
-nvm install 14.17.6
+## Purpose of Templates
 
-# Clone the repo
-git clone https://github.com/brightsign/dev-cookbook.git
+The templates in this directory are designed to provide you with a starting point for various types of applications. They include pre-configured setups and best practices to help you quickly bootstrap your projects.
 
-# Bootstrap a new React application:
-npx create-react-app bs-app --template file:./dev-cookbook/cra-template-brightsign-app
+## Available Templates
 
-# Run the example locally
-cd bs-app
-yarn && yarn start
-```
+### cra-template-brightsign-app
 
-The template can be quickly published to your BrightSign with the DWS enabled. Replace `your.device.ip.address` and `yourdeviceserialnumber` with your actual device IP and serial number. The serial number is typically the default password.
+This template helps you create a React application tailored for BrightSign devices.
 
-```
-# (Optional) Push the template to your Brightsign device
-PLAYER=your.device.ip.address PLAYER_PW=yourdeviceserialnumber yarn run put:prod 
-```
+- **Location**: [`templates/cra-template-brightsign-app`](./cra-template-brightsign-app/)
+- **Instructions**: Refer to the README file within the template directory for detailed setup and usage instructions.
 
-## What are the cra-template-* examples?
+### cra-template-brightsign-dashboard
 
-They are React [Custom Templates](https://create-react-app.dev/docs/custom-templates/). They allow developers to quickly bootstrap a React application with custom code tailored to Brightsign development.
+This template helps you create a React application tailored for BrightSign devices.
 
-COMING SOON: You can install any of our templates by running `npx create-react-app bs-app --template [template-name]`, without having to pull the `dev-cookbook` repo.
+- **Location**: [`templates/cra-template-brightsign-dashboard`](./cra-template-brightsign-dashboard/)
+- **Instructions**: Refer to the README file within the template directory for detailed setup and usage instructions.
 
-`cra-template-brightsign-app` is a minimal example of displaying a web app on a device.
+### template-html5-app
 
-`cra-template-brightsign-dashboard` is a more complete example that leverages `@brightsign/` built-in packages to display device data.
+This template helps you create an html application on your BrightSign devices.
+
+- **Location**: [`templates/template-html5-app`](./template-html5-app/)
+- **Instructions**: Refer to the README file within the template directory for detailed setup and usage instructions.
+
+### Other Templates
+
+Explore other templates in the `templates` directory based on your application needs. Each template comes with its own README file with specific instructions on how to set up and run the project.
+
+## Conclusion
+
+By exploring the templates directory, you will find various templates tailored for different types of applications. Each template is designed to help you quickly set up and run your projects with minimal configuration. Refer to the README file within each template directory for detailed instructions.
+
+Happy coding!
