@@ -22,11 +22,11 @@ This template helps you create a React application tailored for BrightSign devic
 - **Location**: [`templates/cra-template-brightsign-dashboard`](./cra-template-brightsign-dashboard/)
 - **Instructions**: Refer to the README file within the template directory for detailed setup and usage instructions.
 
-### template-html5-app
+### html5-app-template
 
 This template helps you create an html application on your BrightSign devices.
 
-- **Location**: [`templates/template-html5-app`](./template-html5-app/)
+- **Location**: [`templates/html5-app-template`](./html5-app-template/)
 - **Instructions**: Refer to the README file within the template directory for detailed setup and usage instructions.
 
 ### Other Templates

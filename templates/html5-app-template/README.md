@@ -20,7 +20,7 @@ npm install
 
 ## Contained in this folder
 
-This `template-html5-app` folder contains the code base of the template app, the simple BrightScript autorun, a simple script to deploy code to the player, and the webpack configuration file.
+This `html5-app-template` folder contains the code base of the template app, the simple BrightScript autorun, a simple script to deploy code to the player, and the webpack configuration file.
 
 ### src
 
