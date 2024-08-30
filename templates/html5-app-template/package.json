@@ -1,5 +1,5 @@
 {
-  "name": "bs-template-html5-app",
+  "name": "bs-html5-app-template",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.ts",
@@ -22,7 +22,7 @@
   "repository": {
     "url": "https://github.com/brightsign/dev-cookbook.git",
     "type": "git",
-    "directory": "template-html5-app/"
+    "directory": "html5-app-template/"
   },
   "publishConfig": {
       "registry": "https://registry.npmjs.org"
