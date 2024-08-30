@@ -29,7 +29,7 @@ The node application is defined in `index.js` and is a simplified version of the
 Once the device has booted and the server has started:
 
 1. **Find the IP Address**:
-   - Identify the IP address of your BrightSign device. This can typically be found in the device's network settings or via BrightAuthor connected.
+   - Identify the IP address of your BrightSign device. This can typically be found in the device's network settings or via BrightAuthor:connected or by booting the player without the Micro SD card inserted.
 
 2. **Interact with the Server**:
    - Open a terminal or command prompt on your computer.
