@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
   } else {
     res.statusCode = 404;
     res.setHeader('Content-Type', 'text/plain');
-    res.end('404 Not Found');
+    res.end('Route not found. Try a GET request to /');
   }
 });
 
