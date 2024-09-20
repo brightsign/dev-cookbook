@@ -493,7 +493,7 @@
         }
       },
       "wssDeviceSpec": {},
-      "lastModifiedTime": "2024-09-20T13:46:08.482Z"
+      "lastModifiedTime": "2024-09-20T13:43:34.023Z"
     },
     "zones": {
       "zonesById": {
@@ -946,7 +946,14 @@
     "selectionEntities": {},
     "isEventAdvancedEnabled": false,
     "activeAssetMenuTab": "WIDGETS",
-    "prevSelectionEntities": {}
+    "prevSelectionEntities": {
+      "b788cc2c-cb2a-4000-ac79-d86de1d49000": {
+        "id": "b788cc2c-cb2a-4000-ac79-d86de1d49000",
+        "type": "MediaList",
+        "selectableType": "STATE",
+        "selectableData": null
+      }
+    }
   },
   "interactiveCanvas": {
     "statePositionById": {
@@ -984,9 +991,9 @@
     },
     "viewTransformByZoneId": {
       "e57f3434-4eb5-4d49-88dd-02feb50f750a": {
-        "x": -286.8854176517542,
-        "y": -19.199432235557765,
-        "k": 0.6488693834695924
+        "x": -317.71013720998064,
+        "y": -21.005105568147826,
+        "k": 0.6726836042609131
       }
     },
     "isLoaderEnabled": false,
