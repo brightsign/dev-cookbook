@@ -1,71 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Html Messages</title>
+  <meta charset="UTF-8">
+  <title>Html Messages</title>
 </head>
-<body onload="main()"></body>
+
+<body onload="main()">
+</body>
 
 <script>
-  
-  var bsSocketMessage = new BSDatagramSocket();
+
   var bsMessage = new BSMessagePort();
-  var assetInfo = {};
 
   function main() {
     console.log("=== Starting javascript...");
-    
-    var fsOpen = false;
-    var assetFiles = [];
 
-    bsSocketMessage.BindLocalPort(5000)
-    bsSocketMessage.ondatagram = function(e){
-      var txtDec = new TextDecoder("utf-8");
-      console.log("=== Received " + txtDec.decode(e.getBytes()));
+    bsMessage.onbsmessage = function (msg) {
+      if (msg.data["serialNumber"] !== undefined && msg.data["timestamp"] !== undefined && msg.data["filename"] !== undefined) {
+        console.log("=== Received plugin message from: " + msg.data["serialNumber"]);
 
-      var fields = (txtDec.decode(e.getBytes()).toLowerCase()).split('!!');
-      if (fields.length > 0) {
-        var match = ('assetInfo' === fields[0]) ? true : false;
-        if (match) {
-          console.log('=== execute addasset');
+        // Add fields from plugin message
+        var serialNumber = msg.data["serialNumber"];
+        var timestamp = msg.data["timestamp"];
+        var filename = msg.data["filename"];
 
-          // Add 
-          var serialNumber = getField(fields[1]);
-          var timestamp = getField(fields[2]);
-          var filename = getField(fields[3]);
-
-          // send info to your backend (example)
-          fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            body: JSON.stringify({
-              serialNumber,
-              filename,
-              timestamp
-            })
+        // send info to your backend (example)
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+          method: 'POST',
+          body: JSON.stringify({
+            serialNumber,
+            filename,
+            timestamp
           })
-        }
+        })
+      } else {
+        console.log("=== Received unexpected message");
       }
     };
-
-    bsMessage.onbsmessage = function(msg) {
-      if (msg.data["htmlcommand"] !== undefined) {
-        console.log("=== Received htmlcommand message: " + msg.data["htmlcommand"]);
-        if (msg.data["htmlcommand"] === "assetInfo") {
-          assetInfo = msg.data;
-        } else {
-          console.log("=== Received unexpected htmlcommand message: " + msg.data["htmlcommand"]);
-        }
-      }
-    }
-
-    function getField(field) {
-    if (field !== undefined || field !== "") {
-      return field;
-    } else {
-      return "=== Field not found";
-    }
-  }
   }
 
 </script>
+
 </html>

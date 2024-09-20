@@ -17,13 +17,9 @@ Function newAssetInfo(msgPort As Object, userVariables As Object, bsp as Object)
     s.userVariables = userVariables
     s.bsp = bsp
     s.ProcessEvent = AssetInfo_ProcessEvent
-    s.objectName = "usbDisplaySync8k_object"
+    s.objectName = "assetInfo_object"
     s.debug  = true
     s.systemLog = CreateObject("roSystemLog")
-    s.fileCount = 0
-    s.sumSizeAllFiles = 0
-    s.assetFiles = []
-    s.usbHtml = FindHTMLWidget(m.bsp)
 
     print "=== newAssetInfo() - exit"
     return s
@@ -31,13 +27,14 @@ End Function
 
 
 Function assetInfo_ProcessEvent(event As Object) as boolean
+    
     retval = false
     if type(event) = "roAssociativeArray" then ' Receive a message from BA
       if type(event["EventType"]) = "roString"
         if event["EventType"] = "SEND_PLUGIN_MESSAGE" then
-          if event["PluginName"] = "usbDisplaySync8k" then
+          if event["PluginName"] = "assetInfo" then
             pluginMessage$ = event["PluginMessage"]
-            ParseAssetInfo(pluginMessage$, m)
+            retval = ParseAssetInfo(pluginMessage$, m)
           end if
         end if
       end if
@@ -47,6 +44,7 @@ End Function
 
 
 Function ParseAssetInfo(origMsg as String, h as Object) as boolean
+  
   retval = false
   msg = lcase(origMsg)
   h.systemLog.SendLine("=== Received Plugin message: " + msg)
@@ -55,19 +53,27 @@ Function ParseAssetInfo(origMsg as String, h as Object) as boolean
   if match then
     retval = true
     ' split the string, ! is the field seperator
-    ' plugin!<serialNumber>!<timestamp>!<filename>
-
+    ' assetInfo!<serialNumber>!<timestamp>!<filename>
     r2 = CreateObject("roRegex", "!", "i")
     fields = r2.split(msg)
     serialNumber = fields[1]
     timestamp = fields[2]
+
+    if h.html = invalid then
+        h.html = FindHTMLWidget(h.bsp)
+        if h.html = invalid then
+          return true
+        end if
+      end if
+
     filename = fields[3]
     h.systemLog.SendLine("=== File " + filename + " showing ended and reported at " + timestamp + " from player " + serialNumber)
-    h.usbHtml.PostJsMessage({ serialNumber, timestamp, filename })
+    h.html.PostJsMessage({ serialNumber, timestamp, filename })
   end if
 
   return retval
 End Function
+
 
 Function FindHTMLWidget(bsp)
   for each baZone in bsp.sign.zonesHSM
