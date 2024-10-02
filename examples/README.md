@@ -27,7 +27,7 @@ After getting familiar the basics of HTML and Node.js, you can explore the templ
 
 ### 4. Other Examples
 
-Other examples in this directory intend to offer more specific references for applications. Once you get your bearing with starter examples, more tools and specific use cases will be offered. For example, applications will include tests, mocks, webpack configurations, scripts to push code to your player seemlessly, and more. 
+Other examples in this directory intend to offer more specific references for applications. Once you get your bearing with starter examples, more tools and specific use cases will be offered. For example, applications will include tests, mocks, webpack configurations, scripts to push code to your player seamlessly, and more. 
 
 ## Conclusion
 

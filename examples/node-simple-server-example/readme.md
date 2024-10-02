@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example is designed to help you get started with developing on a BrightSign player using Node.js. It demonstrates how to run a simple Node.js server directly on the player. Additionally, it introduces tools and configurations that go beyond the basics covered in starter examples.
+This example is designed to help you get familiarized with running Node.js on a BrightSign player. It demonstrates how to run a simple Node.js server directly on the player. Additionally, it introduces tools and configurations that go beyond the basics covered in starter examples.
 
 The core Node.js application is defined in `app.js`, which uses a BrightSign-specific library to retrieve and log device information. Alongside the JavaScript code, you'll find the `autorun.brs` file, which instructs the player to execute the bundled application.
 
