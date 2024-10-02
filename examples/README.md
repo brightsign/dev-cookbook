@@ -20,10 +20,14 @@ Once you are comfortable with HTML, move on to the `starter-node-example`. This 
 
 ### 3. Templates
 
-After mastering the basics of HTML and Node.js, you can explore the templates in the `templates` directory. These templates provide more advanced setups depending on the type of application you plan to create.
+After getting familiar the basics of HTML and Node.js, you can explore the templates in the `templates` directory. These templates provide more advanced setups depending on the type of application you plan to create.
 
 - **Location**: `templates`
 - **Instructions**: Choose a template that fits your application needs and follow the specific instructions provided in the template's README file.
+
+### 4. Other Examples
+
+Other examples in this directory intend to offer more specific references for applications. Once you get your bearing with starter examples, more tools and specific use cases will be offered. For example, applications will include tests, mocks, webpack configurations, scripts to push code to your player seamlessly, and more. 
 
 ## Conclusion
 
