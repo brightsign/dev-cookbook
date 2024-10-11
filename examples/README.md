@@ -6,16 +6,16 @@ Welcome to the examples directory! This guide will help you get started with the
 
 ### 1. Starter HTML Example
 
-Begin your journey with the `starter-html-example`. This example provides a simple HTML setup to help you understand the basics of web development.
+Begin your journey with the `html-starter-example`. This example provides a simple HTML setup to help you understand the basics of web development.
 
-- **Location**: `examples/starter-html-example`
+- **Location**: `examples/html-starter-example`
 - **Instructions**: Follow the specific instructions provided in the example's README file.
 
 ### 2. Starter Node Example
 
-Once you are comfortable with HTML, move on to the `starter-node-example`. This example introduces you to Node.js and Express, allowing you to create a basic server.
+Once you are comfortable with HTML, move on to the `node-starter-example`. This example introduces you to Node.js and Express, allowing you to create a basic server.
 
-- **Location**: `examples/starter-node-example`
+- **Location**: `examples/node-starter-example`
 - **Instructions**: Follow the specific instructions provided in the example's README file.
 
 ### 3. Templates
