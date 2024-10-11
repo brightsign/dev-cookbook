@@ -17,12 +17,11 @@
     console.log("=== Starting javascript...");
 
     bsMessage.onbsmessage = function (msg) {
-      if (msg.data["serialNumber"] !== undefined && msg.data["timestamp"] !== undefined && msg.data["filename"] !== undefined) {
+      if (msg.data["serialNumber"] !== undefined && msg.data["filename"] !== undefined) {
         console.log("=== Received plugin message from: " + msg.data["serialNumber"]);
 
         // Add fields from plugin message
         var serialNumber = msg.data["serialNumber"];
-        var timestamp = msg.data["timestamp"];
         var filename = msg.data["filename"];
 
         // send info to your backend (example)
@@ -30,8 +29,7 @@
           method: 'POST',
           body: JSON.stringify({
             serialNumber,
-            filename,
-            timestamp
+            filename
           })
         })
       } else {

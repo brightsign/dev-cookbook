@@ -493,7 +493,7 @@
         }
       },
       "wssDeviceSpec": {},
-      "lastModifiedTime": "2024-09-24T04:27:26.905Z"
+      "lastModifiedTime": "2024-10-11T20:51:39.897Z"
     },
     "zones": {
       "zonesById": {
@@ -816,7 +816,7 @@
                     },
                     {
                       "type": "Text",
-                      "value": "!!exampleTimestamp!!1stVideo"
+                      "value": "!!1stVideo"
                     }
                   ]
                 }
@@ -845,7 +845,7 @@
                     },
                     {
                       "type": "Text",
-                      "value": "!!exampleTimestamp!!2ndVideo"
+                      "value": "!!2ndVideo"
                     }
                   ]
                 }
@@ -935,27 +935,27 @@
       "a7408334-3742-4000-aa8b-06a472ee2000": {
         "id": "a7408334-3742-4000-aa8b-06a472ee2000",
         "name": "pluginMessageTransfer.brs",
-        "path": "/Users/jmedlin/Documents/general-tools/examples-web/send-plugin-message/",
+        "path": "/Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/",
         "networkId": 0,
         "location": "Local",
         "assetType": "BrightScript",
         "scope": "ee6c9bdaa6478312",
-        "locator": "file:///Users/jmedlin/Documents/general-tools/examples-web/send-plugin-message/pluginMessageTransfer.brs",
-        "fileSize": 2586,
-        "lastModifiedDate": "2024-09-24T03:19:32.298Z",
+        "locator": "file:///Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/pluginMessageTransfer.brs",
+        "fileSize": 2730,
+        "lastModifiedDate": "2024-10-11T20:42:56.163Z",
         "refCount": 1
       },
       "266a1712-2166-4000-a4ee-af7731079000": {
         "id": "266a1712-2166-4000-a4ee-af7731079000",
         "name": "pluginMessageApp.html",
-        "path": "/Users/jmedlin/Documents/general-tools/examples-web/send-plugin-message/",
+        "path": "/Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/",
         "networkId": 0,
         "location": "Local",
         "assetType": "HtmlSite",
         "scope": "ee6c9bdaa6478312",
-        "locator": "file:///Users/jmedlin/Documents/general-tools/examples-web/send-plugin-message/pluginMessageApp.html",
+        "locator": "file:///Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/pluginMessageApp.html",
         "fileSize": 1076,
-        "lastModifiedDate": "2024-09-24T03:19:32.297Z",
+        "lastModifiedDate": "2024-10-11T20:42:56.163Z",
         "refCount": 1
       }
     },
@@ -976,10 +976,24 @@
       "type": "ZONE",
       "selectableType": "ZONE"
     },
-    "selectionEntities": {},
+    "selectionEntities": {
+      "6efaa0d0-f539-4000-a543-ec028d5fb000": {
+        "id": "6efaa0d0-f539-4000-a543-ec028d5fb000",
+        "type": "Event",
+        "selectableType": "TRANSITION",
+        "selectableData": null
+      }
+    },
     "isEventAdvancedEnabled": false,
     "activeAssetMenuTab": "ASSETS",
-    "prevSelectionEntities": {}
+    "prevSelectionEntities": {
+      "2f155cc3-2e12-4000-a90e-5cb1be3f8000": {
+        "id": "2f155cc3-2e12-4000-a90e-5cb1be3f8000",
+        "type": "EventHandler",
+        "selectableType": "STATE",
+        "selectableData": null
+      }
+    }
   },
   "interactiveCanvas": {
     "statePositionById": {
@@ -1039,9 +1053,9 @@
         "k": 1.5
       },
       "e3d131b0-fc5b-4000-a752-c72c52639000": {
-        "x": 0,
-        "y": 0,
-        "k": 1
+        "x": -93.2338446329411,
+        "y": -51.54644756808841,
+        "k": 0.7453551933994603
       }
     },
     "isLoaderEnabled": false,

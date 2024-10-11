@@ -52,7 +52,7 @@ Function ParsePluginMessage(origMsg as String, h as Object) as boolean
   if match then
     retval = true
     ' split the string, !! is the field seperator
-    ' pluginMessage!!<serialNumber>!!<timestamp>!!<filename>
+    ' pluginMessage!!<serialNumber>!!<filename>
     r2 = CreateObject("roRegex", "!!", "i")
     fields = r2.split(msg)
     command = fields[0]
@@ -66,10 +66,9 @@ Function ParsePluginMessage(origMsg as String, h as Object) as boolean
     
     if command = "pluginMessage" then 
       serialNumber = fields[1]
-      timestamp = fields[2]
-      filename = fields[3]
-      h.systemLog.SendLine("=== File " + filename + " showing ended and reported at " + timestamp + " from player " + serialNumber)
-      h.html.PostJsMessage({ serialNumber: serialNumber, timestamp: timestamp, filename: filename })
+      filename = fields[2]
+      h.systemLog.SendLine("=== File " + filename + " showing ended and reported from player " + serialNumber)
+      h.html.PostJsMessage({ serialNumber: serialNumber, filename: filename })
     end if
   end if
 
