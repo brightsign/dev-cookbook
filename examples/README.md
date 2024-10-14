@@ -18,14 +18,22 @@ Once you are comfortable with HTML, move on to the `node-starter-example`. This 
 - **Location**: `examples/node-starter-example`
 - **Instructions**: Follow the specific instructions provided in the example's README file.
 
-### 3. Templates
+### 3. Node Simple Server Example
+
+After running through the basics with the `starter-node-example`, you can delve deeper into server-side development with the `node-simple-server-example`. This example provides a more detailed look at creating a simple server using Node.js and Express, including handling routes and middleware.
+
+- **Location**: `examples/node-simple-server-example`
+- **Instructions**: Follow the specific instructions provided in the example's README file.
+
+
+### 4. Templates
 
 After getting familiar the basics of HTML and Node.js, you can explore the templates in the `templates` directory. These templates provide more advanced setups depending on the type of application you plan to create.
 
 - **Location**: `templates`
 - **Instructions**: Choose a template that fits your application needs and follow the specific instructions provided in the template's README file.
 
-### 4. Other Examples
+### 5. Other Examples
 
 Other examples in this directory intend to offer more specific references for applications. Once you get your bearing with starter examples, more tools and specific use cases will be offered. For example, applications will include tests, mocks, webpack configurations, scripts to push code to your player seamlessly, and more. 
 
