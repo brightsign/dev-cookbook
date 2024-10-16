@@ -6,8 +6,15 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path));
+app.use(function (req, res, next) {
+    console.log("Testing", req.url);
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    next();
+});
 
-let text = "";
+let text = "This is example text.";
 
 // POST endpoint to receive updates
 app.post("/text", (req, res) => {

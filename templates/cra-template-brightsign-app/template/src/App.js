@@ -22,7 +22,8 @@ function App() {
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const { text } = await (await fetch("/text")).json();
+            const rawText = await fetch("http://localhost:8020/text");
+            const { text } = await rawText.json();
 
             if (text) {
                 setHeader(text);
