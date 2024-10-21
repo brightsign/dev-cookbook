@@ -7,7 +7,6 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path));
 app.use(function (req, res, next) {
-    console.log("Testing", req.url);
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -31,5 +30,5 @@ app.get("/text", (req, res) => {
     res.status(200).json({ text });
 });
 
-const PORT = 8020;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const port = process.env.REACT_APP_PORT || 8020;
+app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -22,7 +22,8 @@ function App() {
 
     useEffect(() => {
         const interval = setInterval(async () => {
-            const rawText = await fetch("http://localhost:8020/text");
+            const port = process.env.REACT_APP_PORT || 8020;
+            const rawText = await fetch(`http://localhost:${port}/text`);
             const { text } = await rawText.json();
 
             if (text) {
