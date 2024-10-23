@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Html Messages</title>
+</head>
+
+<body onload="main()">
+</body>
+
+<script>
+
+  var bsMessage = new BSMessagePort();
+
+  function main() {
+    console.log("=== Starting javascript...");
+
+    bsMessage.onbsmessage = function (msg) {
+      if (msg.data["serialNumber"] !== undefined && msg.data["filename"] !== undefined) {
+        console.log("=== The plugin sent a message with serialNumber: " + msg.data["serialNumber"] + " and filename: " + msg.data["filename"]);
+
+        // Add fields from plugin message
+        var serialNumber = msg.data["serialNumber"];
+        var filename = msg.data["filename"];
+
+        // send info to your backend (replace console log with your backend call)
+        console.log("=== This is where you send info to the backend: " + serialNumber + " " + filename);
+      } else {
+        console.log("=== Received unexpected message");
+      }
+    };
+  }
+
+</script>
+
+</html>
