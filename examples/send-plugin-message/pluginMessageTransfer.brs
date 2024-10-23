@@ -1,3 +1,8 @@
+' Note: The plugin's filename can be anything, as long as the presentation the plugin is added to has the 
+' appropriate filename (e.g. 'pluginMessageTransfer.brs') assigned.
+
+' Note: the name of the plugin must be defined by the suffix '_Initialize', for example, pluginMessage
+' is the name of the plugin defined by the function, pluginMessage_Initialize
 Function pluginMessage_Initialize(msgPort As Object, userVariables As Object, bsp as Object)
 'no spaces in names
  
@@ -7,6 +12,7 @@ Function pluginMessage_Initialize(msgPort As Object, userVariables As Object, bs
     
     return pluginMessage
 End Function
+
 
 Function newPluginMessage(msgPort As Object, userVariables As Object, bsp as Object)
     print "=== newPluginMessage() - entry"
@@ -24,7 +30,8 @@ Function newPluginMessage(msgPort As Object, userVariables As Object, bsp as Obj
     return s
 End Function
 
-
+' Note: the suffix '_ProcessEvent', for example, pluginMessage
+' is the name of the plugin defined by the function, pluginMessage_ProcessEvent
 Function pluginMessage_ProcessEvent(event As Object) as boolean
     
     retval = false
