@@ -55,9 +55,9 @@ The examples in this repository are designed to help you get started with develo
 
 ### Learning the basics with examples
 
-If you've never worked with a BrightSign before, we recommend starting with a [barebones example](simple_html_example).
+If you've never worked with a BrightSign before, we recommend starting with a [barebones example](examples/README.md#1-starter-html-example).
 
-After this, we recommend integrating Node.js into the application on the BrightSign player. An example of this can be found in [html_node_example](Link to simple html and node example).
+After this, we recommend integrating Node.js into the application on the BrightSign player. An example of this can be found in [html_node_example](examples/node-simple-server-example/README.md).
 
 Once this seems familiar, we recommend adding auxiliary tools to make the development experience smoother. This includes introducing a script to copy files to the player's SD card, defining multiple environments to develop locally rather than needing to only rely on the player for visibility, and a mock library for populating values when running the example locally. This can be found [here](robust_example).
 
