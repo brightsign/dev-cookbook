@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/brightsign/dev-cookbook/compare/v1.2.20...v1.3.0) (2024-10-24)
+
+
+### Features
+
+* PE-413 simplify simple-node-example as second step for introducing examples to newcomers ([#64](https://github.com/brightsign/dev-cookbook/issues/64)) ([5376ebf](https://github.com/brightsign/dev-cookbook/commit/5376ebf165123e55a84aece11b04037f1c491d2b))
+
 ## [1.2.20](https://github.com/brightsign/dev-cookbook/compare/v1.2.19...v1.2.20) (2024-06-26)
 
 
