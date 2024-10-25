@@ -34,6 +34,8 @@ End Function
 ' is the name of the plugin defined by the function, pluginMessage_ProcessEvent
 Function pluginMessage_ProcessEvent(event As Object) as boolean
     
+    ' retval should be false if the autorun should handle the event, even if the plugin also handled the event
+    ' retval should be true if the autorun should NOT handle the event, the plugin instead handled the event
     retval = false
     if type(event) = "roAssociativeArray" then ' Receive a message from BA
       if type(event["EventType"]) = "roString"
