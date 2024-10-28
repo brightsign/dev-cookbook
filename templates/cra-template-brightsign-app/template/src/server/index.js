@@ -13,7 +13,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-let text = "This is example text.";
+let text = "BrightSign React Web App Template";
 
 // POST endpoint to receive updates
 app.post("/text", (req, res) => {
