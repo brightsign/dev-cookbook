@@ -22,10 +22,40 @@ npm run build
 ```
 
 ### Step 2: Transfer Files to the Player
+
+#### Manual Transfer
 After the application is bundled, you need to transfer the required files to your BrightSign player:
 - Copy the `bundle.js` file from the `dist` directory.
 - Place the `bundle.js` file in the `dist` directory and the `autorun.brs` file at the root of the SD card.
 - Insert the SD card into the player.
+
+#### Automated Transfer Using Provided Bash Scripts
+The BrightSign bash script(s) are contained in the `scripts/` directory. Follow the steps below to deploy built code to your player. 
+
+Set the following environment variables:
+```sh
+export PLAYER="<IP address or hostname of the player>"
+# e.g. export PLAYER="192.168.86.1"
+
+# only needed when ldws password is set
+export PLAYER_PW="<password, which is the serial number by default>"
+# e.g. export PLAYER_PW="abcd"
+```
+
+To actually put code on your player:
+```sh
+npm run cp
+```
+
+If you are confident the code will compile with webpack, you can combine building the app and deploying the app with:
+```sh
+npm run put
+```
+
+Or to deploy the development version of your code:
+```sh
+npm run put:dev
+```
 
 ### Step 3: Access the Server
 Once the player is running, you can access the Node.js server from a web browser. Make sure your computer is connected to the same network as the BrightSign player. In the browser, navigate to the player’s IP address using port 13131 (as configured in `app.js`):

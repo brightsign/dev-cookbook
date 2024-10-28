@@ -2,7 +2,7 @@ function main()
 
     mp = createobject("roMessagePort")
 
-    node = createobject("roNodeJs", "bundle.js", {message_port:mp})
+    node = createobject("roNodeJs", "dist/bundle.js", {message_port:mp})
 
     while true
         msg = wait(0, mp)
