@@ -52,6 +52,16 @@ If you are confident the code will compile with webpack, you can combine buildin
 npm run put
 ```
 
+If you are not confident the code will compile with webpack, you should first build the app separately and check for any errors:
+```sh
+npm run build
+```
+
+After ensuring the build is successful, you can then deploy the app:
+```sh
+npm run cp
+```
+
 Or to deploy the development version of your code:
 ```sh
 npm run put:dev
