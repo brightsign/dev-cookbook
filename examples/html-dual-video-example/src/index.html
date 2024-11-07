@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bs-example-html5</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        height: 100%;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      #video-container {
+        width: 100%;
+        height: 100%; 
+      }
+
+      #video-player {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hidden {
+        position: absolute;
+        top: -10000px;
+        left: -10000px;
+      }
+      video {
+        background: black;
+      }
+
+    </style>
+    <script type="text/javascript" src="./dist/bundle.js"></script>
+  </head>
+  <body onload="window.main()">
+    <div id="video-container">
+      <video id="video-player-1" src="../assets/Coffee-blank.mp4" preload="auto" muted>
+        <!-- <source src= id="video-source" type="video/mp4"> -->
+      </video>
+      <video id="video-player-2" src="" class="hidden" preload="auto" muted>
+        <!-- <source id="video-source" type="video/mp4"> -->
+      </video>
+    </div>
+  </body>
+</html>
