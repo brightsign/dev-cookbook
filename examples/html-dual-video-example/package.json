@@ -4,6 +4,7 @@
   "description": "Example of how to build a BrightSign HTML5 App that preloads and plays a video playlist",
   "main": "index.js",
   "scripts": {
+    "test": "jest --config jest.config.js src/",
     "build": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "clean": "rm -rf dist",
