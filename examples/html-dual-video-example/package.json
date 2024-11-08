@@ -28,9 +28,6 @@
     "webpack": "^5.82.0",
     "webpack-cli": "^5.1.0"
   },
-  "engines": {
-    "node": "<14.17.6"
-  },
   "dependencies": {
     "node": "^14.17.6",
     "nvm": "^0.0.4"
