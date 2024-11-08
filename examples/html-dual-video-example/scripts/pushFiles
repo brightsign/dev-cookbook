@@ -1,3 +1,0 @@
-npm run build
-bsc putfile xd5-a ./dist /dist
-bsc putfile xd5-a ./src/autorun.brs /

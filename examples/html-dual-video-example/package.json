@@ -10,8 +10,7 @@
     "reinstall": "npm run clean && rm -rf node_modules && npm install",
     "watch": "webpack --watch",
     "put": "npm run build && ./scripts/put",
-    "put:prod": "npm run build:prod && ./scripts/put",
-    "upload": "./scripts/pushFiles"
+    "put:prod": "npm run build:prod && ./scripts/put"
   },
   "author": "BrightSign LLC <integrations@brightsign.biz>",
   "license": "ISC",
