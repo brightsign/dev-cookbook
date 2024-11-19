@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>html-dual-video-example</title>
+    <title>html-single-video-decoder-example</title>
     <style>
       body,
       html {
@@ -29,11 +29,6 @@
         height: 100%;
       }
 
-      .hidden {
-        position: absolute;
-        top: -10000px;
-        left: -10000px;
-      }
       video {
         background: black;
       }
@@ -43,12 +38,7 @@
   </head>
   <body onload="window.main()">
     <div id="video-container">
-      <video id="video-player-1" src="../assets/Coffee-blank.mp4" preload="auto" muted>
-        <!-- <source src= id="video-source" type="video/mp4"> -->
-      </video>
-      <video id="video-player-2" src="" class="hidden" preload="auto" muted>
-        <!-- <source id="video-source" type="video/mp4"> -->
-      </video>
+      <video id="video-player" src="../assets/Coffee-blank.mov" preload="auto" muted></video>
     </div>
   </body>
 </html>

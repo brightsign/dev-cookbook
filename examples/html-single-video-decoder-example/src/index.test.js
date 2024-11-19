@@ -13,6 +13,6 @@ describe("index.html", () => {
 
         // Check that the document has a <title> element
         const title = document.querySelector("title");
-        expect(title.textContent).toBe("html-dual-video-example");
+        expect(title.textContent).toBe("html-single-video-decoder-example");
     });
 });

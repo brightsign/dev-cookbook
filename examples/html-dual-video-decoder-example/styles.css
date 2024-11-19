@@ -1,0 +1,49 @@
+.container1{
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top: 0px;
+    left: 0px;  
+}
+
+.container1 .vid1 {   
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+} 
+
+
+.container1 .img1 {   
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+} 
+
+body{
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+}
+
+.hidden{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
+
+video{
+    object-fit: fill;
+    width: 1920px;
+    height: 1080px;
+    position: inherit;
+    top: 0px;
+}

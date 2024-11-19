@@ -1,5 +1,5 @@
 {
-  "name": "html-dual-video-example",
+  "name": "html-single-video-decoder-example",
   "version": "1.0.0",
   "description": "Example of how to build a BrightSign HTML5 App that preloads and plays a video playlist",
   "main": "index.js",
