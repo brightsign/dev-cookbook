@@ -11,9 +11,7 @@
         "format": "prettier . --write --config ../.prettierrc.js --cache --cache-location=../prettiercache && yarn lint --fix",
         "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc template/src/**/*.{js,jsx}",
         "publish-package": "npm publish --access public",
-        "cp": "./scripts/put",
-        "put:dev": "npm run build && npm run cp",
-        "put": "npm run build:prod && npm run cp"
+        "upload": "npm run build && cp src/autorun.brs dist/ && bsc local file --upload --player $npm_config_playerName --file ./dist"
     },
     "repository": {
         "url": "https://github.com/brightsign/dev-cookbook.git",
@@ -31,7 +29,8 @@
         "webpack-cli": "^5.1.0"
     },
     "dependencies": {
-        "node": "14.17.6",
-        "http": "^0.0.1-security"
+        "@brightsign/bsc": "^2.0.2",
+        "http": "^0.0.1-security",
+        "node": "14.17.6"
     }
 }

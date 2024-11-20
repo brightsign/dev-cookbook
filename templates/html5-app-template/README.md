@@ -135,58 +135,25 @@ This method of code deployment is simple but very slow. It requires taking the S
 
 There are multiple ways to interact with the supervisor API's:
 1. [Use BrightSign's Player CLI](#brightsign-player-cli)
-2. [Use BrightSign's provided bash scripts](#provided-bash-scripts)
-3. [Use the local DWS front end](#local-dws-front-end)
-4. [Build your own deployment pipeline](#building-your-own-deployment-pipeline)
+2. [Use the local DWS front end](#local-dws-front-end)
+3. [Build your own deployment pipeline](#building-your-own-deployment-pipeline)
 
 #### BrightSign Player CLI
 
-BrightSign's player CLI: [player-CLI](https://github.com/brightsign/player-cli). Instructions for installation can be found in the CLI repo readme. To deploy this app with the CLI:
+BrightSign's player CLI: [player-CLI](https://www.npmjs.com/package/@brightsign/bsc). To deploy this app with the CLI:
+Configure the CLI by choosing a name for your player and passing your player's information:
 ```sh
-bsc putfile playerName dist dist
-bsc putfile playerName src/autorun.brs
+bsc local player --add --player playerName --ip ip-address --user username --pass password --storage sd
 ```
 
-If you have any additional files, include those too. For example, if you have media stored in a `media/` directory, use:
+This is an example command for pushing files to your player:
 ```sh
-bsc putfile playerName media
-```
-The above will put the media files on the root of the SD card. If they are referenced out of a directory, for example a `media/` directory on the SD card, use:
-```sh
-bsc putfile playerName media media
+bsc local file --upload --player playerName --file ./path-to-your-file --destination sd/path-on-player
 ```
 
-Then, restart the app on your player. Refer to [restarting the app](#restarting-the-app-on-the-player)
-
-[Back to deployment options](#deploying-code-to-the-player)
-
-#### Provided Bash Scripts
-
-The BrightSign bash script(s) are contained in the `scripts/` directory. Follow the steps below to deploy built code to your player. 
-
-Set the following environment variables:
+Alternatively, there is a script that can be run that is configured for this application:
 ```sh
-export PLAYER="<IP address or hostname of the player>"
-# e.g. export PLAYER="192.168.86.1"
-
-# only needed when ldws password is set
-export PLAYER_PW="<password, which is the serial number by default>"
-# e.g. export PLAYER_PW="abcd"
-```
-
-To actually put code on your player:
-```sh
-npm run cp
-```
-
-If you are confident the code will compile with webpack, you can combine building the app and deploying the app with:
-```sh
-npm run put
-```
-
-Or to deploy the development version of your code:
-```sh
-npm run put:dev
+npm run upload --playerName=playerName
 ```
 
 [Back to deployment options](#deploying-code-to-the-player)
