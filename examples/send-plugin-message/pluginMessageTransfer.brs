@@ -44,6 +44,9 @@ Function pluginMessage_ProcessEvent(event As Object) as boolean
             pluginMessage$ = event["PluginMessage"]
             retval = ParsePluginMessage(pluginMessage$, m)
           end if
+        else if event["EventType"] = "roNodeJsEvent" then
+          nodeMessage$ = event.GetData()
+          retval = ParseNodeMessage(nodeMessage$, m)
         end if
       end if
     end if
@@ -81,6 +84,14 @@ Function ParsePluginMessage(origMsg as String, h as Object) as boolean
     end if
   end if
 
+  return retval
+End Function
+
+Function ParseNodeMessage(origMsg as Object, h as Object) as boolean
+  retval = false
+  if origMsg.reason = "message" then
+    h.systemLog.SendLine("=== Received Node message complete: " + origMsg.message.complete + " ; message: " + origMsg.message.result)
+  end if
   return retval
 End Function
 

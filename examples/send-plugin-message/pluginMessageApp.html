@@ -11,12 +11,13 @@
 
 <script>
 
-  var bsMessage = new BSMessagePort();
+  var MESSAGE_PORT = new require("@brightsign/messageport");
+  var bsMessage = new MESSAGE_PORT();
 
   function main() {
     console.log("=== Starting javascript...");
 
-    bsMessage.onbsmessage = function (msg) {
+    bsMessage.addEventListener('bsmessage',  function (msg) {
       if (msg.data["serialNumber"] !== undefined && msg.data["filename"] !== undefined) {
         console.log("=== The plugin sent a message with serialNumber: " + msg.data["serialNumber"] + " and filename: " + msg.data["filename"]);
 
@@ -29,9 +30,9 @@
       } else {
         console.log("=== Received unexpected message");
       }
-    };
+    });
 
-    bsMessage.PostBSMessage({ complete: true, result: "PASS" });
+    bsMessage.PostBSMessage({ complete: true, result: "example message" });
   }
 
 </script>
