@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path));
 
-let text = "";
+let text = "BrightSign React Web App Dashboard Template";
 
 // POST endpoint to receive updates
 app.post("/text", (req, res) => {
