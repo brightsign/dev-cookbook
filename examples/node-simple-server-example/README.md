@@ -29,42 +29,21 @@ After the application is bundled, you need to transfer the required files to you
 - Place the `bundle.js` file in the `dist` directory and the `autorun.brs` file at the root of the SD card.
 - Insert the SD card into the player.
 
-#### Automated Transfer Using Provided Bash Scripts
-The BrightSign bash script(s) are contained in the `scripts/` directory. Follow the steps below to deploy built code to your player. 
-
-Set the following environment variables:
+#### Automated Transfer Using BrightSign CLI for DWS
+BrightSign's player CLI: [player-CLI](https://www.npmjs.com/package/@brightsign/bsc). To deploy this app with the CLI:
+Configure the CLI by choosing a name for your player and passing your player's information:
 ```sh
-export PLAYER="<IP address or hostname of the player>"
-# e.g. export PLAYER="192.168.86.1"
-
-# only needed when ldws password is set
-export PLAYER_PW="<password, which is the serial number by default>"
-# e.g. export PLAYER_PW="abcd"
+bsc local player --add --player playerName --ip ip-address --user username --pass password --storage sd
 ```
 
-To actually put code on your player:
+This is an example command for pushing files to your player:
 ```sh
-npm run cp
+bsc local file --upload --player playerName --file ./path-to-your-file --destination sd/path-on-player
 ```
 
-If you are confident the code will compile with webpack, you can combine building the app and deploying the app with:
+Alternatively, there is a script that can be run that is configured for this application:
 ```sh
-npm run put
-```
-
-If you are not confident the code will compile with webpack, you should first build the app separately and check for any errors:
-```sh
-npm run build
-```
-
-After ensuring the build is successful, you can then deploy the app:
-```sh
-npm run cp
-```
-
-Or to deploy the development version of your code:
-```sh
-npm run put:dev
+npm run upload --playerName=playerName
 ```
 
 ### Step 3: Access the Server
