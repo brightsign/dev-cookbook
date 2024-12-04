@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html-single-video-decoder-example</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        height: 100%;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      #video-container {
+        width: 100%;
+        height: 100%; 
+      }
+
+      #video-player {
+        width: 100%;
+        height: 100%;
+      }
+
+      video {
+        background: black;
+      }
+
+    </style>
+    <script type="text/javascript" src="./dist/bundle.js"></script>
+  </head>
+  <body onload="window.main()">
+    <div id="video-container">
+      <video id="video-player" src="../assets/Coffee-blank.mov" preload="auto" muted></video>
+    </div>
+  </body>
+</html>
