@@ -37,6 +37,8 @@ Function pluginMessage_ProcessEvent(event As Object) as boolean
     ' retval should be false if the autorun should handle the event, even if the plugin also handled the event
     ' retval should be true if the autorun should NOT handle the event, the plugin instead handled the event
     retval = false
+    m.systemLog.SendLine("=== pluginMessage_ProcessEvent() - event:")
+    m.systemLog.SendLine(type(event))
     if type(event) = "roAssociativeArray" then ' Receive a message from BA
       if type(event["EventType"]) = "roString"
         if event["EventType"] = "SEND_PLUGIN_MESSAGE" then
@@ -45,6 +47,11 @@ Function pluginMessage_ProcessEvent(event As Object) as boolean
             retval = ParsePluginMessage(pluginMessage$, m)
           end if
         end if
+      end if
+    else if type(event) = "roHtmlWidgetEvent" then
+      payload = event.GetData()
+      if payload.reason = "message" then
+        m.systemLog.SendLine("=== Received Node message: " + payload.message.result)
       end if
     end if
     return retval
@@ -79,8 +86,22 @@ Function ParsePluginMessage(origMsg as String, h as Object) as boolean
       h.systemLog.SendLine("=== File " + filename + " showing ended and reported from player " + serialNumber)
       h.html.PostJsMessage({ serialNumber: serialNumber, filename: filename })
     end if
+    if command = "plugin" then 
+      serialNumber = fields[2]
+      filename = fields[3]
+      h.systemLog.SendLine("=== File " + filename + " showing ended and reported from player 222 " + serialNumber)
+      h.html.PostJsMessage({ serialNumber: serialNumber, filename: filename })
+    end if
   end if
 
+  return retval
+End Function
+
+Function ParseNodeMessage(origMsg as Object, h as Object) as boolean
+  retval = false
+  if origMsg.reason = "message" then
+    h.systemLog.SendLine("=== Received Node message complete: " + origMsg.message.complete + " ; message: " + origMsg.message.result)
+  end if
   return retval
 End Function
 

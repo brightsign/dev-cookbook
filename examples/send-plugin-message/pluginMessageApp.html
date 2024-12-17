@@ -16,20 +16,26 @@
   function main() {
     console.log("=== Starting javascript...");
 
-    bsMessage.onbsmessage = function (msg) {
-      if (msg.data["serialNumber"] !== undefined && msg.data["filename"] !== undefined) {
-        console.log("=== The plugin sent a message with serialNumber: " + msg.data["serialNumber"] + " and filename: " + msg.data["filename"]);
+    bsMessage.addEventListener('bsmessage',  function (msg) {
+      if (msg.data["serialnumber"] !== undefined && msg.data["filename"] !== undefined) {
+        console.log("=== The plugin sent a message with serialNumber: " + msg.data["serialnumber"] + " and filename: " + msg.data["filename"]);
 
         // Add fields from plugin message
-        var serialNumber = msg.data["serialNumber"];
+        var serialNumber = msg.data["serialnumber"];
         var filename = msg.data["filename"];
 
         // send info to your backend (replace console log with your backend call)
         console.log("=== This is where you send info to the backend: " + serialNumber + " " + filename);
+        bsMessage.PostBSMessage({ complete: true, result: "ack response" });
       } else {
         console.log("=== Received unexpected message");
       }
-    };
+    });
+
+    setTimeout(function() {
+      console.log("=== Sending message to plugin...");
+      bsMessage.PostBSMessage({ complete: true, result: "individual example message" });
+    }, 10000);
   }
 
 </script>
