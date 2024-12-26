@@ -1,19 +1,20 @@
 function main()
 
-
+	' Create Message Port
 	mp = CreateObject("roMessagePort") 
-  'Enable lDWS
+    ' Enable lDWS
 	enableLDWS()
-  ' Enable SSH
+    ' Enable SSH
 	enableSSH()
-  ' Create HTML Widget
+
+	' Initialize roNodeJs with path or correct filename, whether webpack is used or not.
+	node_js = CreateObject("roNodeJs", "sd:/dist/backend.js", {message_port: mp, node_arguments: ["--inspect=0.0.0.0:2999"], arguments: []})
+  
+    ' Create HTML Widget
 	widget = createHTMLWidget(mp)
 	widget.Show()
-  
-  	' Initialize roNodeJs with path or correct filename, whether webpack is used or not.
-  	node_js = CreateObject("roNodeJs", "sd:/dist/backend.js", {message_port: mp, node_arguments: ["--inspect=0.0.0.0:2999"], arguments: []})
 
-  	'Event Loop
+  	' Event Loop
 	while true
 		msg = wait(0,mp)
 		print "msg received - type=";type(msg)
@@ -31,14 +32,14 @@ function createHTMLWidget(mp as object) as object
 	reg.Write("enable_web_inspector","1")
 	reg.Flush()
 
-  ' Get Screen Resolution
+    ' Get Screen Resolution
 	vidmode = CreateObject("roVideoMode")
 	width = vidmode.GetResX()
 	height = vidmode.GetResY()
 
 	r = CreateObject("roRectangle",0,0,width,height)
 	
-  ' Create HTML Widget config
+    ' Create HTML Widget config
 	config = {
 		nodejs_enabled: true
 		inspector_server: {
@@ -48,7 +49,7 @@ function createHTMLWidget(mp as object) as object
 		port: mp
 	}
   
-  ' Create HTML Widget
+    ' Create HTML Widget
 	h = CreateObject("roHtmlWidget",r,config)
 	return h
 
