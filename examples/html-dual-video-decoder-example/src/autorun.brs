@@ -1,5 +1,4 @@
 function main()
-
    mp = CreateObject("roMessagePort")
    'Enable lDWS
    enableLDWS()
@@ -18,11 +17,9 @@ function main()
        print "msg: ";msg
      end if
    end while
+end function
 
- end function
-
-
- function createHTMLWidget(mp as object) as object
+function createHTMLWidget(mp as object) as object
    ' Enable Web Inspector
    reg = CreateObject("roRegistrySection", "html")
    reg.Write("enable_web_inspector", "1")
@@ -37,51 +34,34 @@ function main()
 
    ' Create HTML Widget config
    config = {
-     ' mouse_enabled:  true
      nodejs_enabled: true
      inspector_server: {
        port: 3000
      }
-     url: "file:///sd:/index.html"
+     url: "file:///sd:/dist/index.html"
      port: mp
    }
 
    ' Create HTML Widget
    h = CreateObject("roHtmlWidget", r, config)
    return h
+end function
 
- end function
-
-
- function enableLDWS()
-
+function enableLDWS()
    registrySection = CreateObject("roRegistrySection", "networking")
-
    if type(registrySection) = "roRegistrySection" then
-
      registrySection.Write("http_server", "80")
-
    end if
-
    registrySection.Flush()
+end function
 
- end function
-
-
- function enableSSH()
-
+function enableSSH()
    regSSH = CreateObject("roRegistrySection", "networking")
-
    if type(regSSH) = "roRegistrySection" then
-
      regSSH.Write("ssh", "22")
-
    end if
-
    n = CreateObject("roNetworkConfiguration", 0)
    n.SetLoginPassword("password")
    n.Apply()
-
    regSSH.Flush()
-
- end function
+end function

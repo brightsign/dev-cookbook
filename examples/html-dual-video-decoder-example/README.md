@@ -1,6 +1,6 @@
-# HTML Single Video Example
+# HTML Dual Video Example
 
-This example demonstrates how to run an html web application that plays videos in sequence using a single video decoder.
+This example demonstrates how to run an html web application that switches seamlessly between videos using two video decoders, preloading next content then showing it. This approach provides smooth transitions between videos but requires more system resources than the single video example.
 
 ## Building and Running the Application
 
@@ -78,4 +78,4 @@ npm run put:prod
 
 ### Step 3: Observe the application on your player
 
-You should now see the display connected to your player showing the content you uploaded, switching between videos seemlessly.
+You should now see the display connected to your player showing the content you uploaded, switching between videos seamlessly using dual video decoders.

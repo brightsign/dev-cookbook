@@ -1,4 +1,4 @@
-.container1{
+.container1 {
     width: 1920px;
     height: 1080px;
     position: absolute;
@@ -14,8 +14,15 @@
     left: 0px;
 } 
 
+.container2 {
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    top: 0px;
+    left: 0px;  
+}
 
-.container1 .img1 {   
+.container2 .vid2 {   
     width: 1920px;
     height: 1080px;
     position: absolute;
@@ -23,27 +30,21 @@
     left: 0px;
 } 
 
-body{
+body {
     width: 1920px;
     height: 1080px;
     overflow: hidden;
     overflow-y: hidden;
     overflow-x: hidden;
-
+    margin: 0;
+    padding: 0;
 }
 
-.hidden{
-    display: none;
-}
-
-.visible{
-    display: block;
-}
-
-video{
+video {
     object-fit: fill;
     width: 1920px;
     height: 1080px;
     position: inherit;
     top: 0px;
+    background: black;
 }

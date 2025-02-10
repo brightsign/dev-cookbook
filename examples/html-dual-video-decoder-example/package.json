@@ -1,7 +1,7 @@
 {
-  "name": "html-single-video-decoder-example",
+  "name": "html-dual-video-decoder-example",
   "version": "1.0.0",
-  "description": "Example of how to build a BrightSign HTML5 App that preloads and plays a video playlist",
+  "description": "Example of how to build a BrightSign HTML5 App that uses two video decoders for seamless playback",
   "main": "src/index.js",
   "scripts": {
     "test": "jest --config jest.config.js src/",
