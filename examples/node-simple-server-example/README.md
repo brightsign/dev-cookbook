@@ -9,6 +9,51 @@ The core Node.js application is defined in `app.js`, which:
 - Provides device information via a REST API endpoint
 - Includes proper content-type handling for common file types
 
+## Static File Serving
+
+This example includes a built-in static file server that serves files from the `/storage/sd/` directory. The server:
+- Automatically serves `index.html` when accessing the root URL (`/`)
+- Handles common file types with appropriate content-type headers (HTML, CSS, JavaScript, images)
+- Returns 404 errors for files that don't exist
+
+### Example Usage
+
+1. Create an `index.html` file in your SD card root:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My BrightSign App</title>
+</head>
+<body>
+    <h1>Hello from BrightSign!</h1>
+    <div id="device-info"></div>
+    <script>
+        // Fetch and display device info
+        fetch('/api/device-info')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('device-info').innerHTML = 
+                    `Model: ${data.model}<br>
+                     OS Version: ${data.osVersion}`;
+            });
+    </script>
+</body>
+</html>
+```
+
+2. Access your content:
+   - Main page: `http://<player-ip>:13131/`
+   - Individual files: `http://<player-ip>:13131/styles.css`, `http://<player-ip>:13131/images/logo.png`, etc.
+
+3. Supported file types:
+   - HTML (`.html`): `text/html`
+   - JavaScript (`.js`): `text/javascript`
+   - CSS (`.css`): `text/css`
+   - JSON (`.json`): `application/json`
+   - Images (`.png`, `.jpg`): `image/png`, `image/jpeg`
+   - Other files: `text/plain`
+
 ## Building and Running the Application
 
 ### Step 1: Install Dependencies
@@ -75,4 +120,3 @@ This example is equipped with basic mocking to make testing easier with local de
 To run the test(s) located in `App.test.js`, execute the following:
 ```bash
 npm run test
-```
