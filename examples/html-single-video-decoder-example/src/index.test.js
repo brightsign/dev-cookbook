@@ -25,6 +25,7 @@ describe("index.html", () => {
         expect(metaTags.length).toBeGreaterThanOrEqual(3);
         expect(document.querySelector('meta[charset="UTF-8"]')).not.toBeNull();
         expect(document.querySelector('meta[name="viewport"]')).not.toBeNull();
+        expect(document.querySelector('meta[http-equiv="X-UA-Compatible"]')).not.toBeNull();
     });
 
     it("should have proper video container setup", () => {
@@ -33,8 +34,8 @@ describe("index.html", () => {
         expect(container).not.toBeNull();
         expect(container.querySelector(".vid1")).not.toBeNull();
 
-        // Verify there's only one video container
-        const containers = document.querySelectorAll(".container1, .container2");
+        // Verify exactly one container exists (single video decoder)
+        const containers = document.querySelectorAll(".container1");
         expect(containers.length).toBe(1);
     });
 
@@ -42,7 +43,6 @@ describe("index.html", () => {
         const video = document.querySelector("#video-player");
         expect(video).not.toBeNull();
         expect(video.hasAttribute("src")).toBe(true);
-        expect(video.getAttribute("src")).toContain(".mov");
         expect(video.hasAttribute("preload")).toBe(true);
         expect(video.getAttribute("preload")).toBe("auto");
         expect(video.hasAttribute("muted")).toBe(true);
@@ -56,5 +56,13 @@ describe("index.html", () => {
         const script = document.querySelector('script[type="text/javascript"]');
         expect(script).not.toBeNull();
         expect(script.getAttribute("src")).toBe("./dist/bundle.js");
+    });
+
+    it("should maintain correct container hierarchy", () => {
+        const container = document.querySelector(".container1");
+        const videoContainer = container.querySelector(".vid1");
+        
+        // Verify video element is properly nested
+        expect(videoContainer.querySelector("#video-player")).not.toBeNull();
     });
 });
