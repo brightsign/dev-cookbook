@@ -2,7 +2,7 @@
 
 ## Overview
 
-This example is designed to help you get familiarized with running Node.js on a BrightSign player. It demonstrates how to run a Node.js server directly on the player that can serve both static files and device information. Additionally, it introduces tools and configurations that go beyond the basics covered in starter examples.
+This example is designed to help you get familiarized with running Node.js on a BrightSign player. It demonstrates how to run a Node.js server directly on the player that can serve both static files and fetch device information. Additionally, it introduces tools and configurations that go beyond the basics covered in starter examples.  
 
 The core Node.js application is defined in `app.js`, which:
 - Serves static files from the `/storage/sd/` directory
@@ -71,11 +71,11 @@ npm run build
 
 #### Manual Transfer
 After the application is bundled, you need to transfer the required files to your BrightSign player:
-1. Copy the `bundle.js` file from the `dist` directory
-2. Place the `bundle.js` file in the `dist` directory on the SD card
-3. Place the `autorun.brs` file at the root of the SD card
-4. Place any static files (HTML, CSS, images) you want to serve in the root of the SD card
-5. Insert the SD card into the player
+1. Copy the `dist` folder to the SD card
+2. Place the `autorun.brs` file at the root of the SD card
+3. Place any static files (HTML, CSS, images) you want to serve in the root of the SD card
+4. Insert the SD card into the player
+5. Reboot the player
 
 #### Automated Transfer Using BrightSign CLI for DWS
 BrightSign's player CLI: [player-CLI](https://www.npmjs.com/package/@brightsign/bsc). To deploy this app with the CLI:
