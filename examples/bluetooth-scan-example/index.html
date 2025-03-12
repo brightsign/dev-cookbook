@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bluetooth Device Scanning App</title>
+  <style>
+    /* CSS to style the background image and text */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: rgb(16, 9, 34);
+      background: linear-gradient(90deg,
+          rgba(48, 27, 105, 1) 0%,
+          rgba(16, 9, 34, 1) 38%);
+      color: white;
+      padding: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-img">
+    <h1>Success!</h1>
+    <p>
+      Scanning for Bluetooth devices...
+      Found <span id="bt-devices">0</span> devices.
+    </p>
+  </div>
+
+  <script>
+    const bt = require('@brightsign/bt');
+    const btc = new bt();
+    let count = 0;
+
+    btc.addEventListener('advertising-report', (event) => {
+      // Uncomment to see detailed advertising reports.
+      // NOT recommended for production since the logs are too verbose
+      // and may block the main thread.
+
+      // console.log(JSON.stringify(event));
+    });
+
+    btc.addEventListener('device-found', (event) => {
+      // Note that this may contain duplicate device information.
+      console.log('== device-found: ' + JSON.stringify(event));
+      count++;
+      document.getElementById('bt-devices').textContent = count;
+    });
+
+    btc.addEventListener('device-lost', (event) => {
+      console.log('== device-lost: ' + JSON.stringify(event));
+      count--;
+      document.getElementById('bt-devices').textContent = count;
+    });
+
+    btc.scan({ advertisingReports: true });
+  </script>
+</body>
+
+</html>
