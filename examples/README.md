@@ -1,42 +1,44 @@
 # Examples
 
-Welcome to the examples directory! This guide will help you get started with the provided examples and guide you through the progression from basic HTML to more advanced Node.js applications and then introduce templates.
+Welcome to the examples directory! This guide will help you get started with the provided examples. Each example is independent and can be used based on your specific needs.
 
-## Getting Started
+## Available Examples
 
-### 1. Starter HTML Example
+### HTML Examples
 
-Begin your journey with the `html-starter-example`. This example provides a simple HTML setup to help you understand the basics of web development.
-
+#### 1. HTML Starter Example
+A basic HTML setup to help you understand web development on BrightSign players.
 - **Location**: `examples/html-starter-example`
-- **Instructions**: Follow the specific instructions provided in the example's README file.
+- **Features**: Basic HTML setup, static file serving
 
-### 2. Starter Node Example
+#### 2. HTML Video Examples
+Examples showing how to work with video playback in HTML:
+- Designed for Player with a Single Video Decoder: `examples/html-single-video-decoder-example`
+- Designed for Player with a Dual Video Decoder Player: `examples/html-dual-video-decoder-example`
 
-Once you are comfortable with HTML, move on to the `node-starter-example`. This example introduces you to Node.js and Express, allowing you to create a basic server.
+### Node.js Examples
 
+#### 1. Node Starter Example
+A minimal Node.js HTTP server example running on a BrightSign player.
 - **Location**: `examples/node-starter-example`
-- **Instructions**: Follow the specific instructions provided in the example's README file.
+- **Features**: Basic HTTP server setup, request handling
 
-### 3. Node Simple Server Example
-
-After running through the basics with the `starter-node-example`, you can delve deeper into server-side development with the `node-simple-server-example`. This example provides a more detailed look at creating a simple server using Node.js and Express, including handling routes and middleware.
-
+#### 2. Node Simple Server Example
+A more detailed Node.js server example with device info API and testing setup.
 - **Location**: `examples/node-simple-server-example`
-- **Instructions**: Follow the specific instructions provided in the example's README file.
+- **Features**: Device info API, Jest testing setup, webpack configuration, automated deployment scripts
+
+### Plugin Message Example
+
+#### Send Plugin Message
+Example showing how to communicate between BrightScript and JavaScript.
+- **Location**: `examples/send-plugin-message`
+- **Features**: Plugin message transfer, BrightScript-JavaScript communication
 
 
-### 4. Templates
+## Next Steps
 
-After getting familiar the basics of HTML and Node.js, you can explore the templates in the `templates` directory. These templates provide more advanced setups depending on the type of application you plan to create.
-
-- **Location**: `templates`
-- **Instructions**: Choose a template that fits your application needs and follow the specific instructions provided in the template's README file.
-
-### 5. Other Examples
-
-Other examples in this directory intend to offer more specific references for applications. Once you get your bearing with starter examples, more tools and specific use cases will be offered. For example, applications will include tests, mocks, webpack configurations, scripts to push code to your player seamlessly, and more. 
-
-## Conclusion
-
-By following this progression, you will build a solid foundation in development with a BrightSign player, starting from basic HTML, moving to server-side development with Node.js, and finally exploring more advanced templates for specific applications.
+After exploring these examples, you can:
+1. Combine concepts from different examples to build more complex applications
+2. Add testing to your applications following the node-simple-server example
+3. Implement plugin message communication for advanced BrightScript integration

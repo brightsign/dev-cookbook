@@ -17,7 +17,7 @@ describe("HTTP Server Response", () => {
     });
 
     it("should respond with JSON containing mocked device info", (done) => {
-        http.get(`http://localhost:${port}`, (res) => {
+        http.get(`http://localhost:${port}/api/device-info`, (res) => {
             expect(res.statusCode).toBe(200);
             expect(res.headers["content-type"]).toBe("application/json");
 
@@ -34,6 +34,15 @@ describe("HTTP Server Response", () => {
                 expect(receivedData.serialNumber).toBe("MockSerialNumber");
                 done();
             });
+        }).on("error", (err) => {
+            done(err);
+        });
+    });
+
+    it("should return 404 for non-existent files", (done) => {
+        http.get(`http://localhost:${port}/non-existent-file.txt`, (res) => {
+            expect(res.statusCode).toBe(404);
+            done();
         }).on("error", (err) => {
             done(err);
         });
