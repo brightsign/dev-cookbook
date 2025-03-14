@@ -10,8 +10,9 @@ function app() {
         const server = http.createServer((req, res) => {
             // Serve device info on /api/device-info
             if (req.url === '/api/device-info') {
-                res.setHeader("Content-Type", "application/json");;
-                return res.end(di);
+                res.setHeader("Content-Type", "application/json");
+                const jsonResponse = JSON.stringify(di);
+                return res.end(jsonResponse);
             }
 
             // Serve static files from /storage/sd/
