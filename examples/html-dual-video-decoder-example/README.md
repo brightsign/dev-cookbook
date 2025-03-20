@@ -25,6 +25,10 @@ npm run build:prod
 
 ### Step 2: Transfer Files to the Player
 
+**Note:** When adding your own video assets, make sure to:
+1. Create a folder (e.g., `media` or `assets`) at the root of the SD card to store your video files
+2. Update the asset file names in the code to match your actual video file names and their location on the SD card
+
 #### Option 1: Manual Transfer
 After the application is bundled, you need to transfer the required files to your BrightSign player:
 - Copy the `bundle.js` file from the `dist` directory.
