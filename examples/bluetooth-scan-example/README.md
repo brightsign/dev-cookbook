@@ -12,7 +12,7 @@ Note that this example cannot be ran on a browser as it uses BrightSign's propri
 
 1. **Wi-Fi or Ethernet Network**: Both your BrightSign device and the computer should be connected to the same network to fully interact with this example.
 
-2. **Bluetooth adapter**: The BrightSign device should have a Bluetooth adapter (WD-105) to scan for nearby devices. The WD-105 adapter supports both Wi-Fi and bluetooth.
+2. **Bluetooth adapter**: The BrightSign device should have a Bluetooth adapter to scan for nearby devices. See [this page](https://www.brightsign.biz/wp-content/uploads/2023/04/Wifi-Modules-Bluetooth-Datasheet.pdf) for more information on BrightSign Wi-Fi and Bluetooth modules.
 
 ## Steps to Set Up and Run the Application
 
