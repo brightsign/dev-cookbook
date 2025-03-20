@@ -12,7 +12,7 @@ Note that this example cannot be ran on a browser as it uses BrightSign's propri
 
 1. **Wi-Fi or Ethernet Network**: Both your BrightSign device and the computer should be connected to the same network to fully interact with this example.
 
-2. **Bluetooth adapter**: The BrightSign device should have a Bluetooth adapter (WD-105) to scan for nearby devices.
+2. **Bluetooth adapter**: The BrightSign device should have a Bluetooth adapter (WD-105) to scan for nearby devices. The WD-105 adapter supports both Wi-Fi and bluetooth.
 
 ## Steps to Set Up and Run the Application
 
@@ -25,12 +25,12 @@ Note that this example cannot be ran on a browser as it uses BrightSign's propri
 
 1. Eject the SD card from your computer and insert it into your BrightSign device.
 2. Power on the BrightSign device and allow it to boot up.
-3. The device will automatically run the `autorun.brs` script which loads the `index.html` file inside a HTML widget.
+3. The device will automatically run the `autorun.brs` script which loads the `index.html` file inside an HTML widget.
 
 ## Troubleshooting
 
-- **No HTML content**: If you don't see anything on the display attached to the screen, verify that:
-  - The BrightSign player is connected to a display via a HDMI cable.
+- **No HTML content**: If you don't see anything on the display attached to the player, verify that:
+  - The BrightSign player is connected to a display via an HDMI cable.
   - The required files are correctly copied to the root of the SD card.
 
 - **Bluetooth scanning not working**: If the Bluetooth scanning is not working, verify that:
