@@ -27,7 +27,8 @@
     <h1>Success!</h1>
     <p>
       Scanning for Bluetooth devices...
-      Found <span id="bt-devices">0</span> devices.
+      Found <span id="bt-devices">0</span> unique devices.
+      Found <span id="bt-adv-events">0</span> unique advertising reports.
     </p>
   </div>
 
@@ -35,26 +36,103 @@
     const bt = require('@brightsign/bt');
     const btc = new bt();
     let count = 0;
+    let advCount = 0;
+    const seenAdvReports = new Set();
+    const seenDevices = new Set();
 
+    /**
+     * advertising-report event listener for Bluetooth events.
+     * Event contains the following parameters:
+     * 
+     * interface BtCentralAdvertisingReportEvent {
+     *  attribute String adapter_path;
+     *  attribute String device_address;
+     *  attribute int rssi;
+     *  attribute Array<byte> data;
+     * };
+     */
     btc.addEventListener('advertising-report', (event) => {
-      // Uncomment to see detailed advertising reports.
-      // NOT recommended for production since the logs are too verbose
-      // and may block the main thread.
+      // It is NOT recommended to log the whole event for production scenarios
+      // since the logs are too verbose and may block the main thread.
 
-      // console.log(JSON.stringify(event));
+      // The following logic only logs parameters of unique events.
+      if (event.detail) {
+        const eventKey = `${event.detail.adapter_path}-${event.detail.device_address}`;
+        if (!seenAdvReports.has(eventKey)) {
+          seenAdvReports.add(eventKey);
+          const msg = 'adapter_path: ' + event.detail.adapter_path +
+            ', device_address: ' + event.detail.device_address +
+            ', rssi: ' + event.detail.rssi +
+            ', data: ' + event.detail.data;
+          
+          console.log('New event found: ' + msg);
+          advCount++;
+          document.getElementById('bt-adv-events').textContent = advCount;
+
+        } else {
+          // Duplicate event ignored
+        }
+      } else {
+        console.log('advertising-report event detail is invalid:', event);
+      }
     });
 
+    /**
+     * device-found event listener for Bluetooth devices.
+     * Event contains the following parameters:
+     * 
+     * interface BtCentralDeviceFoundEvent {
+     *  attribute String adapter_path;
+     *  attribute String address;
+     *  attribute String alias;
+     *  [optional] attribute String name;
+     *  [optional] attribute int rssi;
+     *  [optional] attribute int tx_power;
+     *  [optional] attribute Array<String> uuids;
+     *  [optional] attribute Array<byte> advertising_flags;
+     *  [optional] attribute Array<Array<int, Array<byte>>> manufacturer_data;
+     *  [optional] attribute Map<String, Array<byte>> service_data;
+     * };
+     */
     btc.addEventListener('device-found', (event) => {
-      // Note that this may contain duplicate device information.
-      console.log('== device-found: ' + JSON.stringify(event));
-      count++;
-      document.getElementById('bt-devices').textContent = count;
+      // Note that "event" may contain duplicate device information.
+      // The following code block ensures that only unique devices are logged.
+      if (event.detail) {
+        const deviceKey = `${event.detail.adapter_path}-${event.detail.device_address}`;
+        if (!seenDevices.has(deviceKey)) {
+          seenDevices.add(deviceKey);
+          console.log('== new device-found: ' + JSON.stringify(event));
+          count++;
+          document.getElementById('bt-devices').textContent = count;
+        } else {
+          // Duplicate device ignored
+        }
+      } else {
+        console.log('device-found event detail is invalid:', event);
+      }
     });
 
+    /**
+     * device-lost event listener for Bluetooth devices.
+     * Event contains the following parameters:
+     * 
+     * interface BtCentralDeviceLostEvent {
+     *  attribute String adapter_path;
+     *  attribute String device_address;
+     * };
+     */
     btc.addEventListener('device-lost', (event) => {
-      console.log('== device-lost: ' + JSON.stringify(event));
-      count--;
-      document.getElementById('bt-devices').textContent = count;
+      if (event.detail) {
+        const deviceKey = `${event.detail.adapter_path}-${event.detail.device_address}`;
+        if (seenDevices.has(deviceKey)) {
+          seenDevices.delete(deviceKey);
+          console.log('== device-lost: ' + JSON.stringify(event));
+          count--;
+          document.getElementById('bt-devices').textContent = count;
+        }
+      } else {
+        console.log('device-lost event detail is invalid:', event);
+      }
     });
 
     btc.scan({ advertisingReports: true });
