@@ -30,7 +30,9 @@
     },
     "dependencies": {
         "@brightsign/bsc": "^2.0.2",
-        "http": "^0.0.1-security",
+        "http": "^0.0.1-security"
+    },
+    "engines": {
         "node": "14.17.6"
     }
 }
