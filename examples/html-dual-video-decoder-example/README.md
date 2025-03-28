@@ -56,7 +56,7 @@ bsc local file --upload --player MyBrightSignPlayer --file ./media/* --destinati
 
 Then, restart the app on your player. Refer to [restarting the app](#restarting-the-app-on-the-player)
 
-#### Provided Bash Scripts
+#### Option 3: Provided Bash Scripts
 
 The BrightSign bash script(s) are contained in the `scripts/` directory. Follow the steps below to deploy built code to your player. 
 
