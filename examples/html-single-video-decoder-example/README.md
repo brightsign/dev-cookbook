@@ -37,20 +37,23 @@ After the application is bundled, you need to transfer the required files to you
 
 #### Option 2: BrightSign Player CLI
 
-BrightSign's player CLI: [player-CLI](https://github.com/brightsign/player-cli). Instructions for installation can be found in the CLI repo readme. To deploy this app with the CLI:
+BrightSign's player CLI: [bsc](https://www.npmjs.com/package/@brightsign/bsc). 
+To deploy this app with the CLI:
 ```sh
-bsc putfile playerName dist dist
-bsc putfile playerName src/autorun.brs
+bsc local file --upload --player MyBrightSignPlayer --file ./dist --destination sd/  --verbose
+bsc local file --upload --player MyBrightSignPlayer --file ./src/autorun.brs --destination sd/autorun.brs  --verbose
 ```
 
-If you have any additional files, include those too. For example, if you have media stored in a `media/` directory, use:
+If you have any additional files, include those too. For example, if your implementation references the media out of a directory, for example a `media/` directory on the SD card, use:
 ```sh
-bsc putfile playerName media
+bsc local file --upload --player MyBrightSignPlayer --file ./media --destination sd/  --verbose
 ```
-The above will put the media files on the root of the SD card. If they are referenced out of a directory, for example a `media/` directory on the SD card, use:
+
+The above will put the media files on the root of the SD card. If your implementation references the media from the root of the SD card, use:
 ```sh
-bsc putfile playerName media media
+bsc local file --upload --player MyBrightSignPlayer --file ./media/* --destination sd/  --verbose
 ```
+
 
 Then, restart the app on your player. Refer to [restarting the app](#restarting-the-app-on-the-player)
 
