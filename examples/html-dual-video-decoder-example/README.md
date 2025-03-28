@@ -5,7 +5,8 @@ This example demonstrates how to run an html web application that switches seaml
 ## Building and Running the Application
 
 ### Step 1: Install Dependencies
-Ensure that Node.js is installed on your machine. From your project directory, install the necessary dependencies by running the following command:
+Ensure you have Node.js installed on your system. This project requires Node.js version 14 or higher.
+From your project directory, install the necessary dependencies by running the following command:
 
 ```bash
 npm install
