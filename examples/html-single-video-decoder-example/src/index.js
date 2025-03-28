@@ -4,8 +4,8 @@ import { readdir } from 'fs/promises';
 
 console.log("Single video player events Test");
 
-const videoPlayer = document.querySelector("#video-player");
-const container = document.querySelector(".container1");
+const videoElement1 = document.querySelector("#video-player");
+const container1 = document.querySelector(".container1");
 
 // Configuration constants
 const loadDelay = 0.5; // Delay before loading next video
@@ -36,10 +36,10 @@ function playNextVideo() {
     const filePath = `../assets/${videoFiles[currentVideoIndex]}`;
     
     console.log("Loading next video: " + filePath);
-    videoPlayer.src = "";  // Clear current source
-    videoPlayer.src = filePath;
-    videoPlayer.load();
-    videoPlayer.play();
+    videoElement1.src = "";  // Clear current source
+    videoElement1.src = filePath;
+    videoElement1.load();
+    videoElement1.play();
     console.log("Next video started...");
 }
 
@@ -47,19 +47,19 @@ window.onload = async function() {
     console.log("Window loaded...");
     
     await loadVideoFiles();
-    initializeVideo(videoPlayer);
+    initializeVideo(videoElement1);
 
     // Event listeners for video states
-    videoPlayer.addEventListener("ended", () => {
+    videoElement1.addEventListener("ended", () => {
         console.log("Video ended...");
         playNextVideo();
     });
 
-    videoPlayer.addEventListener("playing", (event) => {
+    videoElement1.addEventListener("playing", (event) => {
         console.log("Video playing...");
-        console.log("video duration: " + videoPlayer.duration);
+        console.log("video duration: " + videoElement1.duration);
     });
 
-    videoPlayer.play();
+    videoElement1.play();
     console.log("Initial video started...");
 };
