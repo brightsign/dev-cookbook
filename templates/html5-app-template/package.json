@@ -7,7 +7,6 @@
     "start": "IS_DESKTOP=true NODE_PATH=./dist node dist/bundle.js",
     "build:dev": "npm run clean && webpack --mode development",
     "build:prod": "npm run clean && webpack --mode production --node-env=production",
-    "upload": "npm run build:dev && cp src/autorun.brs dist/ && bsc local file --upload --player $npm_config_playerName --file ./dist",
     "clean": "rm -rf dist",
     "reinstall": "npm run clean && rm -rf node_modules && npm install",
     "lint": "eslint --no-error-on-unmatched-pattern --config ../.eslintrc src/**/*.{ts,tsx}",
