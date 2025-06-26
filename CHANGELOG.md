@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.3.0](https://github.com/brightsign/dev-cookbook/compare/v1.2.20...v1.3.0) (2025-06-26)
+
+
+### Features
+
+* PE-413 simplify simple-node-example as second step for introducing examples to newcomers ([#64](https://github.com/brightsign/dev-cookbook/issues/64)) ([5376ebf](https://github.com/brightsign/dev-cookbook/commit/5376ebf165123e55a84aece11b04037f1c491d2b))
+* PE-616: Create JS example app for scanning bluetooth devices ([#79](https://github.com/brightsign/dev-cookbook/issues/79)) ([22ee259](https://github.com/brightsign/dev-cookbook/commit/22ee259dcc3826abfd21f5f29a3cd77f35307fa5))
+* **PE-934:** create archbee config for shadow docs ([3da13eb](https://github.com/brightsign/dev-cookbook/commit/3da13ebcd1c1ccf6119852301371acd229f60796))
+
+
+### Bug Fixes
+
+* **PE-817:** remove dependencies that are not supported in node v14 ([#81](https://github.com/brightsign/dev-cookbook/issues/81)) ([5b0f33d](https://github.com/brightsign/dev-cookbook/commit/5b0f33d0da6ec921975c894875b457bc4aac0d85))
+
 ## [1.2.20](https://github.com/brightsign/dev-cookbook/compare/v1.2.19...v1.2.20) (2024-06-26)
 
 
