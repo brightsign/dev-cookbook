@@ -1,8 +1,10 @@
 function main()
 
 	mp = CreateObject("roMessagePort")
-	'Enable lDWS
+	
+	'Enable Local DWS
 	EnableLDWS()
+	
 	' Create Node JS Server
 	node = createobject("roNodeJs", "SD:/index.js", { message_port:mp })
 

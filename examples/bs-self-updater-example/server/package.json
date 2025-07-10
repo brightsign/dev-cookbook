@@ -1,0 +1,13 @@
+{
+    "name": "bs-autorun-zip-server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "format": "prettier . --write --config ../../../.prettierrc.js --cache --cache-location=../../../prettiercache && yarn lint --fix",
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../../../.eslintrc template/src/**/*.{js,jsx}",
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
