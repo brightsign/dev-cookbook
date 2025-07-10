@@ -36,7 +36,7 @@ async function downloadAndUnzipFile(
         if (res.status === 200) {
             const buffer = Buffer.from(await res.arrayBuffer());
             await decompress(buffer, dest);
-            console.log(`Downloaded and unzipped zip to ${dest}`);
+            console.log(`Downloaded zip and unzipped contents to ${dest}`);
             return true;
         } else {
             const err = await res.json();
