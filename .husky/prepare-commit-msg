@@ -1,4 +1,13 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-exec < /dev/tty && npx cz --hook || true
+# Cross-platform TTY handling for Windows, Linux, and Mac
+if [ "$OSTYPE" = "msys" ] || [ "$OSTYPE" = "win32" ] || [ "$OSTYPE" = "cygwin" ]; then
+  if command -v winpty >/dev/null 2>&1; then
+    winpty npx cz --hook || true
+  else
+    npx cz --hook || true
+  fi
+else
+  exec < /dev/tty && npx cz --hook || true
+fi
