@@ -47,7 +47,7 @@ Sub Main()
                         else if eventData.message.action = "insert" then
                             insertOk = InsertRecords(eventData.message.command)
                             if not insertOk then
-                                print "Failed to insert record: "; cmd
+                                print "Failed to insert record: "; eventData.message.command
                                 stop
                             end if
                         else if eventData.message.action = "select" then
@@ -124,7 +124,7 @@ Function SelectRecords(selectSQL as string) as dynamic
         end while
 
         ' Stringify the records array since the roAssociativeArray sent
-        ' as imput to PostJSMessage() cannot contain an roArray type.
+        ' as input to PostJSMessage() cannot contain an roArray type.
         resultAsString = FormatJson(records)
         m.nodejs.PostJSMessage({ action: "select", command: selectSQL, result: resultAsString })
         stmt.Finalise()

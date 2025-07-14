@@ -1,7 +1,7 @@
 // index.js - BrightSign JavaScript app to receive messages from BrightScript via MessagePort
 
-var MESSAGE_PORT = require("@brightsign/messageport");
-var bsMessage = new MESSAGE_PORT();
+const MESSAGE_PORT = require("@brightsign/messageport");
+const bsMessage = new MESSAGE_PORT();
 
 if (bsMessage) {
     bsMessage.addEventListener('bsmessage', function(msg) {
