@@ -118,7 +118,6 @@ Function SelectRecords(selectSQL as string) as dynamic
         records = []
         while sqlResult = 102
             resultsData = stmt.GetData()
-            ' print resultsData
             records.push(resultsData)
             sqlResult = stmt.Run()
         end while
@@ -138,7 +137,6 @@ Function DeleteRecord(deleteSQL as string) as boolean
     deleteStmt = m.db.CreateStatement(deleteSQL)
     if type(deleteStmt) = "roSqliteStatement" then
         result = deleteStmt.Run()
-        ' print "Deleted record, result: "; result
         m.nodejs.PostJSMessage({ action: "delete", command: deleteSQL })
         deleteStmt.Finalise()
         return true
