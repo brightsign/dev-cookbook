@@ -16,7 +16,6 @@ The example showcases:
 
 - `autorun.brs` - BrightScript application that handles database operations
 - `index.js` - JavaScript application that sends SQL commands via MessagePort
-- `README.md` - This documentation file
 
 ## How It Works
 
