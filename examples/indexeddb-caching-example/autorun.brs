@@ -11,7 +11,7 @@ Sub Main()
     msgPort = CreateObject("roMessagePort")
     rect = CreateObject("roRectangle", 0, 0, width, height)
 
-    'inspector disabled currrently
+    'inspector disabled currently
     'inspectorServer = {
     '   port: 3010
     '}
@@ -21,8 +21,8 @@ Sub Main()
         mouse_enabled: false,                      ' set to true to enable mouse/keyboard
         'inspector_server: inspectorServer         ' uncomment to enable inspector server
         security_params: { websecurity: true }
-        javascript_enabled: true,                  ' set to false to disable JavaScript
-        nodejs_enabled: true,                      ' set to false to disable Node.js
+        javascript_enabled: true,                  ' Else set to false to disable JavaScript
+        nodejs_enabled: true,                      ' Else set to false to disable Node.js
         storage_path: "/cache",                    ' Name of the directory for local storage cache
         storage_quota: "2147483648",	           ' 2GB
         port: msgPort,

@@ -160,7 +160,7 @@
       };
 
       request.onsuccess = function() {
-        console.log('Database opened succesfully');
+        console.log('Database opened successfully');
         db = request.result;
 
         fetchPlaylist();
@@ -171,7 +171,7 @@
       // Setup the database tables if this has not already been done
       request.onupgradeneeded = function(e) {
         const db = e.target.result;
-        const objectStore = db.createObjectStore('videos_os', { keyPath: 'name', autoIncrement: true });
+        const objectStore = db.createObjectStore('videos_os', { keyPath: 'name' });
 
         // Define what data items the objectStore will contain
         objectStore.createIndex('mp4', 'mp4', { unique: false });
