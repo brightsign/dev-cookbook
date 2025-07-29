@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+  <script>
+    let db;
+    let currentIndex = 0;
+    let videos;
+    let TIMEOUT_DELAY = 1000; // Delay between cache requests in milliseconds
+
+    function fetchPlaylist () {
+      // Examples taken from https://gist.github.com/SeunghoonBaek/f35e0fd3db80bf55c2707cae5d0f7184
+      videos = [
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+        'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4'
+      ];
+    }
+
+    // Check if a video is already cached in IndexedDB
+    function getVideoCacheResult(fileName) {
+      return new Promise((resolve) => {
+        const objectStore = db.transaction('videos_os').objectStore('videos_os');
+        const request = objectStore.get(fileName);
+        request.onsuccess = function() {
+          resolve(request.result);
+        };
+        request.onerror = function() {
+          resolve(null); // If the video is not found, resolve with null
+        };
+      });
+    }
+
+    function cacheVideo(mp4Blob, name) {
+      const objectStore = db.transaction(['videos_os'], 'readwrite').objectStore('videos_os');
+      const record = {
+        mp4: mp4Blob,
+        name: name
+      }
+      const request = objectStore.add(record);
+      request.onsuccess = function() {
+        console.log(`Successfully cached: ${name}`);
+      }
+      request.onerror = function() {
+        // If the error is due to a duplicate key, it's not a real error
+        if (request.error.name === 'ConstraintError') {
+          console.log(`Video ${name} already exists in cache`);
+        } else {
+          console.error(`Error caching ${name}:`, request.error);
+        }
+      }
+    }
+
+    // Cache a video in the background without displaying it
+    async function cacheVideoInBackground(videoUrl) {
+      const fileName = videoUrl.split('/').pop();
+      try {
+        const cached = await getVideoCacheResult(fileName);
+        if (cached) {
+          console.log(`${fileName} is already cached`);
+          return;
+        }
+        const response = await fetch(videoUrl);
+        const blob = await response.blob();
+        cacheVideo(blob, fileName);
+      } catch(error) {
+        console.error(`Error caching ${fileName}:`, error.message);
+      }
+    }
+
+    // Start background caching for videos that aren't cached yet
+    function startBackgroundCaching() {
+      console.log('Starting background caching for videos');
+      for (let i = currentIndex + 1; i < videos.length; i++) {
+        const videoUrl = videos[i];
+        // Add a small delay between cache requests to avoid overwhelming the network
+        setTimeout(() => {
+          cacheVideoInBackground(videoUrl);
+        }, (i - currentIndex) * TIMEOUT_DELAY);
+      }
+    }
+
+    async function fetchVideoFromNetwork(videoUrl) {
+      try {
+        const fileName = videoUrl.split('/').pop();
+        console.log('fetching video from network: ', fileName);
+        const response = await fetch(videoUrl);
+        const blob = await response.blob();
+        cacheVideo(blob, fileName);
+        displayVideo(blob, fileName);
+        
+        // Start background caching if this is the first video
+        if (currentIndex === 0) {
+          startBackgroundCaching();
+        }
+      } catch(error) {
+        console.error('Error fetching video from network:', error.message);
+      }
+    }
+
+    function displayVideo(mp4Blob, fileName) {
+      const mp4URL = URL.createObjectURL(mp4Blob);
+
+      // Create DOM elements to embed video in the page
+      const article = document.createElement('article');
+      const video = document.createElement('video');
+      video.autoplay = true;
+      video.style="width:100%; height:100%;";
+      
+      video.onplay = function () {
+        console.log("*** videoPlay: " + fileName + " ***");
+      };
+      video.onended = function () {
+        console.log("*** videoEnded; playing next video ***");
+        currentIndex++;
+        playNextVideo();
+      };
+
+      const section = document.querySelector('section');
+      section.innerHTML = ''; // Clear previous content
+      section.appendChild(article);
+      article.appendChild(video);
+
+      const source1 = document.createElement('source');
+      source1.src = mp4URL;
+      source1.type = 'video/mp4';
+      video.appendChild(source1);
+    }
+
+    async function playNextVideo() {
+      if (currentIndex >= videos.length) {
+        console.log('All videos have been played; looping back to the start');
+        currentIndex = 0; // Reset index to loop through videos again
+      }
+
+      const videoUrl = videos[currentIndex];
+      const fileName = videoUrl.split('/').pop();
+
+      // Check if the video is already in IndexedDB
+      const cacheResult = await getVideoCacheResult(fileName);
+      if (cacheResult) {
+        console.log(`Playing ${fileName} from IDB`);
+        displayVideo(cacheResult.mp4, cacheResult.name);
+        
+        // Start background caching if this is the first video and it's from cache
+        if (currentIndex === 0) {
+          startBackgroundCaching();
+        }
+      } else {
+        console.log(`Video ${fileName} not found in cache, fetching from network`);
+        fetchVideoFromNetwork(videoUrl);
+      }
+    }
+    
+    window.onload = function() {
+      console.log("PAGE LOADED");
+      // Open (or create) the database
+      const request = window.indexedDB.open('videos_db', 1);
+
+      request.onerror = function() {
+        console.log('Database failed to open');
+      };
+
+      request.onsuccess = function() {
+        console.log('Database opened successfully');
+        db = request.result;
+
+        fetchPlaylist();
+        currentIndex = 0;
+        playNextVideo();
+      };
+
+      // Setup the database tables if this has not already been done
+      request.onupgradeneeded = function(e) {
+        const db = e.target.result;
+        const objectStore = db.createObjectStore('videos_os', { keyPath: 'name' });
+
+        // Define what data items the objectStore will contain
+        objectStore.createIndex('mp4', 'mp4', { unique: false });
+        console.log('Database setup complete');
+      };
+    };
+    </script>
+</head>
+<html>
+    <body style="width:100%; height:100%; color: white; text-align: center;">
+      <section>
+        <h2 style="margin-top:20%">Loading playlist ...</h2>
+      </section>
+    </body>
+</html>
