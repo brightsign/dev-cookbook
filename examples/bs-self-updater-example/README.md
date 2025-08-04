@@ -18,14 +18,14 @@ A simple self-updating application written using TypeScript and designed to run 
 ### Prerequisites
 
 -   Node.js (v18 or later recommended)
--   npm (Node Package Manager)
+-   Yarn (for package management)
 
 ### Installation
 
 1. Clone this repository or copy the code to your project directory.
 2. Install dependencies (if any):
     ```sh
-    npm install
+    yarn install
     ```
 
 ### Build
@@ -33,7 +33,7 @@ A simple self-updating application written using TypeScript and designed to run 
 Run the following command to compile the TypeScript code into JavaScript:
 
 ```sh
-npm run build
+yarn build
 ```
 
 ### Deploy and run on player
@@ -56,17 +56,13 @@ You can run a simple Node.js server locally to serve the `autorun.zip` file expe
     ```
 2. Install dependencies:
     ```sh
-    npm install
+    yarn install
     ```
-3. Build the app:
+3. Start the server:
     ```sh
-     npm run build
+    yarn start
     ```
-4. Start the server:
-    ```sh
-    npm start
-    ```
-5. The server will listen on port 7000 by default and has a single endpoint to serve the `autorun.zip` file:
+4. The server will listen on port 7000 by default and has a single endpoint to serve the `autorun.zip` file:
     ```
     http://localhost:7000/autorun.zip
     ```

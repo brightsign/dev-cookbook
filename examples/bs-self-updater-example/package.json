@@ -6,7 +6,7 @@
     "scripts": {
         "format": "prettier . --write --config ../../.prettierrc.js --cache --cache-location=../../prettiercache && yarn lint --fix",
         "lint": "eslint --no-error-on-unmatched-pattern --config ../../.eslintrc template/src/**/*.{js,jsx}",
-        "build": "npx webpack"
+        "build": "webpack"
     },
     "dependencies": {
         "@types/decompress": "^4.2.7",
