@@ -1,0 +1,24 @@
+{
+    "name": "bs-self-updater",
+    "description": "A simple self-updater example using TypeScript to run on BrightSign players.",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "format": "prettier . --write --config ../../.prettierrc.js --cache --cache-location=../../prettiercache && yarn lint --fix",
+        "lint": "eslint --no-error-on-unmatched-pattern --config ../../.eslintrc template/src/**/*.{js,jsx}",
+        "build": "webpack"
+    },
+    "dependencies": {
+        "@types/decompress": "^4.2.7",
+        "@types/node-fetch": "^2.6.12",
+        "decompress": "^4.2.1",
+        "md5-file": "^5.0.0",
+        "node-fetch": "2.7.0"
+    },
+    "devDependencies": {
+        "ts-loader": "^9.5.2",
+        "typescript": "^5.0.0",
+        "webpack": "^5.0.0",
+        "webpack-cli": "^5.0.0"
+    }
+}
