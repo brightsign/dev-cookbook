@@ -20,7 +20,7 @@
       overflow: hidden;
     }
 
-    .video-container {
+    .image-container {
       position: relative;
       width: 100vw;
       height: 100vh;
@@ -48,7 +48,7 @@
 </head>
 
 <body>
-  <div class="video-container">
+  <div class="image-container">
     <img id="imageDisplay" style="width: 100%; height: 100%; object-fit: contain; display: none;" alt="Slideshow Image">
 
     <div class="loading" id="loadingIndicator">
@@ -101,6 +101,7 @@
     let isDisplaying = false;
     let isCaching = false;
     let displayTimer = null;
+    const reader = new FileReader();
     
     // Local storage keys
     const CACHE_KEY_PREFIX = 'imageCache_';
@@ -119,7 +120,7 @@
     function initializeCacheMetadata() {
       if (!localStorage.getItem(CACHE_METADATA_KEY)) {
         const metadata = {
-          cachedVideos: [],
+          cachedImages: [],
           lastUpdated: Date.now()
         };
         localStorage.setItem(CACHE_METADATA_KEY, JSON.stringify(metadata));
@@ -129,20 +130,20 @@
     function getCacheMetadata() {
       try {
         const metadata = localStorage.getItem(CACHE_METADATA_KEY);
-        return metadata ? JSON.parse(metadata) : { cachedVideos: [], lastUpdated: Date.now() };
+        return metadata ? JSON.parse(metadata) : { cachedImages: [], lastUpdated: Date.now() };
       } catch (error) {
         console.error('Error reading cache metadata:', error.message);
-        return { cachedVideos: [], lastUpdated: Date.now() };
+        return { cachedImages: [], lastUpdated: Date.now() };
       }
     }
 
     function updateCacheMetadata(index, action = 'add') {
       try {
         const metadata = getCacheMetadata();
-        if (action === 'add' && !metadata.cachedVideos.includes(index)) {
-          metadata.cachedVideos.push(index);
+        if (action === 'add' && !metadata.cachedImages.includes(index)) {
+          metadata.cachedImages.push(index);
         } else if (action === 'remove') {
-          metadata.cachedVideos = metadata.cachedVideos.filter(i => i !== index);
+          metadata.cachedImages = metadata.cachedImages.filter(i => i !== index);
         }
         metadata.lastUpdated = Date.now();
         localStorage.setItem(CACHE_METADATA_KEY, JSON.stringify(metadata));
@@ -161,7 +162,6 @@
         const cacheKey = CACHE_KEY_PREFIX + index;
         
         // Convert blob to base64 for localStorage
-        const reader = new FileReader();
         return new Promise((resolve, reject) => {
           reader.onload = () => {
             try {
@@ -325,7 +325,7 @@
     function clearImageCache() {
       try {
         const metadata = getCacheMetadata();
-        metadata.cachedVideos.forEach(index => {
+        metadata.cachedImages.forEach(index => {
           const cacheKey = CACHE_KEY_PREFIX + index;
           localStorage.removeItem(cacheKey);
         });
