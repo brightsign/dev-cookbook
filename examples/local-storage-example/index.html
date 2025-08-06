@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Storage Example</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: rgb(16, 9, 34);
+      background: linear-gradient(90deg,
+          rgba(48, 27, 105, 1) 0%,
+          rgba(16, 9, 34, 1) 38%);
+      color: white;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+    }
+
+    #videoPlayer {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="video-container">
+    <img id="imageDisplay" style="width: 100%; height: 100%; object-fit: contain; display: none;" alt="Slideshow Image">
+
+    <div class="loading" id="loadingIndicator">
+      <div>Loading slideshow ...</div>
+    </div>
+  </div>
+
+  <script>
+    // Image playlist with test images (smaller size for localStorage)
+    const imagePlaylist = [
+      {
+        title: "Nature Landscape",
+        description: "Beautiful mountain landscape with clear blue sky",
+        url: "https://picsum.photos/1920/1080?random=1",
+        duration: 5000 // Display time in milliseconds
+      },
+      {
+        title: "City Skyline",
+        description: "Modern city skyline at sunset",
+        url: "https://picsum.photos/1920/1080?random=2",
+        duration: 4000
+      },
+      {
+        title: "Ocean View",
+        description: "Peaceful ocean waves on a sandy beach",
+        url: "https://picsum.photos/1920/1080?random=3",
+        duration: 6000
+      },
+      {
+        title: "Forest Path",
+        description: "Sunlit path through a dense forest",
+        url: "https://picsum.photos/1920/1080?random=4",
+        duration: 5000
+      },
+      {
+        title: "Desert Sunset",
+        description: "Golden sunset over sand dunes",
+        url: "https://picsum.photos/1920/1080?random=5",
+        duration: 4500
+      },
+      {
+        title: "Mountain Lake",
+        description: "Crystal clear lake reflecting snow-capped mountains",
+        url: "https://picsum.photos/1920/1080?random=6",
+        duration: 5500
+      }
+    ];
+
+    let currentImageIndex = 0;
+    let isDisplaying = false;
+    let isCaching = false;
+    let displayTimer = null;
+    
+    // Local storage keys
+    const CACHE_KEY_PREFIX = 'imageCache_';
+    const CACHE_METADATA_KEY = 'imageCacheMetadata';
+    const imageDisplay = document.getElementById('imageDisplay');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+
+    async function initializeApp() {
+      console.log('Initializing Local Storage Image Slideshow...');
+      initializeCacheMetadata();
+      await cacheAndDisplayImage(0);
+      cacheRemainingImages();
+      setupEventListeners();
+    }
+
+    function initializeCacheMetadata() {
+      if (!localStorage.getItem(CACHE_METADATA_KEY)) {
+        const metadata = {
+          cachedVideos: [],
+          lastUpdated: Date.now()
+        };
+        localStorage.setItem(CACHE_METADATA_KEY, JSON.stringify(metadata));
+      }
+    }
+
+    function getCacheMetadata() {
+      try {
+        const metadata = localStorage.getItem(CACHE_METADATA_KEY);
+        return metadata ? JSON.parse(metadata) : { cachedVideos: [], lastUpdated: Date.now() };
+      } catch (error) {
+        console.error('Error reading cache metadata:', error.message);
+        return { cachedVideos: [], lastUpdated: Date.now() };
+      }
+    }
+
+    function updateCacheMetadata(index, action = 'add') {
+      try {
+        const metadata = getCacheMetadata();
+        if (action === 'add' && !metadata.cachedVideos.includes(index)) {
+          metadata.cachedVideos.push(index);
+        } else if (action === 'remove') {
+          metadata.cachedVideos = metadata.cachedVideos.filter(i => i !== index);
+        }
+        metadata.lastUpdated = Date.now();
+        localStorage.setItem(CACHE_METADATA_KEY, JSON.stringify(metadata));
+      } catch (error) {
+        console.error('Error updating cache metadata:', error.message);
+      }
+    }
+
+    function isImageCached(index) {
+      const cacheKey = CACHE_KEY_PREFIX + index;
+      return localStorage.getItem(cacheKey) !== null;
+    }
+
+    async function storeImageInCache(index, imageBlob, image) {
+      try {
+        const cacheKey = CACHE_KEY_PREFIX + index;
+        
+        // Convert blob to base64 for localStorage
+        const reader = new FileReader();
+        return new Promise((resolve, reject) => {
+          reader.onload = () => {
+            try {
+              const imageData = {
+                data: reader.result,
+                image: image,
+                timestamp: Date.now()
+              };
+              localStorage.setItem(cacheKey, JSON.stringify(imageData));
+              updateCacheMetadata(index, 'add');
+              console.log(`Image ${index} stored in localStorage`);
+              resolve();
+            } catch (error) {
+              console.error(`Error storing image ${index} in localStorage:`, error.message);
+              reject(error);
+            }
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(imageBlob);
+        });
+      } catch (error) {
+        console.error(`Error storing image ${index}:`, error.message);
+        throw error;
+      }
+    }
+
+    function getImageFromCache(index) {
+      try {
+        const cacheKey = CACHE_KEY_PREFIX + index;
+        const cachedData = localStorage.getItem(cacheKey);
+        if (cachedData) {
+          return JSON.parse(cachedData);
+        }
+        return null;
+      } catch (error) {
+        console.error(`Error retrieving image ${index} from localStorage:`, error.message);
+        return null;
+      }
+    }
+
+    // Cache an image and optionally display it
+    async function cacheAndDisplayImage(index, shouldDisplay = true) {
+      const image = imagePlaylist[index];
+      console.log(`Caching image: ${image.title}`);
+      try {
+        if (shouldDisplay) {
+          loadingIndicator.style.display = 'block';
+        }
+
+        if (isImageCached(index)) {
+          console.log(`Image ${index} already cached in localStorage`);
+          if (shouldDisplay) {
+            displayImage(index);
+          }
+          return;
+        }
+
+        const response = await fetch(image.url);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch image: ${response.status}`);
+        }
+        
+        // Get image as blob and cache it in localStorage
+        const imageBlob = await response.blob();
+        await storeImageInCache(index, imageBlob, image);
+        console.log(`Successfully cached image: ${image.title}`);
+
+        if (shouldDisplay) {
+          displayImage(index);
+        }
+      } catch (error) {
+        console.error(`Error caching image ${index}:`, error.message);
+        if (shouldDisplay) {
+          displayImageFromUrl(index);
+        }
+      }
+    }
+
+    function displayImage(index) {
+      const cachedImageData = getImageFromCache(index);
+      if (!cachedImageData) {
+        console.error(`Image ${index} not cached`);
+        return;
+      }
+      
+      currentImageIndex = index;
+      const image = cachedImageData.image;
+      imageDisplay.src = cachedImageData.data;
+      imageDisplay.style.display = 'block';
+      
+      // Hide loading indicator
+      loadingIndicator.style.display = 'none';
+      console.log(`Displaying cached image: ${image.title}`);
+      
+      // Set timer for next image
+      setImageTimer(image.duration);
+    }
+
+    // Fallback: display image directly from URL if caching fails
+    function displayImageFromUrl(index) {
+      const image = imagePlaylist[index];
+      currentImageIndex = index;
+      imageDisplay.src = image.url;
+      imageDisplay.style.display = 'block';
+      
+      // Hide loading indicator
+      loadingIndicator.style.display = 'none';
+      console.log(`Displaying image from URL: ${image.title}`);
+      
+      // Set timer for next image
+      setImageTimer(image.duration);
+    }
+
+    function setImageTimer(duration) {
+      if (displayTimer) {
+        clearTimeout(displayTimer);
+      }
+      displayTimer = setTimeout(() => {
+        displayNextImage();
+      }, duration);
+    }
+
+    async function cacheRemainingImages() {
+      isCaching = true;
+      for (let i = 1; i < imagePlaylist.length; i++) {
+        if (isImageCached(i)) {
+          continue;
+        }
+        try {
+          await cacheAndDisplayImage(i, false);
+          // Small delay between caching requests to avoid overwhelming the network
+          await new Promise(resolve => setTimeout(resolve, 200));
+        } catch (error) {
+          console.error(`Failed to cache image ${i}:`, error.message);
+        }
+      }
+      isCaching = false;
+    }
+
+    function setupEventListeners() {
+      imageDisplay.addEventListener('load', () => {
+        isDisplaying = true;
+      });
+      imageDisplay.addEventListener('error', (e) => {
+        console.error('Image display error:', e.message);
+        setTimeout(() => {
+          displayNextImage();
+        }, 1000);
+      });
+    }
+
+    function displayNextImage() {
+      const nextIndex = (currentImageIndex + 1) % imagePlaylist.length;
+      if (isImageCached(nextIndex)) {
+        displayImage(nextIndex);
+      } else {
+        cacheAndDisplayImage(nextIndex);
+      }
+    }
+
+    function clearImageCache() {
+      try {
+        const metadata = getCacheMetadata();
+        metadata.cachedVideos.forEach(index => {
+          const cacheKey = CACHE_KEY_PREFIX + index;
+          localStorage.removeItem(cacheKey);
+        });
+        localStorage.removeItem(CACHE_METADATA_KEY);
+        console.log('Image cache cleared');
+      } catch (error) {
+        console.error('Error clearing cache:', error);
+      }
+    }
+
+    window.addEventListener('beforeunload', () => {
+      // Note: localStorage persists across sessions, which is the desired behavior
+      console.log('Page unloading - localStorage cache will persist');
+    });
+
+    document.addEventListener('DOMContentLoaded', initializeApp);
+  </script>
+</body>
+
+</html>
