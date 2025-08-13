@@ -4,41 +4,51 @@ Welcome to the examples directory! This guide will help you get started with the
 
 ## Available Examples
 
-### HTML Examples
+### HTML & Web Storage Examples
 
-#### 1. HTML Starter Example
-A basic HTML setup to help you understand web development on BrightSign players.
+#### HTML Starter Example
 - **Location**: `examples/html-starter-example`
-- **Features**: Basic HTML setup, static file serving
+- **Features**: Simple HTML application for BrightSign, demonstrates running HTML and displaying images using a static directory. Great for getting started with HTML on BrightSign.
 
-#### 2. HTML Video Examples
-Examples showing how to work with video playback in HTML:
-- Designed for Player with a Single Video Decoder: `examples/html-single-video-decoder-example`
-- Designed for Player with a Dual Video Decoder Player: `examples/html-dual-video-decoder-example`
+#### IndexedDB Caching Example
+- **Location**: `examples/indexeddb-caching-example`
+- **Features**: Demonstrates video caching using IndexedDB in a BrightSign HTML5 app. Implements a smart playlist and background caching for smooth video playback.
+
+#### Local Storage Example
+- **Location**: `examples/local-storage-example`
+- **Features**: Image slideshow that caches images in browser localStorage for persistent, smooth playback and looping.
 
 ### Node.js Examples
 
-#### 1. Node Starter Example
-A minimal Node.js HTTP server example running on a BrightSign player.
+#### Node Starter Example
 - **Location**: `examples/node-starter-example`
-- **Features**: Basic HTTP server setup, request handling
+- **Features**: Minimal Node.js HTTP server for BrightSign. Boots a simple server and responds to requests at the root endpoint.
 
-#### 2. Node Simple Server Example
-A more detailed Node.js server example with device info API and testing setup.
+#### Node Simple Server Example
 - **Location**: `examples/node-simple-server-example`
-- **Features**: Device info API, Jest testing setup, webpack configuration, automated deployment scripts
+- **Features**: Advanced Node.js server with static file serving, device info REST API, Jest tests, and webpack config. Good for learning about full-featured Node.js deployments on BrightSign.
 
-### Plugin Message Example
+### Device & Plugin Integration Examples
 
-#### Send Plugin Message
-Example showing how to communicate between BrightScript and JavaScript.
+#### Bluetooth Scan Example
+- **Location**: `examples/bluetooth-scan-example`
+- **Features**: HTML+JS app for scanning Bluetooth devices on BrightSign. Requires a compatible Bluetooth adapter and uses BrightSign's proprietary JS API.
+
+#### BS Self Updater Example
+- **Location**: `examples/bs-self-updater-example`
+- **Features**: TypeScript utility for self-updating BrightSign apps by downloading and applying new `autorun.zip` packages from a server.
+
+#### BS SQLite DB Example
+- **Location**: `examples/bs-sqlite-db-example`
+- **Features**: Demonstrates SQLite database usage on BrightSign, including table creation, data insertion, querying, and cleanup via BrightScript and JavaScript communication.
+
+#### Send Plugin Message Example
 - **Location**: `examples/send-plugin-message`
-- **Features**: Plugin message transfer, BrightScript-JavaScript communication
-
+- **Features**: Shows how to send plugin messages between BrightScript and HTML/JavaScript apps, useful for integrating BrightAuthor:connected presentations with custom logic.
 
 ## Next Steps
 
 After exploring these examples, you can:
 1. Combine concepts from different examples to build more complex applications
-2. Add testing to your applications following the node-simple-server example
+2. Add testing to your applications following the `node-simple-server` example
 3. Implement plugin message communication for advanced BrightScript integration
