@@ -12,7 +12,7 @@ const dwsConfig = new DWSConfiguration();
 const config = {
 	port: 80,                          // HTTP port for web server
 	password: {
-		value: "nodejs_ldws_2024",     // Password for web interface access
+		value: "your_password_here",   // Password for web interface access
 		obfuscated: false              // Password is in plain text (not obfuscated)
 	},
 	authenticationList: ["basic"]      // Support basic HTTP authentication

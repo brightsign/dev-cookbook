@@ -6,21 +6,26 @@ This example demonstrates three different methods to enable and configure the Lo
 
 ## Overview
 
-The example showcases three different approaches:
-1. **BrightScript Method** - Using `roNetworkConfiguration` object (recommended for BrightScript applications)
-2. **Node.js Method** - Using the `@brightsign/dwsconfiguration` module (recommended for Node.js applications)
-3. **Registry Method** - Using registry settings (alternative approach)
 
-## Files
+The example showcases three different approaches, listed in order of recommendation:
+1. **BrightScript Method** (recommended for most applications) — Using `roNetworkConfiguration` in `autorun.brs` at the root of this directory
+2. **Node.js Method** (recommended for Node.js-based projects) — Using the `@brightsign/dwsconfiguration` module in the `javascript/` subdirectory
+3. **Registry Method** (lowest priority, not recommended unless required) — Using direct registry settings in the `registry-config/` subdirectory
 
-- `autorun.brs` - BrightScript application demonstrating LDWS configuration via NetworkConfiguration
-- `index.js` - Node.js application demonstrating LDWS configuration via DWSConfiguration module
-- `autorun-nodejs.brs` - Alternative autorun file for launching the Node.js example
-- `registry.brs` - BrightScript application demonstrating LDWS configuration via registry settings
 
-## Method 1: BrightScript with roNetworkConfiguration (Recommended)
+## Directory and Files
 
-### File: `autorun.brs`
+- `autorun.brs` — BrightScript application (recommended): enables LDWS using `roNetworkConfiguration`.
+- `javascript/`
+  - `autorun.brs` — BrightScript autorun file to launch the Node.js example.
+  - `index.js` — Node.js application: enables LDWS using the `@brightsign/dwsconfiguration` module.
+- `registry-config/`
+  - `autorun.brs` — BrightScript application: enables LDWS by writing directly to the registry (lowest priority method).
+
+
+## Method 1: BrightScript with roNetworkConfiguration (**Recommended**)
+
+**File:** `autorun.brs` (in this directory)
 
 This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to configure the LDWS settings.
 
@@ -40,11 +45,12 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 - `open`: Sets the password for LDWS access
 - The function returns `true` if a reboot is required to apply changes
 
+
 ## Method 2: Node.js with @brightsign/dwsconfiguration Module
 
-### File: `index.js`
+**Files:** `javascript/autorun.brs` and `javascript/index.js`
 
-This method uses the Node.js `@brightsign/dwsconfiguration` module to configure LDWS settings.
+This method uses the Node.js `@brightsign/dwsconfiguration` module to configure LDWS settings. The BrightScript `autorun.brs` in the `javascript/` folder launches the Node.js script.
 
 **Features:**
 - Modern Node.js API approach
@@ -64,11 +70,12 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 - `password.obfuscated`: Whether the password is obfuscated (false = plain text)
 - `authenticationList`: Array of supported authentication methods (e.g., ["basic"])
 
-## Method 3: Registry Settings
 
-### File: `registry.brs`
+## Method 3: Registry Settings (**Not recommended unless required**)
 
-This method uses the BrightSign registry to configure LDWS settings.
+**File:** `registry-config/autorun.brs`
+
+This method uses the BrightSign registry to configure LDWS settings. It is the least preferred method and should only be used if the other two are not possible.
 
 **Features:**
 - Low-level configuration approach
@@ -86,24 +93,24 @@ This method uses the BrightSign registry to configure LDWS settings.
 
 ## Running the Examples
 
+
 ### Method 1 (BrightScript - Recommended)
-1. Copy `autorun.brs` to the root of your BrightSign player's SD card
-2. Power on or restart your BrightSign player
-3. The device will automatically configure LDWS and reboot if necessary
-4. Access the web interface at `http://<device-ip>/` with password "brightsign_ldws_2024"
+1. Copy `autorun.brs` (from this directory) to the root of your BrightSign player's SD card.
+2. Power on or restart your BrightSign player.
+3. The device will automatically configure LDWS and reboot if necessary.
+4. Access the web interface at `http://<device-ip>/` with your configured password.
 
 ### Method 2 (Node.js)
-1. Ensure your BrightSign player supports Node.js applications
-2. Copy `index.js` and `autorun-nodejs.brs` to the root of your BrightSign player's SD card
-3. Rename `autorun-nodejs.brs` to `autorun.brs` (or use the provided file as a reference)
-4. Power on or restart your BrightSign player
-5. Access the web interface at `http://<device-ip>/` with password "nodejs_ldws_2024"
+1. Ensure your BrightSign player supports Node.js applications.
+2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your BrightSign player's SD card.
+3. Power on or restart your BrightSign player.
+4. Access the web interface at `http://<device-ip>/` with your configured password.
 
-### Method 3 (Registry)
-1. Copy `registry.brs` to the root of your BrightSign player's SD card (rename to `autorun.brs`)
-2. Power on or restart your BrightSign player
-3. Manually restart the device or network service for changes to take effect
-4. Access the web interface at `http://<device-ip>:80/`
+### Method 3 (Registry - Not recommended)
+1. Copy `registry-config/autorun.brs` to the root of your BrightSign player's SD card.
+2. Power on or restart your BrightSign player.
+3. Manually restart the device or network service for changes to take effect.
+4. Access the web interface at `http://<device-ip>:80/`.
 
 ## Accessing the LDWS Web Interface
 

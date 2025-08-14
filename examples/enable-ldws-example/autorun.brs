@@ -6,7 +6,7 @@ Sub Main()
 
 	' Enable LDWS and set the password
 	' The "open" field sets the password for web interface access
-	dwsConfig = { open: "brightsign_ldws_2024" }
+	dwsConfig = { open: "your_password_here" }
 	
 	print "Configuring Local Diagnostic Web Server..."
 	rebootRequired = nc.SetupDWS(dwsConfig)
@@ -17,6 +17,6 @@ Sub Main()
 		RebootSystem()
 	else
 		print "LDWS configuration applied successfully!"
-		print "Access web interface at http://<device-ip>/ with password: brightsign_ldws_2024"
+		print "Access web interface at http://<device-ip>/ with password: your_password_here"
 	end if
 End Sub
