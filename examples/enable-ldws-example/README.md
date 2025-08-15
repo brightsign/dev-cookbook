@@ -31,6 +31,9 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
 - Applies configuration immediately and reboots the device if required
 - Automatically retrieves and displays the device's IP address in the console output
+- Includes registry setting for players that have been previously configured to disable LDWS
+
+**Note:** The registry setting (`dwse`) is only needed if the player has been used with a setup that previously disabled LDWS. For enabling LDWS on a player that has it disabled by default, the `SetupDWS()` function is the primary solution.
 
 ### Configuration Options:
 - `open`: Sets the password for LDWS access
@@ -50,6 +53,9 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 - Supports multiple authentication methods and password obfuscation
 - Applies configuration programmatically from Node.js using async/await for clean error handling
 - Automatically retrieves and displays the device's IP address from the network interface
+- Includes registry setting for players that have been previously configured to disable LDWS via setup files
+
+**Note:** The registry setting (`dwse`) is only needed if the player has been used with a setup that previously disabled LDWS. For enabling LDWS on a player that has it disabled by default, the `applyConfig()` function is the primary solution.
 
 ### Configuration Options:
 - `port`: HTTP port for the web server (default: 80)

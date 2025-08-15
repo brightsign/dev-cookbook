@@ -22,11 +22,15 @@ async function configureLDWS() {
 	};
 
 	try {
+		// NOTE: The registry setting below is only needed if the player has been used with
+		// a setup that previously disabled LDWS. For enabling LDWS on a player that has it
+		// disabled by default, the applyConfig() function below is the primary solution.
 		const registry = new registryClass();
 		registry.write("networking", "dwse", "yes"); // Enable LDWS in the registry
 		registry.flush();
 
-		// Apply the LDWS configuration
+		// Primary method: Apply the LDWS configuration using the API
+		// This is the recommended approach for most use cases
 		dwsConfig.applyConfig(config);
 		console.log("LDWS configuration applied successfully!");
 		

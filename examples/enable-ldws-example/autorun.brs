@@ -2,6 +2,10 @@
 ' This method uses roNetworkConfiguration to configure Local Diagnostic Web Server
 Sub Main()
 
+    ' NOTE: The registry setting below is only needed if the player has been used with 
+    ' a setup that previously disabled LDWS. For enabling LDWS on a player that has it 
+    ' disabled by default, the SetupDWS() function below is the primary solution.
+    
     ' Create registry section for networking configuration
 	registrySection = CreateObject("roRegistrySection", "networking")
 
@@ -19,7 +23,8 @@ Sub Main()
     ' 0 corresponds to eth0, 1 for wlan0, 2 for ppp0, usb0 and usb1 can be input as well
 	nc = CreateObject("roNetworkConfiguration", 0)
 
-	' Enable LDWS and set the password
+	' Primary method: Enable LDWS and set the password using the API
+	' This is the recommended approach for most use cases
 	' The "open" field sets the password for web interface access
 	dwsConfig = { port: 80, open: "your_password_here" }
 	
