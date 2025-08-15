@@ -3,12 +3,19 @@
 
 Sub Main()
 	print "Starting Node.js LDWS configuration application..."
+
+	mp = CreateObject("roMessagePort")
 	
 	' Create and run Node.js application
-	nodeApp = CreateObject("roNodeApp")
-	if nodeApp <> invalid then
-		nodeApp.Run("index.js")
-	else
-		print "Error: Could not create Node.js application object"
-	end if
+	nodeApp = CreateObject("roNodeJs", "index.js", { message_port: mp })
+
+	'Event Loop
+	while true
+		msg = wait(0,mp)
+		print "msg received - type=";type(msg)
+
+		if type(msg) = "roNodeJsEvent" then
+			print "msg: ";msg
+		end if
+	end while
 End Sub
