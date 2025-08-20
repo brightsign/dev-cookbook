@@ -11,10 +11,9 @@ function Main()
 	if type(registrySection) = "roRegistrySection" then 
 		' Set HTTP server port for LDWS
 		' Port 80 is the default HTTP port
-		registrySection.write("dwse", "yes")
 		registrySection.write("http_server", 80)
 
-		print "Registry setting applied: dwse = yes"
+		print "Registry setting applied: http_server = 80"
 		print "Manual device restart required for changes to take effect"
 		print "After restart, access web interface at http://<device-ip>:80/"
 	else

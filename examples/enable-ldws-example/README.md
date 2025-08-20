@@ -31,9 +31,6 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
 - Applies configuration immediately and reboots the device if required
 - Automatically retrieves and displays the device's IP address in the console output
-- Includes registry setting for players that have been previously configured to disable LDWS
-
-**Note:** The registry setting (`dwse`) is only needed if the player has been used with a setup that previously disabled LDWS. For enabling LDWS on a player that has it disabled by default, the `SetupDWS()` function is the primary solution.
 
 ### Configuration Options:
 - `open`: Sets the password for LDWS access
@@ -53,9 +50,6 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 - Supports multiple authentication methods and password obfuscation
 - Applies configuration programmatically from Node.js using async/await for clean error handling
 - Automatically retrieves and displays the device's IP address from the network interface
-- Includes registry setting for players that have been previously configured to disable LDWS via setup files
-
-**Note:** The registry setting (`dwse`) is only needed if the player has been used with a setup that previously disabled LDWS. For enabling LDWS on a player that has it disabled by default, the `applyConfig()` function is the primary solution.
 
 ### Configuration Options:
 - `port`: HTTP port for the web server (default: 80)
@@ -72,11 +66,10 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 
 
 **How it works:**
-- Uses direct registry manipulation to enable LDWS by setting the `dwse` registry key
+- Uses direct registry manipulation to enable LDWS
 - Settings persist across reboots but require a manual restart to take effect
 
 ### Configuration Options:
-- `dwse`: Registry key to enable/disable LDWS ("yes" to enable)
 - `http_server`: Sets the port number for the HTTP server
 
 ## Running the Examples
@@ -136,6 +129,10 @@ Once LDWS is enabled:
 - **Port Conflicts:**
   - If port 80 is in use by another application, choose a different port
   - Update your browser URL to include the custom port number
+
+## Important Note: Registry Configuration (`dwse`)
+
+**Note:** The `dwse` registry key is only required for players that have been previously configured with a setup file that explicitly disabled LDWS. This registry setting is NOT needed when LDWS is simply disabled by default on the player. For standard LDWS enablement, use the `SetupDWS()` function (Method 1) or the `@brightsign/dwsconfiguration` module (Method 2) as these are the primary solutions for enabling LDWS functionality.
 
 ## Best Practices
 

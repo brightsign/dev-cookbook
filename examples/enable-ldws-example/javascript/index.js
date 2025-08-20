@@ -3,7 +3,6 @@
 
 const DWSConfiguration = require("@brightsign/dwsconfiguration");
 const NetworkConfiguration = require("@brightsign/networkconfiguration");
-const registryClass = require("@brightsign/registry");
 
 async function configureLDWS() {
 	console.log("Configuring Local Diagnostic Web Server via Node.js...");
@@ -22,20 +21,13 @@ async function configureLDWS() {
 	};
 
 	try {
-		// NOTE: The registry setting below is only needed if the player has been used with
-		// a setup that previously disabled LDWS. For enabling LDWS on a player that has it
-		// disabled by default, the applyConfig() function below is the primary solution.
-		const registry = new registryClass();
-		registry.write("networking", "dwse", "yes"); // Enable LDWS in the registry
-		registry.flush();
-
 		// Primary method: Apply the LDWS configuration using the API
 		// This is the recommended approach for most use cases
 		dwsConfig.applyConfig(config);
 		console.log("LDWS configuration applied successfully!");
-		
-		// Get the device IP address from wlan0
-		const nc = new NetworkConfiguration("wlan0");
+
+		// Get the device IP address from eth0
+		const nc = new NetworkConfiguration("eth0");
 		const networkConfig = await nc.getConfig();
 		const ipAddress = networkConfig.ipAddress || "<device-ip>";
 		console.log(`Access web interface at http://${ipAddress}:${config.port}/ with password: ${config.password.value}`);
