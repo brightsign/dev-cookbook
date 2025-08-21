@@ -1,21 +1,15 @@
-' Autorun file for Node.js LDWS configuration example
-' This file launches the Node.js application that configures LDWS
-
 Sub Main()
-	print "Starting Node.js LDWS configuration application..."
+	print "Starting LDWS configuration..."
 
+	' Create message port to communicate with Node.js
 	mp = CreateObject("roMessagePort")
-	
-	' Create and run Node.js application
 	nodeApp = CreateObject("roNodeJs", "index.js", { message_port: mp })
 
-	'Event Loop
+	' Event loop to handle Node.js messages
 	while true
-		msg = wait(0,mp)
-		print "msg received - type=";type(msg)
-
+		msg = wait(0, mp)
 		if type(msg) = "roNodeJsEvent" then
-			print "msg: ";msg
+			print "Node.js: "; msg
 		end if
 	end while
 End Sub

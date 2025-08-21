@@ -1,25 +1,17 @@
-' Example: Enable LDWS using registry settings
-' This method uses direct registry manipulation to configure LDWS
-' Note: This method requires manual device restart for changes to take effect
-
 function Main()
-	print "Configuring LDWS via registry settings..."
+	print "Enabling LDWS via registry..."
 	
-	' Create registry section for networking configuration
+	' Access the networking section of device registry
 	registrySection = CreateObject("roRegistrySection", "networking")
 
 	if type(registrySection) = "roRegistrySection" then 
-		' Set HTTP server port for LDWS
-		' Port 80 is the default HTTP port
+		' Set HTTP server to enable LDWS on port 80
 		registrySection.write("http_server", 80)
+		registrySection.Flush()
 
-		print "Registry setting applied: http_server = 80"
-		print "Manual device restart required for changes to take effect"
-		print "After restart, access web interface at http://<device-ip>:80/"
+		print "Registry updated - restart device manually"
+		print "After restart: http://<device-ip>/"
 	else
-		print "Error: Could not create registry section"
+		print "Error: Could not access registry"
 	end if
-
-	' Flush changes to persistent storage
-	registrySection.Flush()
 end function

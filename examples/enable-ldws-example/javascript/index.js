@@ -1,41 +1,36 @@
-// Example: Enable LDWS using Node.js @brightsign/dwsconfiguration module
-// This method provides more detailed configuration options for LDWS
-
 const DWSConfiguration = require("@brightsign/dwsconfiguration");
 const NetworkConfiguration = require("@brightsign/networkconfiguration");
 
 async function configureLDWS() {
-	console.log("Configuring Local Diagnostic Web Server via Node.js...");
+	console.log("Enabling LDWS...");
 
 	// Create DWS configuration instance
 	const dwsConfig = new DWSConfiguration();
-
-	// Define comprehensive LDWS configuration
 	const config = {
-		port: 80,                          // HTTP port for web server
+		port: 80,                    // HTTP port for web interface
 		password: {
-			value: "your_password_here",   // Password for web interface access
-			obfuscated: false              // Password is in plain text
+			value: "your_password_here",
+			obfuscated: false        // Password stored as plain text
 		},
-		authenticationList: ["basic"]      // Support basic HTTP authentication
+		authenticationList: ["basic"] // Use basic HTTP authentication
 	};
 
 	try {
-		// Primary method: Apply the LDWS configuration using the API
-		// This is the recommended approach for most use cases
+		// Apply LDWS configuration to device
 		dwsConfig.applyConfig(config);
-		console.log("LDWS configuration applied successfully!");
+		console.log("LDWS enabled!");
 
-		// Get the device IP address from eth0
+		// Get device IP address to show user where to connect
 		const nc = new NetworkConfiguration("eth0");
 		const networkConfig = await nc.getConfig();
 		const ipAddress = networkConfig.ipAddress || "<device-ip>";
-		console.log(`Access web interface at http://${ipAddress}:${config.port}/ with password: ${config.password.value}`);
+		console.log(`Access: http://${ipAddress}/`);
+		console.log(`Password: ${config.password.value}`);
 	} catch (error) {
-		console.error("Failed to configure LDWS or retrieve IP address:", error.message);
-		console.log(`Access web interface at http://<device-ip>:${config.port}/ with password: ${config.password.value}`);
+		console.error("Configuration failed:", error.message);
+		console.log(`Access: http://<device-ip>/`);
+		console.log(`Password: ${config.password.value}`);
 	}
 }
 
-// Run the configuration
 configureLDWS();
