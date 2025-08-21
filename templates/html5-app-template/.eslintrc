@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "prettier"
+  ],
+  "plugins": ["prettier", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": ["warn"],
+    "import/no-unresolved": ["off"],
+    "import/no-extraneous-dependencies": ["off"],
+    "no-console": ["off"],
+    "import/prefer-default-export": ["off"],
+    "import/extensions": ["off"],
+    "import/order": ["off"],
+    "import/newline-after-import": ["off"],
+    "no-use-before-define": ["off"],
+    "arrow-body-style": ["off"],
+    "eqeqeq": ["off"],
+    "prefer-destructuring": ["off"],
+    "@typescript-eslint/no-unused-vars": ["error"]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  }
+}

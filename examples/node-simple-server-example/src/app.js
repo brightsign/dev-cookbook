@@ -9,33 +9,38 @@ function app() {
 
         const server = http.createServer((req, res) => {
             // Serve device info on /api/device-info
-            if (req.url === '/api/device-info') {
+            if (req.url === "/api/device-info") {
                 res.setHeader("Content-Type", "application/json");
                 const jsonResponse = JSON.stringify(di);
-                return res.end(jsonResponse);
+                res.end(jsonResponse);
+                return;
             }
 
             // Serve static files from /storage/sd/
-            const filePath = path.join('/storage/sd', req.url === '/' ? 'index.html' : req.url);
+            const filePath = path.join(
+                "/storage/sd",
+                req.url === "/" ? "index.html" : req.url
+            );
             fs.readFile(filePath, (err, content) => {
                 if (err) {
                     res.writeHead(404);
-                    res.end('File not found');
+                    res.end("File not found");
                     return;
                 }
 
                 // Set content type based on file extension
                 const ext = path.extname(filePath);
-                const contentType = {
-                    '.html': 'text/html',
-                    '.js': 'text/javascript',
-                    '.css': 'text/css',
-                    '.json': 'application/json',
-                    '.png': 'image/png',
-                    '.jpg': 'image/jpeg',
-                }[ext] || 'text/plain';
+                const contentType =
+                    {
+                        ".html": "text/html",
+                        ".js": "text/javascript",
+                        ".css": "text/css",
+                        ".json": "application/json",
+                        ".png": "image/png",
+                        ".jpg": "image/jpeg",
+                    }[ext] || "text/plain";
 
-                res.writeHead(200, { 'Content-Type': contentType });
+                res.writeHead(200, { "Content-Type": contentType });
                 res.end(content);
             });
         });
