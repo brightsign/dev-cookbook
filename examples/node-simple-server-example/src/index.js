@@ -1,5 +1,5 @@
-import app from "./app";
+import app from "./app.js";
 
 app().catch((err) => {
-    console.error("Error running server" + err);
+    console.error(`Error running server: ${err}`);
 });
