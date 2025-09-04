@@ -6,6 +6,7 @@ function Main()
 
 	if type(registrySection) = "roRegistrySection" then 
 		' Set HTTP server to enable LDWS on port 80
+		registrySection.write("dwse", "yes")
 		registrySection.write("http_server", 80)
 		registrySection.Flush()
 

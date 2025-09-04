@@ -4,7 +4,6 @@
 
 This example demonstrates three different methods to enable and configure the Local Diagnostic Web Server (LDWS) on a BrightSign device. The LDWS provides a web interface for device diagnostics, monitoring, and configuration that can be accessed from a web browser on the same network.
 
-
 ## Overview and Directory Structure
 
 This example showcases three different approaches to enabling and configuring the Local Diagnostic Web Server (LDWS) on a BrightSign device, listed in order of recommendation:
@@ -19,13 +18,11 @@ This example showcases three different approaches to enabling and configuring th
 - **Registry Method** (lowest priority, not recommended unless required):
   - `registry-config/autorun.brs` — BrightScript application that enables LDWS by writing directly to the registry.
 
-
 ## Method 1: BrightScript with roNetworkConfiguration (**Recommended**)
 
 **File:** `autorun.brs` (in this directory)
 
 This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to configure the LDWS settings.
-
 
 **How it works & Features:**
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
@@ -37,13 +34,11 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 - `port`: Sets the HTTP port for the web server (default: 80)
 - The function returns `true` if a reboot is required to apply changes
 
-
 ## Method 2: Node.js with @brightsign/dwsconfiguration Module
 
 **Files:** `javascript/autorun.brs` and `javascript/index.js`
 
 This method uses the Node.js `@brightsign/dwsconfiguration` module to configure LDWS settings. The BrightScript `autorun.brs` in the `javascript/` folder launches the Node.js script.
-
 
 **How it works:**
 - Uses the Node.js `@brightsign/dwsconfiguration` module to enable LDWS with flexible configuration options
@@ -57,13 +52,11 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 - `password.obfuscated`: Whether the password is obfuscated (false = plain text)
 - `authenticationList`: Array of supported authentication methods (e.g., ["basic"])
 
-
 ## Method 3: Registry Settings (**Not recommended unless required**)
 
 **File:** `registry-config/autorun.brs`
 
 This method uses the BrightSign registry to configure LDWS settings. It is the least preferred method and should only be used if the other two are not possible.
-
 
 **How it works:**
 - Uses direct registry manipulation to enable LDWS
@@ -73,7 +66,6 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 - `http_server`: Sets the port number for the HTTP server
 
 ## Running the Examples
-
 
 ### Method 1 (BrightScript - Recommended)
 1. Copy `autorun.brs` (from this directory) to the root of your BrightSign player's SD card.
@@ -103,7 +95,7 @@ Once LDWS is enabled:
 
 2. **Access the Web Interface:**
    - Open a web browser on a computer / laptop connected to the same network  
-   - Navigate to `http://<device-ip>/` (or `http://<device-ip>:80/` for Method 3)
+   - Navigate to `http://<device-ip>/` (or `http://<device-ip>:80/` for Method 3); by default, the Diagnostic Web Server is enabled on port 80
    - Enter the configured password when prompted
 
 ## Security Considerations

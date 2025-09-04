@@ -1,8 +1,9 @@
 const DWSConfiguration = require("@brightsign/dwsconfiguration");
-const NetworkConfiguration = require("@brightsign/networkconfiguration");
+const systemClass = require("@brightsign/system");
 
 async function configureLDWS() {
 	console.log("Enabling LDWS...");
+	const system = new systemClass();
 
 	// Create DWS configuration instance
 	const dwsConfig = new DWSConfiguration();
@@ -12,24 +13,15 @@ async function configureLDWS() {
 			value: "your_password_here",
 			obfuscated: false        // Password stored as plain text
 		},
-		authenticationList: ["basic"] // Use basic HTTP authentication
+		authenticationList: ["digest"] // Use digest HTTP authentication
 	};
 
 	try {
 		// Apply LDWS configuration to device
 		dwsConfig.applyConfig(config);
-		console.log("LDWS enabled!");
-
-		// Get device IP address to show user where to connect
-		const nc = new NetworkConfiguration("eth0");
-		const networkConfig = await nc.getConfig();
-		const ipAddress = networkConfig.ipAddress || "<device-ip>";
-		console.log(`Access: http://${ipAddress}/`);
-		console.log(`Password: ${config.password.value}`);
-	} catch (error) {
+		console.log("Reboot to apply LDWS changes.");
+    } catch (error) {
 		console.error("Configuration failed:", error.message);
-		console.log(`Access: http://<device-ip>/`);
-		console.log(`Password: ${config.password.value}`);
 	}
 }
 
