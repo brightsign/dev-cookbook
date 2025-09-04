@@ -50,7 +50,7 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 - `port`: HTTP port for the web server (default: 80)
 - `password.value`: Password for accessing the web interface
 - `password.obfuscated`: Whether the password is obfuscated (false = plain text)
-- `authenticationList`: Array of supported authentication methods (e.g., ["basic"])
+- `authenticationList`: Array of supported authentication methods (e.g., ["digest"])
 
 ## Method 3: Registry Settings (**Not recommended unless required**)
 
@@ -64,6 +64,7 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 
 ### Configuration Options:
 - `http_server`: Sets the port number for the HTTP server
+- `dwse`: Enables the local DWS when disabled from setup package
 
 ## Running the Examples
 
@@ -95,7 +96,7 @@ Once LDWS is enabled:
 
 2. **Access the Web Interface:**
    - Open a web browser on a computer / laptop connected to the same network  
-   - Navigate to `http://<device-ip>/` (or `http://<device-ip>:80/` for Method 3); by default, the Diagnostic Web Server is enabled on port 80
+   - Navigate to `https://<device-ip>/`; by default, the Diagnostic Web Server is enabled on port 80
    - Enter the configured password when prompted
 
 ## Security Considerations

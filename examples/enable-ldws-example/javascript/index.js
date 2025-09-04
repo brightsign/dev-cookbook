@@ -19,8 +19,12 @@ async function configureLDWS() {
 	try {
 		// Apply LDWS configuration to device
 		dwsConfig.applyConfig(config);
-		console.log("Reboot to apply LDWS changes.");
-    } catch (error) {
+		console.log("LDWS enabled!");
+
+		// Reboot device to apply changes
+		console.log("Rebooting device to apply changes...");
+		system.reboot();
+	} catch (error) {
 		console.error("Configuration failed:", error.message);
 	}
 }
