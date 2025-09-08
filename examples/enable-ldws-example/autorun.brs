@@ -7,6 +7,7 @@ Sub Main()
 	
 	print "Enabling LDWS..."
 	rebootRequired = nc.SetupDWS(dwsConfig)
+	nc.Apply()
 
 	' Get device IP address to show user where to connect
 	currentConfig = nc.GetCurrentConfig()

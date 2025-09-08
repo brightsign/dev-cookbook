@@ -60,31 +60,43 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 
 **How it works:**
 - Uses direct registry manipulation to enable LDWS
-- Settings persist across reboots but require a manual restart to take effect
+- Automatically reboots the device to apply changes
+- No password protection (less secure than other methods)
 
 ### Configuration Options:
-- `http_server`: Sets the port number for the HTTP server
-- `dwse`: Enables the local DWS when disabled from setup package
+These registry keys work independently and can be used separately:
+- `http_server`: Sets the port number for the HTTP server (enables LDWS on specified port)
+- `dwse`: Enables the local DWS when disabled from setup package (only needed if previously disabled by setup)
+
+## WARNING: Prevent Reboot Loops
+
+**Methods 2 and 3 will cause infinite reboot loops if the autorun files are left on the device after configuration.** This is because:
+- The scripts run every time the device boots
+- Methods 2 and 3 always trigger reboots to apply LDWS settings 
+- The device will continuously reboot until the autorun files are removed
+
+**Method 1 only reboots when required, but should still be removed after successful configuration for best practices.**
 
 ## Running the Examples
 
 ### Method 1 (BrightScript - Recommended)
-1. Copy `autorun.brs` (from this directory) to the root of your BrightSign player's SD card.
-2. Power on or restart your BrightSign player.
+1. Copy `autorun.brs` (from this directory) to the root of your SD card.
+2. Insert the SD card into your BrightSign player and power on (or restart if already running).
 3. The device will automatically configure LDWS and reboot if necessary.
 4. Check the console output for the actual device IP address and access the web interface with your configured password.
 
 ### Method 2 (Node.js)
 1. Ensure your BrightSign player supports Node.js applications.
-2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your BrightSign player's SD card.
-3. Power on or restart your BrightSign player.
-4. Check the console output for the actual device IP address and access the web interface with your configured password.
+2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your SD card.
+3. Insert the SD card into your BrightSign player and power on (or restart if already running).
+4. The device will automatically reboot.
+5. Check the console output for the actual device IP address and access the web interface with your configured password.
 
 ### Method 3 (Registry - Not recommended)
-1. Copy `registry-config/autorun.brs` to the root of your BrightSign player's SD card.
-2. Power on or restart your BrightSign player.
-3. Manually restart the device or network service for changes to take effect.
-4. Access the web interface at `http://<device-ip>:80/`.
+1. Copy `registry-config/autorun.brs` to the root of your SD card.
+2. Insert the SD card into your BrightSign player and power on (or restart if already running).
+3. The script will automatically reboot the device for changes to take effect.
+4. Access the web interface at `https://<device-ip>/` (no password required with this method).
 
 ## Accessing the LDWS Web Interface
 
@@ -92,12 +104,12 @@ Once LDWS is enabled:
 
 1. **Find the Device IP Address:**
    - **Methods 1 & 2:** Check the console output after running the examples - the actual IP address will be displayed
-   - **Alternative methods:** Check your router's connected devices, use BrightAuthor:connected device discovery, or boot the player without an SD card to see network information
+   - **Alternative methods:** Check your router's connected devices or boot the player without an SD card to see network information
 
 2. **Access the Web Interface:**
-   - Open a web browser on a computer / laptop connected to the same network  
+   - Open a web browser on a computer/laptop connected to the same network  
    - Navigate to `https://<device-ip>/`; by default, the Diagnostic Web Server is enabled on port 80
-   - Enter the configured password when prompted
+   - Enter the configured password when prompted (default: "your_password_here" for all examples)
 
 ## Security Considerations
 
@@ -116,8 +128,8 @@ Once LDWS is enabled:
 
 - **Configuration Not Applied:**
   - Method 1: Check if device rebooted after configuration
-  - Method 2: Ensure Node.js support is available on the device
-  - Method 3: Manually restart the device or network service
+  - Method 2: Ensure Node.js support is available on the device  
+  - Method 3: The device should automatically reboot - wait for restart to complete
 
 - **Port Conflicts:**
   - If port 80 is in use by another application, choose a different port
