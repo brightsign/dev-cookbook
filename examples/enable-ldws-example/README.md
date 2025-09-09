@@ -6,8 +6,6 @@ This example demonstrates three different methods to enable and configure the Lo
 
 ## Overview and Directory Structure
 
-This example showcases three different approaches to enabling and configuring the Local Diagnostic Web Server (LDWS) on a BrightSign device, listed in order of recommendation:
-
 - **BrightScript Method** (recommended for most applications):
   - `autorun.brs` — BrightScript application at the root of this directory. Enables LDWS using `roNetworkConfiguration`.
 
@@ -26,7 +24,7 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 
 **How it works & Features:**
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
-- Applies configuration immediately and reboots the device if required
+- Applies configuration immediately and reboots only if required
 - Automatically retrieves and displays the device's IP address in the console output
 
 ### Configuration Options:
@@ -43,8 +41,8 @@ This method uses the Node.js `@brightsign/dwsconfiguration` module to configure 
 **How it works:**
 - Uses the Node.js `@brightsign/dwsconfiguration` module to enable LDWS with flexible configuration options
 - Supports multiple authentication methods and password obfuscation
-- Applies configuration programmatically from Node.js using async/await for clean error handling
-- Automatically retrieves and displays the device's IP address from the network interface
+- Checks if LDWS is already enabled before applying configuration
+- Only reboots if configuration changes are needed
 
 ### Configuration Options:
 - `port`: HTTP port for the web server (default: 80)
@@ -60,7 +58,8 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 
 **How it works:**
 - Uses direct registry manipulation to enable LDWS
-- Automatically reboots the device to apply changes
+- Checks if LDWS is already enabled to prevent redundant configuration
+- Reboots the device to apply registry changes
 - No password protection (less secure than other methods)
 
 ### Configuration Options:
@@ -111,7 +110,7 @@ Once LDWS is enabled:
 - **Change Default Passwords:** Always use strong, unique passwords in production
 - **Network Security:** LDWS should only be enabled on trusted networks
 - **Access Control:** Consider network-level restrictions to limit access to the web interface
-- **Password Protection:** All methods support password protection - use it
+- **Password Protection:** Methods 1 and 2 support password protection - use it
 
 ## Troubleshooting
 
