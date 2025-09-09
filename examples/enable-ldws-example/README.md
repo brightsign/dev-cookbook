@@ -25,7 +25,7 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 **How it works & Features:**
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
 - Applies configuration immediately and reboots only if required
-- Automatically retrieves and displays the device's IP address in the console output
+- Automatically retrieves and displays the device's IP address in the console output (see [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
 
 ### Configuration Options:
 - `open`: Sets the password for LDWS access
@@ -69,36 +69,38 @@ These registry keys work independently and can be used separately:
 
 ## Running the Examples
 
+**Note**: Check the console output for additional information regarding accessing the web interface with your configured password. (See [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
+
 ### Method 1 (BrightScript - Recommended)
 1. Copy `autorun.brs` (from this directory) to the root of your SD card.
 2. Insert the SD card into your BrightSign player and power on (or restart if already running).
 3. The device will automatically configure LDWS and reboot if necessary.
-4. Check the console output for the actual device IP address and access the web interface with your configured password.
+4. Check the console output for the actual device IP address
 
 ### Method 2 (Node.js)
 1. Ensure your BrightSign player supports Node.js applications.
 2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your SD card.
 3. Insert the SD card into your BrightSign player and power on (or restart if already running).
 4. The device will automatically reboot.
-5. Check the console output for the actual device IP address and access the web interface with your configured password.
+5. Check the console output for the actual device IP address
 
 ### Method 3 (Registry - Not recommended)
 1. Copy `registry-config/autorun.brs` to the root of your SD card.
 2. Insert the SD card into your BrightSign player and power on (or restart if already running).
 3. The script will automatically reboot the device for changes to take effect.
 4. Access the web interface at `https://<device-ip>/` (no password required with this method).
+5. Check the console output for the actual device IP address
 
 ## Accessing the LDWS Web Interface
 
 Once LDWS is enabled:
 
 1. **Find the Device IP Address:**
-   - **Methods 1 & 2:** Check the console output after running the examples - the actual IP address will be displayed
+   - **Methods 1 & 2:** Check the console output after running the examples - the actual IP address will be displayed (see [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
    - **Alternative methods:** 
      - Check your router's connected devices
      - Boot the player without an SD card to see network information on screen
      - Use the device serial number: navigate to `http://brightsign-<serial>.local` (replace `<serial>` with your device's serial number)
-     - For console access (if needed), see the [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for using a serial cable
 
 2. **Access the Web Interface:**
    - Open a web browser on a computer/laptop connected to the same network  
