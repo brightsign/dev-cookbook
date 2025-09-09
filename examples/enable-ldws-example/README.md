@@ -68,15 +68,6 @@ These registry keys work independently and can be used separately:
 - `http_server`: Sets the port number for the HTTP server (enables LDWS on specified port)
 - `dwse`: Enables the local DWS when disabled from setup package (only needed if previously disabled by setup)
 
-## WARNING: Prevent Reboot Loops
-
-**Methods 2 and 3 will cause infinite reboot loops if the autorun files are left on the device after configuration.** This is because:
-- The scripts run every time the device boots
-- Methods 2 and 3 always trigger reboots to apply LDWS settings 
-- The device will continuously reboot until the autorun files are removed
-
-**Method 1 only reboots when required, but should still be removed after successful configuration for best practices.**
-
 ## Running the Examples
 
 ### Method 1 (BrightScript - Recommended)
@@ -104,7 +95,11 @@ Once LDWS is enabled:
 
 1. **Find the Device IP Address:**
    - **Methods 1 & 2:** Check the console output after running the examples - the actual IP address will be displayed
-   - **Alternative methods:** Check your router's connected devices or boot the player without an SD card to see network information
+   - **Alternative methods:** 
+     - Check your router's connected devices
+     - Boot the player without an SD card to see network information on screen
+     - Use the device serial number: navigate to `http://brightsign-<serial>.local` (replace `<serial>` with your device's serial number)
+     - For console access (if needed), see the [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for using a serial cable
 
 2. **Access the Web Interface:**
    - Open a web browser on a computer/laptop connected to the same network  

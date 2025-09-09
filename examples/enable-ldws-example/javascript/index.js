@@ -1,9 +1,11 @@
 const DWSConfiguration = require("@brightsign/dwsconfiguration");
 const systemClass = require("@brightsign/system");
+const registryClass = require("@brightsign/registry");
 
 async function configureLDWS() {
 	console.log("Enabling LDWS...");
 	const system = new systemClass();
+	const registry = new registryClass();
 
 	// Create DWS configuration instance
 	const dwsConfig = new DWSConfiguration();
@@ -17,6 +19,14 @@ async function configureLDWS() {
 	};
 
 	try {
+		const httpServerPort = await registry.read("networking", "http_server");
+		// Check if LDWS is already enabled
+		if (httpServerPort !== "" && httpServerPort !== "0") {
+			// LDWS is already enabled
+			console.log(`HTTP server port already set to ${httpServerPort}. LDWS may already be enabled.`);
+			return;
+		}
+
 		// Apply LDWS configuration to device
 		dwsConfig.applyConfig(config);
 		console.log("LDWS enabled!");
