@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.3.0](https://github.com/brightsign/dev-cookbook/compare/v1.2.20...v1.3.0) (2025-09-15)
+
+
+### Features
+
+* Add README file for SQLite DB example ([#86](https://github.com/brightsign/dev-cookbook/issues/86)) ([8257261](https://github.com/brightsign/dev-cookbook/commit/8257261eee97113e381ba6c9da8368ec877a2e43))
+* PE-1032: dev-cookbook: Update README to include latest examples ([#91](https://github.com/brightsign/dev-cookbook/issues/91)) ([e04bc47](https://github.com/brightsign/dev-cookbook/commit/e04bc479efcb1a92e832bd06f0117adc858e4d81))
+* **PE-1039:** Add example scripts to enable local dws on a player ([#92](https://github.com/brightsign/dev-cookbook/issues/92)) ([8e45b88](https://github.com/brightsign/dev-cookbook/commit/8e45b88cf8813c25ab7f47413ddfab2a470539d2))
+* PE-413 simplify simple-node-example as second step for introducing examples to newcomers ([#64](https://github.com/brightsign/dev-cookbook/issues/64)) ([5376ebf](https://github.com/brightsign/dev-cookbook/commit/5376ebf165123e55a84aece11b04037f1c491d2b))
+* PE-616: Create JS example app for scanning bluetooth devices ([#79](https://github.com/brightsign/dev-cookbook/issues/79)) ([22ee259](https://github.com/brightsign/dev-cookbook/commit/22ee259dcc3826abfd21f5f29a3cd77f35307fa5))
+* **PE-851:** Add Example for Self-Updating Application in dev-cookbook ([#84](https://github.com/brightsign/dev-cookbook/issues/84)) ([80570ff](https://github.com/brightsign/dev-cookbook/commit/80570ff795adb66ed3bbd62f31aec5b306677a4e))
+* **PE-930:** Add local storage example ([#90](https://github.com/brightsign/dev-cookbook/issues/90)) ([a468b54](https://github.com/brightsign/dev-cookbook/commit/a468b5419894551ecf0dd2e18bd81d33b3fd10f4))
+* **PE-934:** create archbee config for shadow docs ([3da13eb](https://github.com/brightsign/dev-cookbook/commit/3da13ebcd1c1ccf6119852301371acd229f60796))
+* PE-964: [dev-cookbook] Add indexeddb example ([#87](https://github.com/brightsign/dev-cookbook/issues/87)) ([dc907f2](https://github.com/brightsign/dev-cookbook/commit/dc907f2ee9ff15fb8bb53f0e4a63f90db7f9a719))
+* PE-968: Create SQLlite brightscript example for Barrows ([#85](https://github.com/brightsign/dev-cookbook/issues/85)) ([9623820](https://github.com/brightsign/dev-cookbook/commit/9623820ff7e132208a5a92443a2151504b444b25))
+
+
+### Bug Fixes
+
+* **PE-1008:** fixed broken linting paths and then formatted linting errors once working ([#93](https://github.com/brightsign/dev-cookbook/issues/93)) ([e76a5e6](https://github.com/brightsign/dev-cookbook/commit/e76a5e6fc6c553f33498d7fdf2566881f36d41b1))
+* **PE-817:** remove dependencies that are not supported in node v14 ([#81](https://github.com/brightsign/dev-cookbook/issues/81)) ([5b0f33d](https://github.com/brightsign/dev-cookbook/commit/5b0f33d0da6ec921975c894875b457bc4aac0d85))
+
 ## [1.2.20](https://github.com/brightsign/dev-cookbook/compare/v1.2.19...v1.2.20) (2024-06-26)
 
 
