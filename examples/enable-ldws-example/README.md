@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This example demonstrates three different methods to enable and configure the Local Diagnostic Web Server (LDWS) on a BrightSign device. The LDWS provides a web interface for device diagnostics, monitoring, and configuration that can be accessed from a web browser on the same network.
+This example demonstrates three different methods to enable and configure the Local Diagnostic Web Server (LDWS) on a BrightSign player. The LDWS provides a web interface for player diagnostics, monitoring, and configuration, and is accessible from a web browser on the same local network.
 
 ## Overview and Directory Structure
 
@@ -25,7 +25,7 @@ This method uses the `roNetworkConfiguration` object's `SetupDWS()` function to 
 **How it works & Features:**
 - Uses the BrightScript `roNetworkConfiguration` API to enable LDWS with a custom password
 - Applies configuration immediately and reboots only if required
-- Automatically retrieves and displays the device's IP address in the console output (see [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
+- Automatically retrieves and displays the player's IP address in the console output (see [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
 
 ### Configuration Options:
 - `open`: Sets the password for LDWS access
@@ -59,52 +59,52 @@ This method uses the BrightSign registry to configure LDWS settings. It is the l
 **How it works:**
 - Uses direct registry manipulation to enable LDWS
 - Checks if LDWS is already enabled to prevent redundant configuration
-- Reboots the device to apply registry changes
+- Reboots the player to apply registry changes
 - No password protection (less secure than other methods)
 
 ### Configuration Options:
 These registry keys work independently and can be used separately:
 - `http_server`: Sets the port number for the HTTP server (enables LDWS on specified port)
-- `dwse`: Enables the local DWS when disabled from setup package (only needed if previously disabled by setup)
+- `dwse`: Enables the Local DWS when disabled from the Setup (only needed if previously disabled by the Setup)
 
 ## Running the Examples
 
 **Note**: Check the console output for additional information regarding accessing the web interface with your configured password. (See [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
 
 ### Method 1 (BrightScript - Recommended)
-1. Copy `autorun.brs` (from this directory) to the root of your SD card.
-2. Insert the SD card into your BrightSign player and power on (or restart if already running).
-3. The device will automatically configure LDWS and reboot if necessary.
-4. Check the console output for the actual device IP address
+1. Copy `autorun.brs` (from this directory) to the root of your microSD card.
+2. Insert the microSD card into your BrightSign player and power on (or restart if already running).
+3. The player will automatically configure LDWS and reboot if necessary.
+4. Check the console output for the player's IP address
 
 ### Method 2 (Node.js)
 1. Ensure your BrightSign player supports Node.js applications.
-2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your SD card.
-3. Insert the SD card into your BrightSign player and power on (or restart if already running).
-4. The device will automatically reboot.
-5. Check the console output for the actual device IP address
+2. Copy both `javascript/autorun.brs` and `javascript/index.js` to the root of your microSD card.
+3. Insert the microSD card into your BrightSign player and power on (or restart if already running).
+4. The player will automatically reboot.
+5. Check the console output for the player's IP address
 
 ### Method 3 (Registry - Not recommended)
-1. Copy `registry-config/autorun.brs` to the root of your SD card.
-2. Insert the SD card into your BrightSign player and power on (or restart if already running).
-3. The script will automatically reboot the device for changes to take effect.
-4. Access the web interface at `https://<device-ip>/` (no password required with this method).
-5. Check the console output for the actual device IP address
+1. Copy `registry-config/autorun.brs` to the root of your microSD card.
+2. Insert the microSD card into your BrightSign player and power on (or restart if already running).
+3. The script will automatically reboot the player for changes to take effect.
+4. Access the web interface at `https://<player-ip>/` (no password required with this method).
+5. Check the console output for the player's IP address
 
 ## Accessing the LDWS Web Interface
 
 Once LDWS is enabled:
 
-1. **Find the Device IP Address:**
+1. **Find the player's IP Address:**
    - **Methods 1 & 2:** Check the console output after running the examples - the actual IP address will be displayed (see [BrightSign Shell documentation](https://docs.brightsign.biz/developers/brightsign-shell) for console access)
    - **Alternative methods:** 
      - Check your router's connected devices
-     - Boot the player without an SD card to see network information on screen
-     - Use the device serial number: navigate to `http://brightsign-<serial>.local` (replace `<serial>` with your device's serial number)
+     - Boot the player without a microSD card to see network information on screen
+     - Use the player serial number: navigate to `http://brightsign-<serial>.local` (replace `<serial>` with your player's serial number)
 
 2. **Access the Web Interface:**
    - Open a web browser on a computer/laptop connected to the same network  
-   - Navigate to `https://<device-ip>/`; by default, the Diagnostic Web Server is enabled on port 80
+   - Navigate to `https://<player-ip>/`; by default, the Diagnostic Web Server is enabled on port 80
    - Enter the configured password when prompted (default: "your_password_here" for all examples)
 
 ## Security Considerations
@@ -117,15 +117,15 @@ Once LDWS is enabled:
 ## Troubleshooting
 
 - **Cannot Access Web Interface:**
-  - Verify the device IP address is correct
-  - Ensure your computer and BrightSign device are on the same network
+  - Verify the player IP address is correct
+  - Ensure your computer and player are on the same network
   - Check that the correct port is being used (default: 80)
   - Verify the password is entered correctly
 
 - **Configuration Not Applied:**
-  - Method 1: Check if device rebooted after configuration
-  - Method 2: Ensure Node.js support is available on the device  
-  - Method 3: The device should automatically reboot - wait for restart to complete
+  - Method 1: Check if the player rebooted after configuration
+  - Method 2: Ensure Node.js support is available on the player  
+  - Method 3: The player should automatically reboot - wait for restart to complete
 
 - **Port Conflicts:**
   - If port 80 is in use by another application, choose a different port
@@ -133,7 +133,7 @@ Once LDWS is enabled:
 
 ## Important Note: Registry Configuration (`dwse`)
 
-**Note:** The `dwse` registry key is only required for players that have been previously configured with a setup file that explicitly disabled LDWS. This registry setting is NOT needed when LDWS is simply disabled by default on the player. For standard LDWS enablement, use the `SetupDWS()` function (Method 1) or the `@brightsign/dwsconfiguration` module (Method 2) as these are the primary solutions for enabling LDWS functionality.
+**Note:** The `dwse` registry key is only required for players that have been previously configured with a Setup that explicitly disabled LDWS. This registry setting is NOT needed when the LDWS is simply disabled by default on the player. For standard LDWS enablement, use the `SetupDWS()` function (Method 1) or the `@brightsign/dwsconfiguration` module (Method 2) as these are the primary solutions for enabling LDWS functionality.
 
 ## Best Practices
 
