@@ -4,6 +4,8 @@ Welcome to the examples directory! This guide will help you get started with the
 
 ## Available Examples
 
+Note that some starter examples include the creation of a `brightsign-dumps` folder, which is used by the BrightSign OS to store crash information and is very useful to BrightSign Support when troubleshooting. The creation of this folder is an optional but recommended step to help with diagnosing application issues.
+
 ### HTML & Web Storage Examples
 
 #### HTML Starter Example

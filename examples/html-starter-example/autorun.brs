@@ -1,4 +1,10 @@
 function main()
+	' Create directory to store crash-dumps (optional)
+	dir = CreateDirectory("SD:/brightsign-dumps")
+	if not dir then
+		print "Could not create directory"
+	end if
+
 	' This interface is the preferred way for JavaScript content to communicate with its parent application.
 	' https://brightsign.atlassian.net/wiki/x/-gAeG
 	mp = CreateObject("roMessagePort")
