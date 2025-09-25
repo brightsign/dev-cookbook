@@ -1,5 +1,11 @@
 function main()
 
+	' Create directory to store crash-dumps (optional)
+	dir = CreateDirectory("SD:/brightsign-dumps")
+	if not dir then
+		print "Could not create directory"
+	end if
+
 	mp = CreateObject("roMessagePort") 
 	'Enable lDWS
 	EnableLDWS()
