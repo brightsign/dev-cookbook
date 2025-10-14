@@ -3,7 +3,7 @@ Sub main()
     y = 0
     width = 1920
     height = 1080
-    url = "http://www.brightsign.biz"
+    url = "https://www.brightsign.biz"
 
     rect = CreateObject("roRectangle", x, y, width, height)
     
