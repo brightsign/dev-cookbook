@@ -44,6 +44,10 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 - **Location**: `examples/bs-sqlite-db-example`
 - **Features**: Demonstrates SQLite database usage on BrightSign, including table creation, data insertion, querying, and cleanup via BrightScript and JavaScript communication.
 
+#### MessagePort Example
+- **Location**: `examples/messageport-example`
+- **Features**: Shows how to use the BrightSign MessagePort API for bi-directional communication between BrightScript and JavaScript applications running on a BrightSign player.
+
 #### Send Plugin Message Example
 - **Location**: `examples/send-plugin-message`
 - **Features**: Shows how to send plugin messages between BrightScript and HTML/JavaScript apps, useful for integrating BrightAuthor:connected presentations with custom logic.
