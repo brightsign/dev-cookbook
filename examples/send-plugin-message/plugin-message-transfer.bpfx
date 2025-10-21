@@ -1,6 +1,6 @@
 {
   "meta": {
-    "brightAuthorVersion": "1.67.3",
+    "brightAuthorVersion": "1.32.0",
     "buildType": "Standard"
   },
   "bsdm": {
@@ -493,7 +493,7 @@
         }
       },
       "wssDeviceSpec": {},
-      "lastModifiedTime": "2025-10-21T21:52:11.403Z"
+      "lastModifiedTime": "2024-12-04T19:08:01.246Z"
     },
     "zones": {
       "zonesById": {
@@ -874,10 +874,6 @@
         }
       }
     },
-    "userDefinedEvents": {
-      "userDefinedEventsById": {},
-      "sequence": []
-    },
     "htmlSites": {
       "dbb6ec59-cea2-4ecf-8f73-be3ddc806ceb": {
         "id": "dbb6ec59-cea2-4ecf-8f73-be3ddc806ceb",
@@ -939,38 +935,38 @@
       "a7408334-3742-4000-aa8b-06a472ee2000": {
         "id": "a7408334-3742-4000-aa8b-06a472ee2000",
         "name": "pluginMessageTransfer.brs",
-        "path": "C:\\Users\\bshukla\\Projects\\dev-cookbook\\examples\\send-plugin-message\\",
+        "path": "/Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/",
         "networkId": 0,
         "location": "Local",
         "assetType": "BrightScript",
-        "scope": "605ba72e83c154f7",
-        "locator": "file://\\C:\\Users\\bshukla\\Projects\\dev-cookbook\\examples\\send-plugin-message\\pluginMessageTransfer.brs",
-        "fileSize": 4408,
-        "lastModifiedDate": "2025-03-11T18:08:39.778Z",
+        "scope": "ee6c9bdaa6478312",
+        "locator": "file:///Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/pluginMessageTransfer.brs",
+        "fileSize": 2730,
+        "lastModifiedDate": "2024-10-11T20:42:56.163Z",
         "refCount": 1
       },
       "266a1712-2166-4000-a4ee-af7731079000": {
         "id": "266a1712-2166-4000-a4ee-af7731079000",
         "name": "pluginMessageApp.html",
-        "path": "C:\\Users\\bshukla\\Projects\\dev-cookbook\\examples\\send-plugin-message\\",
+        "path": "/Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/",
         "networkId": 0,
         "location": "Local",
         "assetType": "HtmlSite",
-        "scope": "605ba72e83c154f7",
-        "locator": "file://\\C:\\Users\\bshukla\\Projects\\dev-cookbook\\examples\\send-plugin-message\\pluginMessageApp.html",
-        "fileSize": 1359,
-        "lastModifiedDate": "2025-10-21T21:36:41.347Z",
+        "scope": "ee6c9bdaa6478312",
+        "locator": "file:///Users/jmedlin/Documents/dev-cookbook/examples/send-plugin-message/pluginMessageApp.html",
+        "fileSize": 1168,
+        "lastModifiedDate": "2024-12-04T02:23:29.903Z",
         "refCount": 1
       }
     },
     "thumbnail": {
       "type": "image/jpeg",
-      "data": "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",
+      "data": "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",
       "size": {
         "width": 200,
         "height": 112
       },
-      "hash": "c726c6a6b3f8ba7a56d5e56333317d88d9d31357"
+      "hash": "1036468d55269b122e620154e5104455aeb5372d"
     }
   },
   "selection": {
