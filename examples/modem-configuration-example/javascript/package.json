@@ -1,0 +1,35 @@
+{
+  "name": "brightsign-modem-configuration-example",
+  "version": "1.0.0",
+  "description": "JavaScript example demonstrating modem configuration with default properties, registry overrides, and AT command communication for retrieving ICCID, IMEI, and signal strength",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node -e \"console.log('Running basic validation...'); require('./index.js');\""
+  },
+  "keywords": [
+    "brightsign",
+    "modem",
+    "cellular",
+    "at-commands",
+    "iccid",
+    "imei",
+    "signal-strength",
+    "configuration"
+  ],
+  "author": "BrightSign",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brightsign/dev-cookbook"
+  },
+  "bugs": {
+    "url": "https://github.com/brightsign/dev-cookbook/issues"
+  },
+  "homepage": "https://github.com/brightsign/dev-cookbook#readme"
+}
