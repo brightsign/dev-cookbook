@@ -1,0 +1,66 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          hello_world
+# Description:       Broadcasts "Hello World!" UDP message with timestamp periodically
+### END INIT INFO
+
+# Source function library if it exists
+[ -f /etc/init.d/functions ] && . /etc/init.d/functions
+
+SCRIPT_PATH=$(dirname $(realpath $0))
+DAEMON_NAME="hello_world"
+PIDFILE="/var/run/${DAEMON_NAME}.pid"
+UDP_PORT="5000"
+
+run_extension() {
+    cd ${SCRIPT_PATH}
+    export LD_LIBRARY_PATH=./lib:$LD_LIBRARY_PATH
+
+    echo "Starting ${DAEMON_NAME} in foreground"
+    export NODE_PATH="/usr/lib/node_modules:/var/volatile/node_modules"
+    export PORT="${UDP_PORT}"
+    node index.js &
+}
+
+do_start() {
+    DISABLE_AUTO_START="false"
+    # check registry for auto-start
+    reg_disable_auto_start=$(registry extension ${DAEMON_NAME}-disable-auto-start)
+    if [ -n "${reg_disable_auto_start}" ]; then
+        DISABLE_AUTO_START=${reg_disable_auto_start}
+    fi
+
+    if [ "${DISABLE_AUTO_START}" = "true" ]; then
+        echo "Auto-start is disabled for ${DAEMON_NAME}"
+        return
+    fi
+    run_extension
+}
+
+do_stop() {
+    if [ -f ${PIDFILE} ]; then
+        PID=$(cat ${PIDFILE})
+        kill $PID
+        rm -f ${PIDFILE}
+        echo "Node app with PID $PID stopped."
+    else
+        echo "Node app PID file not found."
+    fi
+}
+
+case "$1" in
+    start)
+        echo "Starting ${DAEMON_NAME}"
+        do_start
+        ;;
+    stop)
+        echo "Stopping ${DAEMON_NAME}"
+        do_stop
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+exit 0

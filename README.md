@@ -18,17 +18,25 @@ Whether you're a beginner eager to dive into BrightSign development, or an advan
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Using this resource locally](#using-this-resource-locally)
-- [Examples](#examples)
-  - [Learning the basics with examples](#learning-the-basics-with-examples)
-- [Templates](#templates)
-  - [Hit the ground running with templates](#hit-the-ground-running-with-templates)
-- [Project structure](#project-structure)
-- [Contributing](#contributing)
-- [Building on M1 Mac](#building-on-m1-mac)
-- [Support](#support)
-- [License](#license)
+- [BrightSign Dev Cookbook](#brightsign-dev-cookbook)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Using this resource locally](#using-this-resource-locally)
+  - [Examples](#examples)
+    - [Overview](#overview)
+    - [Learning the basics with examples](#learning-the-basics-with-examples)
+  - [Templates](#templates)
+    - [Overview](#overview-1)
+    - [Hit the ground running with templates](#hit-the-ground-running-with-templates)
+  - [Extensions](#extensions)
+    - [Overview](#overview-2)
+  - [Project structure](#project-structure)
+    - [Getting Started](#getting-started)
+  - [Feedback/Contributing](#feedbackcontributing)
+  - [Building on M1 Mac](#building-on-m1-mac)
+  - [Support](#support)
+  - [License](#license)
 
 ## Installation
 
@@ -75,12 +83,19 @@ The templates in this repository are intended for developers who are familiar wi
 
 We recommend managing your Node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). The preferred version is `14.17.6` since this is the version currently pre-installed on most BrightSign devices.
 
+## Extensions
+
+### Overview
+
+BrightSign Extensions allow developers to create custom functionality that can be deployed and run on BrightSign players. This repository includes an example extension, `hello-world-js-extension`, which demonstrates how to create a simple JavaScript extension that sends device information over UDP.
+
 ## Project structure
 
 Here's an overview of the project structure and what each part is responsible for:
 
 - `templates/`         : React templates for new projects with custom configurations tailored for BrightSign development.
 - `examples/`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+- `extensions/`       : BrightSign extension examples showcasing how to create and deploy extensions.
 - `.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
 - `scripts/`          : Utility scripts to facilitate build, deployment, and development workflows.
 - `.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
@@ -89,6 +104,12 @@ Here's an overview of the project structure and what each part is responsible fo
 ### Getting Started
 
 This monorepo uses [yarn workspaces](https://classic.yarnpkg.com/lang/en/docs/workspaces/) to manage dependencies and run commands. Simply run `yarn install` from the workspace root and explore the examples!
+
+If you don't have `yarn` installed, you can install it globally using npm:
+
+```bash
+npm install -g yarn
+```
 
 To run the tests for every example, run `yarn workspaces run test` or the shortcut `yarn test`.
 

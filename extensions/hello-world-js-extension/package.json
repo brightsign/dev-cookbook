@@ -1,0 +1,19 @@
+{
+  "name": "hello-world-js-extension",
+  "version": "1.0.0",
+  "description": "Simple JS example that prints out \"Hello World\" and send it as a UDP message over a passed-in PORT value",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "exit 0",
+    "build": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-loader": "9.2.1",
+    "copy-webpack-plugin": "^13.0.1",
+    "webpack": "^5.103.0"
+  }
+}

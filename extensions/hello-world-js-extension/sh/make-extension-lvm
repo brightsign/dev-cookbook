@@ -1,0 +1,111 @@
+#!/bin/bash
+set -e
+
+# set the name of the extension -- must match bsext_init
+name=hello_world
+
+mapper_vol_name=ext_${name}
+tmp_vol_name=tmp_${name}
+mount_name=ext_${name}
+
+workdir=../extension-${name}-temp/
+
+if ! echo "${name}" | egrep -q '^[a-z][a-z0-9_]{2,12}$'; then
+    echo "Error: Invalid extension name specified" 1>&2
+    exit 1
+fi
+
+rm -rf "${workdir}"
+mkdir -p "${workdir}"
+
+cp -r * ${workdir}
+
+chmod +x ${workdir}bsext_init
+rm -f ext_${name}.squashfs
+mksquashfs ${workdir} ext_${name}.squashfs
+
+# Now generate the install script
+
+bsfw_write_extension_lvm() {
+    file="$1"
+    vol="$2"
+
+    image_size="`stat --dereference --format=%s ${file}`"
+    volume_size=$((${image_size} + 4096))
+    sha256="`sha256sum ${file} | cut -c-64`"
+
+    if [ "${image_size}" -eq 0 ]; then
+        echo Image size for ${vol} would be zero
+        exit 1
+    fi
+
+    if [ -z "${image_size}" ]; then
+        echo Failed to determine image size for ${vol}
+        exit 1
+    fi
+
+    (
+        # This shouldn't be necessary when this install script is
+        # incorporated into a standard BrightSign upgrade script but
+        # can be useful during development.
+        echo "echo \"Trying to unmount ${name} volume\""
+        echo "if [ -d '/var/volatile/bsext/${mount_name}' ]; then"
+        echo "    umount /var/volatile/bsext/${mount_name}"
+        echo "    rmdir /var/volatile/bsext/${mount_name}"
+        echo "fi"
+
+        # Remove dm-verity mapping such that LVM volume can be removed
+        echo "if [ -b '/dev/mapper/bsos-${mapper_vol_name}-verified' ]; then"
+        echo "    veritysetup close 'bsos-${mapper_vol_name}-verified'"
+        echo "fi"
+
+        # Remove old volume. It might be the wrong size
+        echo "if [ -b '/dev/mapper/bsos-${mapper_vol_name}' ]; then"
+        echo "    lvremove --yes '/dev/mapper/bsos-${mapper_vol_name}'"
+        echo "    rm -f '/dev/mapper/bsos-${mapper_vol_name}'"
+        echo "fi"
+
+        # Remove a temporary volume if it happens to be lying around
+        echo "if [ -b '/dev/mapper/bsos-${tmp_vol_name}' ]; then"
+        echo "    lvremove --yes '/dev/mapper/bsos-${tmp_vol_name}'"
+        echo "    rm -f '/dev/mapper/bsos-${tmp_vol_name}'"
+        echo "fi"
+
+        # Create a new volume.
+        echo "lvcreate --yes --size ${volume_size}b -n '${tmp_vol_name}' bsos"
+
+        echo "echo Writing image to ${tmp_vol_name} volume..."
+        echo "(cat "${file}" && dd if=/dev/zero bs=4096 count=1) > /dev/mapper/bsos-${tmp_vol_name}"
+
+        # Verify that the image was written properly by reading it
+        # back and calculating its SHA256.
+
+        image_size_pages=$((${image_size}/4096))
+        echo "check=\"\`dd 'if=/dev/mapper/bsos-${tmp_vol_name}' bs=4096 count=${image_size_pages}|sha256sum|cut -c-64\`\""
+
+        echo "if [ \"\${check}\" != \"${sha256}\" ]; then"
+        echo "    echo \"VERIFY FAILURE for ${tmp_vol_name} volume\""
+        echo "    lvremove --yes '/dev/mapper/bsos-${tmp_vol_name}' || true"
+        echo "    exit 4"
+        echo "fi"
+
+        # Now we know that the volume is correct we can rename it so
+        # it can be used.
+        echo "lvrename bsos '${tmp_vol_name}' '${mapper_vol_name}'"
+    )
+}
+
+install_script="ext_${name}_install-lvm.sh"
+
+(
+    echo "#!/bin/sh"
+    echo "# This install script is only useful during development."
+    echo "set -xe"
+    bsfw_write_extension_lvm ext_${name}.squashfs
+) > ${install_script}
+chmod +x ${install_script}
+
+rm -rf ${workdir}
+echo
+echo "Extension ${name} squashfs: ext_${name}.squashfs"
+echo "Development install script: ${install_script}"
