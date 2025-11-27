@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Simple Example HTML App</title>
+        <style>
+            /* CSS to style the background image and text */
+            html,
+            body {
+                height: 100%;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background: rgb(16, 9, 34);
+                background: linear-gradient(
+                    90deg,
+                    rgba(48, 27, 105, 1) 0%,
+                    rgba(16, 9, 34, 1) 38%
+                );
+                color: white;
+                padding: 16px;
+            }
+
+            #color-change {
+                font-size: 24px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Container for the background image and text -->
+        <div class="background-img">
+            <img src="static/logo192.png" alt="device" />
+            <!-- Paragraph tag with an ID for JavaScript manipulation -->
+            <p id="color-change">
+                Congratulations on setting up a Provisioning & Recovery server
+                with BrightSign!
+            </p>
+            <img src="static/XD-1035.png" alt="device" />
+        </div>
+
+        <script>
+            // Select the paragraph element by its ID
+            const helloWorldText = document.getElementById("color-change");
+            // Boolean to toggle the text color
+            let isPurple = true;
+
+            // Set an interval to change the text color every 2 seconds
+            setInterval(() => {
+                // Change the text color based on the value of isPurple
+                helloWorldText.style.color = isPurple ? "purple" : "white";
+                // Toggle the boolean value
+                isPurple = !isPurple;
+            }, 2000);
+        </script>
+    </body>
+</html>
