@@ -20,6 +20,7 @@ run_extension() {
     export NODE_PATH="/usr/lib/node_modules:/var/volatile/node_modules"
     export PORT="${UDP_PORT}"
     node index.js &
+    echo $! > ${PIDFILE}
 }
 
 do_start() {
