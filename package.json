@@ -2,6 +2,7 @@
     "private": true,
     "workspaces": [
         "examples/**",
+        "!examples/provisioning-server",
         "templates/**"
     ],
     "dependencies": {
