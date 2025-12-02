@@ -148,7 +148,7 @@ Once configured and rebooted:
 1. **Player boots** and checks for local autorun file
 2. **If no autorun found** (last-resort mode):
 
-    - Player sends GET request to provisioning server
+    - Player sends GET request to provisioning server (if set in DHCP network or registry)
     - Server responds with `provision.brs` script
     - Script downloads application content and reboots
 
