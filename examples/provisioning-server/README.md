@@ -1,4 +1,4 @@
-;# BrightSign Provisioning Server Example
+# BrightSign Provisioning Server Example
 
 A Docker-based provisioning server for BrightSign players on a local network. This server implements the BrightSign provisioning and recovery protocol, allowing players to automatically download and install content.
 
@@ -35,7 +35,7 @@ graph LR
 ### 1. Build and Start the Server
 
 ```bash
-cd examples/provisioning-server-example
+cd examples/provisioning-server
 docker-compose up -d
 ```
 
@@ -63,7 +63,7 @@ ip addr show
 
 ### 3. Configure Your BrightSign Player
 
-You need to set the provisioning URL in the player's registry. There are two ways to do this:
+You need to set the provisioning URL in the player's registry. There are two ways to do this(there are more ways, but these are the most applicable for this example, here are [the other ways to contact your provisioning server on player startup](https://docs.brightsign.biz/partners/provisioning-and-recovery#dJ3aZ)):
 
 #### Option A: Using BrightScript Console (Recommended for Testing)
 
@@ -89,7 +89,7 @@ Create an `autorun.brs` file on an SD card with:
 ```brightscript
 function main()
     print "=== BrightSign Provisioning Bootstrap ==="
-    
+
     ' Configure provisioning server
     registry = CreateObject("roRegistry")
     networkingSection = CreateObject("roRegistrySection", "networking")
@@ -101,10 +101,10 @@ function main()
 
     print "Registry configured successfully"
     print "Deleting bootstrap script to trigger provisioning..."
-    
+
     ' Delete this bootstrap script so player enters last-resort mode
     DeleteFile("SD:/autorun.brs")
-    
+
     print "Rebooting..."
     sleep(2000)
     RebootSystem()
@@ -420,7 +420,7 @@ For production use:
 
 For issues or questions:
 
--   Check the [BrightSign Developer Forums](https://forum.brightsign.biz/)
+-   Check the [BrightSign Community Forums](https://support.brightsign.biz/hc/en-us/community/topics)
 -   Review the [BrightSign Documentation](https://docs.brightsign.biz/)
 
 ## License

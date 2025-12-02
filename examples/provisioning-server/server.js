@@ -102,10 +102,24 @@ app.get("/provision", (req, res) => {
         console.error("Database error:", error);
     }
 
-    // Determine response based on recovery mode
-    if (recoveryMode === "last-resort") {
+    // Check if any storage device has an autorun
+    // StorageStatus format: "usb1=none;sd=autorun;sd2=storage;ssd=none;"
+    const hasAutorun = storageStatus.includes("=autorun");
+
+    // Determine response based on storage status and recovery mode
+    if (hasAutorun) {
+        // Player has an autorun on storage - tell it to continue with existing autorun
+        // This prevents an infinite loop of re-provisioning
+        console.log(
+            `→ Autorun detected on storage for ${deviceId}, no update needed`
+        );
+        res.setHeader("Retry-After", "7200"); // Check back in 2 hours
+        res.status(204).send(); // No content - continue with existing autorun
+    } else if (recoveryMode === "last-resort") {
         // Player has no autorun - send the provisioning script
-        console.log(`→ Sending provisioning autorun to ${deviceId}`);
+        console.log(
+            `→ No autorun found, sending provisioning script to ${deviceId}`
+        );
         const autorunPath = path.join(__dirname, "autorun", "provision.brs");
 
         if (fs.existsSync(autorunPath)) {
@@ -118,9 +132,8 @@ app.get("/provision", (req, res) => {
             res.status(500).send("Provisioning script not available");
         }
     } else if (recoveryMode === "override" || recoveryMode === "periodic") {
-        // Player has an autorun - check if we need to update it
-        // For this example, we'll tell the player to continue with existing autorun
-        console.log(`→ No update needed for ${deviceId}`);
+        // Player is checking in periodically - no update needed
+        console.log(`→ Periodic check-in from ${deviceId}, no update needed`);
         res.setHeader("Retry-After", "7200"); // Check back in 2 hours
         res.status(204).send(); // No content - continue with existing autorun
     } else {
@@ -147,7 +160,10 @@ app.get("/api/players", (req, res) => {
 app.get("/api/check-ins/:deviceId?", (req, res) => {
     try {
         const { deviceId } = req.params;
-        const limit = parseInt(req.query.limit) || 50;
+        const limit = Math.max(
+            1,
+            Math.min(parseInt(req.query.limit, 10) || 50, 1000)
+        );
 
         let query = "SELECT * FROM check_ins";
         let params = [];

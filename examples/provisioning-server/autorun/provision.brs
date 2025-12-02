@@ -30,14 +30,37 @@ function GetServerUrl() as string
     registry = CreateObject("roRegistry")
     networkingSection = CreateObject("roRegistrySection", "networking")
     
+    recoveryUrl$ = networkingSection.Read("ru")
     baseUrl$ = networkingSection.Read("ub")
-    if baseUrl$ = "" then
-        ' Fallback to environment variable or default
-        ' You should set this in the player registry before first boot
-        baseUrl$ = "http://192.168.1.100:3000"
+    
+    ' Check if ru is an absolute URL (contains "://")
+    ' B-deploy style: ru contains full URL like "http://server.com/provision"
+    if Instr(1, recoveryUrl$, "://") > 0 then
+        ' ru is absolute URL, extract base without the path
+        ' Find the third slash to get base URL
+        slashPos = Instr(1, recoveryUrl$, "://")
+        if slashPos > 0 then
+            afterProtocol$ = Mid(recoveryUrl$, slashPos + 3)
+            nextSlash = Instr(1, afterProtocol$, "/")
+            if nextSlash > 0 then
+                ' Extract everything before the path
+                return Left(recoveryUrl$, slashPos + 2 + nextSlash - 1)
+            else
+                ' No path, just return the URL as-is
+                return recoveryUrl$
+            end if
+        end if
     end if
     
-    return baseUrl$
+    ' BSN.cloud style: ub is base URL, ru is relative path
+    ' Use ub if available, otherwise fallback
+    if baseUrl$ <> "" then
+        return baseUrl$
+    end if
+    
+    ' Fallback to default
+    ' You should set this in the player registry before first boot
+    return "http://192.168.1.100:3000"
 end function
 
 function DownloadContent(serverUrl$ as string) as boolean

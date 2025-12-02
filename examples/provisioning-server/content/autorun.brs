@@ -1,3 +1,5 @@
+' BrightSign Example Autorun Script
+' The main content autorun script, this is the script which runs on BrightSign startup after provisioning is complete.
 function main()
 	' Create directory to store crash-dumps (optional)
 	dir = CreateDirectory("SD:/brightsign-dumps")
@@ -6,7 +8,7 @@ function main()
 	end if
 
 	' This interface is the preferred way for JavaScript content to communicate with its parent application.
-	' https://brightsign.atlassian.net/wiki/x/-gAeG
+	' https://docs.brightsign.biz/developers/romessageport
 	mp = CreateObject("roMessagePort")
 
 	' Create HTML Widget which is defined below in its own function
@@ -26,15 +28,13 @@ end function
 
 function CreateHTMLWidget(mp as object) as object
 	' Get Screen Resolution
-	' https://brightsign.atlassian.net/wiki/x/SQUYFg
+	' https://docs.brightsign.biz/developers/rovideomode
 	vidmode = CreateObject("roVideoMode")
 	width = vidmode.GetResX()
 	height = vidmode.GetResY()
-	' https://brightsign.atlassian.net/wiki/x/HwUYFg
+	' https://docs.brightsign.biz/developers/rorectangle
 	r = CreateObject("roRectangle",0,0,width,height)
 
-	' Create HTML Widget config
-	' https://brightsign.atlassian.net/wiki/spaces/DOC/pages/370672896/roHtmlWidget#Initialization-Parameters
 	config = {
 		nodejs_enabled: true
 		url: "file:///sd:/index.html"
@@ -42,7 +42,7 @@ function CreateHTMLWidget(mp as object) as object
 	}
 
 	' Create HTML Widget
-	' https://brightsign.atlassian.net/wiki/x/AAUYFg
+	' https://docs.brightsign.biz/developers/rohtmlwidget
 	h = CreateObject("roHtmlWidget",r,config)
 	return h
 end function
