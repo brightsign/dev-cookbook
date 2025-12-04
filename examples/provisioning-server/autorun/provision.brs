@@ -31,39 +31,38 @@ end function
 
 function GetServerUrl() as string
     ' Try to get server URL from registry
+    ' Returns the base server URL for downloading content (not the recovery path)
     registry = CreateObject("roRegistry")
     networkingSection = CreateObject("roRegistrySection", "networking")
     
     recoveryUrl$ = networkingSection.Read("ru")
     baseUrl$ = networkingSection.Read("ub")
     
-    ' Check if ru is an absolute URL (contains "://")
-    ' B-deploy style: ru contains full URL like "http://server.com/provision"
-    if Instr(1, recoveryUrl$, "://") > 0 then
-        ' ru is absolute URL, extract base without the path
-        ' Find the third slash to get base URL
+    ' Priority 1: Check if ru is an absolute URL (B-deploy style)
+    ' e.g., ru = "http://server.com:3000/provision"
+    if recoveryUrl$ <> "" and Instr(1, recoveryUrl$, "://") > 0 then
+        ' Extract base URL from absolute recovery URL
         slashPos = Instr(1, recoveryUrl$, "://")
         if slashPos > 0 then
             afterProtocol$ = Mid(recoveryUrl$, slashPos + 3)
             nextSlash = Instr(1, afterProtocol$, "/")
             if nextSlash > 0 then
-                ' Extract everything before the path
+                ' Return base: http://server.com:3000
                 return Left(recoveryUrl$, slashPos + 2 + nextSlash - 1)
             else
-                ' No path, just return the URL as-is
+                ' No path, return as-is
                 return recoveryUrl$
             end if
         end if
     end if
     
-    ' BSN.cloud style: ub is base URL, ru is relative path
-    ' Use ub if available, otherwise fallback
+    ' Priority 2: Use ub (BSN.cloud style or manual configuration)
+    ' e.g., ub = "http://server.com:3000", ru = "/provision"
     if baseUrl$ <> "" then
         return baseUrl$
     end if
     
-    ' Fallback to default
-    ' You should set this in the player registry before first boot
+    ' Fallback: Use default local server
     return "http://192.168.1.100:3000"
 end function
 
