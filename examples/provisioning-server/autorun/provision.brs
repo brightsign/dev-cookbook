@@ -4,23 +4,27 @@
 function main()
     print "=== BrightSign Provisioning Script ==="
     
+    ' Initialize notification display
+    InitNotify()
+    Notify("Provisioning player...")
+    
     ' Get server URL from environment or use default
     ' In production, you would set this via registry before provisioning
     serverUrl$ = GetServerUrl()
     print "Server URL: "; serverUrl$
+    Notify("Connecting to server...")
     
     ' Download the actual application content
     success = DownloadContent(serverUrl$)
     
     if success then
         print "✓ Provisioning successful!"
-        print "Rebooting to start application..."
-        ' Give time for message to be seen
+        Notify("Provisioning complete! Rebooting...")
         sleep(3000)
         RebootSystem()
     else
         print "✗ Provisioning failed!"
-        print "Will retry on next boot..."
+        Notify("Provisioning failed. Retrying on next boot...")
         sleep(10000)
     end if
 end function
@@ -65,6 +69,7 @@ end function
 
 function DownloadContent(serverUrl$ as string) as boolean
     print "Downloading content from server..."
+    Notify("Downloading content...")
     
     ' Create URL transfer object
     urlTransfer = CreateObject("roUrlTransfer")
@@ -72,13 +77,17 @@ function DownloadContent(serverUrl$ as string) as boolean
     
     ' Download index.html
     print "Downloading index.html..."
+    Notify("Downloading HTML files...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/index.html", "SD:/index.html") then
+        Notify("Error: Failed to download HTML files")
         return false
     end if
     
     ' Download autorun.brs (the application autorun, not this provisioning script)
     print "Downloading autorun.brs..."
+    Notify("Downloading application script...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/autorun.brs", "SD:/autorun.brs") then
+        Notify("Error: Failed to download application script")
         return false
     end if
     
@@ -87,6 +96,7 @@ function DownloadContent(serverUrl$ as string) as boolean
     
     ' Download static assets
     print "Downloading static assets..."
+    Notify("Downloading assets...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/static/logo192.png", "SD:/static/logo192.png") then
         print "Warning: Could not download logo192.png"
     end if
@@ -122,3 +132,61 @@ function DownloadFile(urlTransfer as object, url$ as string, destPath$ as string
     print "  ✗ Failed to download: "; url$
     return false
 end function
+
+' Initialize notification display widgets
+sub InitNotify()
+    m.global = GetGlobalAA()
+    videoMode = CreateObject("roVideoMode")
+    
+    ' Check if video mode is supported
+    if type(videoMode) <> "roVideoMode" then
+        print "Video mode not supported, notifications disabled"
+        return
+    end if
+    
+    ' Get screen resolution
+    resX = videoMode.GetResX()
+    resY = videoMode.GetResY()
+    
+    ' Create background widget (covers entire screen)
+    m.global.bgRectangle = CreateObject("roRectangle", 0, 0, resX, resY)
+    m.global.bgParams = CreateObject("roAssociativeArray")
+    m.global.bgParams.LineCount = 1
+    m.global.bgParams.TextMode = 2
+    m.global.bgParams.Rotation = 0
+    m.global.bgParams.Alignment = 1
+    m.global.bgWidget = CreateObject("roTextWidget", m.global.bgRectangle, 1, 2, m.global.bgParams)
+    m.global.bgWidget.PushString("")
+    m.global.bgWidget.Show()
+    
+    ' Create message widget (centered text)
+    m.global.msgRectangle = CreateObject("roRectangle", 0, resY/2-resY/64, resX, resY/32)
+    m.global.msgParams = CreateObject("roAssociativeArray")
+    m.global.msgParams.LineCount = 1
+    m.global.msgParams.TextMode = 2
+    m.global.msgParams.Rotation = 0
+    m.global.msgParams.Alignment = 1
+    m.global.msgWidget = CreateObject("roTextWidget", m.global.msgRectangle, 1, 2, m.global.msgParams)
+    m.global.msgWidget.Show()
+end sub
+
+' Display notification message on screen
+sub Notify(message as string)
+    print message
+    
+    ' Check if widgets are initialized
+    if m.global = invalid or m.global.msgWidget = invalid then
+        return
+    end if
+    
+    ' Update and display message
+    m.global.msgWidget.PushString(message)
+    m.global.msgWidget.Raise()
+    m.global.msgWidget.Show()
+    
+    ' Ensure background is visible
+    if m.global.bgWidget <> invalid then
+        m.global.bgWidget.Raise()
+        m.global.bgWidget.Show()
+    end if
+end sub
