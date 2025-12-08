@@ -18,12 +18,10 @@ function main()
     success = DownloadContent(serverUrl$)
     
     if success then
-        print "✓ Provisioning successful!"
         Notify("Provisioning complete! Rebooting...")
         sleep(3000)
         RebootSystem()
     else
-        print "✗ Provisioning failed!"
         Notify("Provisioning failed. Retrying on next boot...")
         sleep(10000)
     end if
@@ -32,7 +30,6 @@ end function
 function GetServerUrl() as string
     ' Try to get server URL from registry
     ' Returns the base server URL for downloading content (not the recovery path)
-    registry = CreateObject("roRegistry")
     networkingSection = CreateObject("roRegistrySection", "networking")
     
     recoveryUrl$ = networkingSection.Read("ru")
@@ -67,7 +64,6 @@ function GetServerUrl() as string
 end function
 
 function DownloadContent(serverUrl$ as string) as boolean
-    print "Downloading content from server..."
     Notify("Downloading content...")
     
     ' Create URL transfer object
@@ -75,7 +71,6 @@ function DownloadContent(serverUrl$ as string) as boolean
     urlTransfer.SetUrl(serverUrl$ + "/content/index.html")
     
     ' Download index.html
-    print "Downloading index.html..."
     Notify("Downloading HTML files...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/index.html", "SD:/index.html") then
         Notify("Error: Failed to download HTML files")
@@ -83,7 +78,6 @@ function DownloadContent(serverUrl$ as string) as boolean
     end if
     
     ' Download autorun.brs (the application autorun, not this provisioning script)
-    print "Downloading autorun.brs..."
     Notify("Downloading application script...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/autorun.brs", "SD:/autorun.brs") then
         Notify("Error: Failed to download application script")
@@ -94,7 +88,6 @@ function DownloadContent(serverUrl$ as string) as boolean
     CreateDirectory("SD:/static")
     
     ' Download static assets
-    print "Downloading static assets..."
     Notify("Downloading assets...")
     if not DownloadFile(urlTransfer, serverUrl$ + "/content/static/logo192.png", "SD:/static/logo192.png") then
         print "Warning: Could not download logo192.png"

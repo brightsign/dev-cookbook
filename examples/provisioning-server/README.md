@@ -282,7 +282,6 @@ CREATE TABLE check_ins (
 2. **Verify registry settings:**
 
     ```brightscript
-    reg = CreateObject("roRegistry")
     net = CreateObject("roRegistrySection", "networking")
     print net.Read("ub")  ' Should show http://YOUR_IP:3000
     print net.Read("ru")  ' Should show /provision
