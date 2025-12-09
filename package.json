@@ -1,6 +1,7 @@
 {
     "private": true,
     "workspaces": [
+        "examples/autorun-zip-package",
         "examples/bluetooth-scan",
         "examples/bs-self-updater",
         "examples/bs-sqlite-db",

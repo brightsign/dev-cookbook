@@ -1,0 +1,27 @@
+{
+    "name": "autorun-zip-package",
+    "version": "1.0.0",
+    "description": "Complete example of creating and deploying an autorun.zip package for BrightSign players",
+    "private": true,
+    "scripts": {
+        "build": "node build-autorun-zip.js",
+        "format": "prettier . --write --config ../../.prettierrc.js --cache --cache-location=../../prettiercache",
+        "lint": "echo 'No linting needed for BrightScript files'"
+    },
+    "dependencies": {
+        "archiver": "^7.0.1"
+    },
+    "keywords": [
+        "brightsign",
+        "autorun.zip",
+        "autozip",
+        "deployment",
+        "provisioning",
+        "partner-gallery"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/brightsign/dev-cookbook",
+        "directory": "examples/autorun-zip-package"
+    }
+}

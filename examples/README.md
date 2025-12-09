@@ -35,6 +35,18 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 -   **Location**: `examples/node-simple-server`
 -   **Features**: Advanced Node.js server with static file serving, device info REST API, Jest tests, and webpack config. Good for learning about full-featured Node.js deployments on BrightSign.
 
+### Deployment & Provisioning Examples
+
+#### autorun.zip Package Example
+
+-   **Location**: `examples/autorun-zip-package`
+-   **Features**: Complete example of creating and deploying an `autorun.zip` package for BrightSign players. Includes the `autozip.brs` unpacking script, sample application files, build script, and comprehensive documentation for Partner Gallery integration. Essential for CMS providers and partners deploying applications to fleets of BrightSign players.
+
+#### Provisioning Server Example
+
+-   **Location**: `examples/provisioning-server`
+-   **Features**: Docker-based provisioning server implementing BrightSign's provisioning protocol. Demonstrates automated content delivery to players on a local network with player tracking and deployment management.
+
 ### Device & Plugin Integration Examples
 
 #### Bluetooth Scan Example
@@ -45,7 +57,7 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 #### BS Self Updater Example
 
 -   **Location**: `examples/bs-self-updater`
--   **Features**: TypeScript utility for self-updating BrightSign apps by downloading and applying new `autorun.zip` packages from a server.
+-   **Features**: TypeScript utility for self-updating BrightSign apps by downloading and applying new `autorun.zip` packages from a server. Works in conjunction with the autorun.zip package example.
 
 #### BS SQLite DB Example
 
