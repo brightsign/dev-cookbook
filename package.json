@@ -1,7 +1,19 @@
 {
     "private": true,
     "workspaces": [
-        "examples/**",
+        "examples/bluetooth-scan",
+        "examples/bs-self-updater",
+        "examples/bs-sqlite-db",
+        "examples/enable-ldws",
+        "examples/html-starter",
+        "examples/htmlwidget-iframes",
+        "examples/indexeddb-caching",
+        "examples/local-storage",
+        "examples/node-simple-server",
+        "examples/node-starter",
+        "examples/nodejs-web-app",
+        "examples/self-signed-certs",
+        "examples/send-plugin-message",
         "templates/**"
     ],
     "dependencies": {

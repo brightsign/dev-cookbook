@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  provisioning-server:
+    build: .
+    container_name: brightsign-provisioning
+    ports:
+      - "3000:3000"
+    volumes:
+      # Persist database across container restarts
+      - ./data:/app/data
+      # Mount autorun and content directories for easy updates
+      - ./autorun:/app/autorun:ro
+      - ./content:/app/content:ro
+    environment:
+      - PORT=3000
+      - DB_PATH=/app/data/provisioning.db
+    restart: unless-stopped
+    networks:
+      - provisioning-net
+
+networks:
+  provisioning-net:
+    driver: bridge

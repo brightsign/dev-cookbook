@@ -1,0 +1,22 @@
+{
+    "name": "brightsign-provisioning-server",
+    "version": "1.0.0",
+    "description": "BrightSign provisioning server for local network deployment",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dev": "node server.js"
+    },
+    "keywords": [
+        "brightsign",
+        "provisioning",
+        "recovery",
+        "docker"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "express": "^4.18.2",
+        "better-sqlite3": "^9.2.2"
+    }
+}
