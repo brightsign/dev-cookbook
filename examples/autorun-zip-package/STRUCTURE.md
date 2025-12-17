@@ -10,7 +10,6 @@ autorun.zip (when extracted) →
 ├── autorun.brs
 ├── index.html
 ├── brightsign-dumps/
-├── cache/
 ├── config/
 │   └── app-config.json
 └── logs/
@@ -88,7 +87,7 @@ Archive:  autorun.zip
      4567  12-09-2024 10:00   autorun.brs
      3456  12-09-2024 10:00   index.html
         0  12-09-2024 10:00   brightsign-dumps/
-        0  12-09-2024 10:00   cache/
+        0  12-09-2024 10:00   config/
 ```
 
 **Windows PowerShell:**
@@ -164,7 +163,7 @@ You should see:
 
 -   `autorun.zip.done` (renamed)
 -   `autorun.brs`, `autozip.brs`, `index.html`
--   All directories (`cache/`, `config/`, etc.)
+-   All directories (`config/`, `logs/`, `brightsign-dumps/`)
 
 ## Troubleshooting
 

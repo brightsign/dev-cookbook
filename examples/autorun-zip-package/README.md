@@ -30,7 +30,6 @@ autorun.zip
 ├── index.html               # HTML UI
 ├── config/
 │   └── app-config.json      # Application configuration
-├── cache/                   # Cache directory (empty initially)
 ├── logs/                    # Logs directory (empty initially)
 └── brightsign-dumps/        # Crash dumps directory (recommended)
 ```
@@ -88,7 +87,7 @@ After the player reboots, you should see:
 
 -   A gradient purple background with success message
 -   Status indicator showing "Application Running"
--   All directories (cache, config, logs, brightsign-dumps) created
+-   All directories (config, logs, brightsign-dumps) created
 -   `autorun.zip.done` on the storage (original zip renamed)
 
 ## Customizing the Package
@@ -294,7 +293,6 @@ For large content deployments:
 
 -   Keep `autorun.zip` small (< 100MB)
 -   Download large assets after provisioning
--   Use the `cache/` directory for downloaded content
 -   Implement progressive downloading in your application
 
 ## File Descriptions

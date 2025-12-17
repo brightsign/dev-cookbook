@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   `autozip.brs` - BrightSign OS 7.0.60+ extraction script
 -   `autorun.brs` - Sample application with HTML widget
 -   `index.html` - Sample HTML UI with modern gradient design
--   Sample directory structure (cache, config, logs, brightsign-dumps)
+-   Sample directory structure (config, logs, brightsign-dumps)
 -   `app-config.json` - Example configuration file
 -   Cross-platform Node.js build script
 -   Comprehensive README with Partner Gallery integration guide

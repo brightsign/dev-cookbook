@@ -42,10 +42,6 @@ function InitializeDirectories() as void
     end if
     
     ' Verify other directories exist
-    if not DoesPathExist("SD:/cache") then
-        print "WARNING: cache directory not found"
-    end if
-    
     if not DoesPathExist("SD:/config") then
         print "WARNING: config directory not found"
     end if
