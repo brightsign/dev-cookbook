@@ -9,7 +9,7 @@
         "lint": "echo 'No linting needed for BrightScript files'"
     },
     "dependencies": {
-        "archiver": "^7.0.1"
+        "archiver": "^6.0.0"
     },
     "keywords": [
         "brightsign",

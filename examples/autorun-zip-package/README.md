@@ -184,6 +184,7 @@ To add your autorun.zip package to the BrightSign Partner Gallery:
 -   **Brand Visibility**: Your CMS appears in the BrightSign partner selector
 -   **Faster Onboarding**: Minimal steps from unboxing to pairing screen
 -   **Qualified Partner Status**: Join the BrightSign partner ecosystem
+-   **Free BSN.control Access**: Your customers and your team gain free access to BSN.control for remote connectivity
 
 ## Hosting autorun.zip
 
