@@ -1,0 +1,193 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="Claude" version="22.0.0">
+  <diagram name="Page-1" id="architecture">
+    <mxGraphModel dx="1434" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Section -->
+        <mxCell id="title" value="Three Methods to Enable LDWS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="450" y="20" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- METHOD 1: BrightScript -->
+        <mxCell id="method1-label" value="Method 1: BrightScript (Recommended)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Method 1: Player -->
+        <mxCell id="m1-player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 1: autorun.brs -->
+        <mxCell id="m1-autorun" value="autorun.brs&lt;br&gt;roNetworkConfiguration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="230" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Method 1: LDWS -->
+        <mxCell id="m1-ldws" value="LDWS Enabled&lt;br&gt;(Port 80)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50c878;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="80" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 1: Arrows -->
+        <mxCell id="m1-arrow1" value="Launches" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m1-player" target="m1-autorun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m1-arrow2" value="SetupDWS()&lt;br&gt;password" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m1-autorun" target="m1-ldws">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- METHOD 2: Node.js -->
+        <mxCell id="method2-label" value="Method 2: Node.js" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="380" y="80" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Method 2: Player -->
+        <mxCell id="m2-player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 2: autorun.brs -->
+        <mxCell id="m2-autorun" value="autorun.brs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="560" y="130" width="100" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 2: index.js -->
+        <mxCell id="m2-nodejs" value="index.js&lt;br&gt;@brightsign/&lt;br&gt;dwsconfiguration" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7b68ee;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="545" y="230" width="130" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Method 2: LDWS -->
+        <mxCell id="m2-ldws" value="LDWS Enabled&lt;br&gt;(Port 80)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50c878;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="400" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 2: Arrows -->
+        <mxCell id="m2-arrow1" value="Launches" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m2-player" target="m2-autorun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m2-arrow2" value="Starts Node.js" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m2-autorun" target="m2-nodejs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m2-arrow3" value="Configure&lt;br&gt;password" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m2-nodejs" target="m2-ldws">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- METHOD 3: Registry -->
+        <mxCell id="method3-label" value="Method 3: Registry (Not Recommended)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="760" y="80" width="300" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Method 3: Player -->
+        <mxCell id="m3-player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="130" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 3: autorun.brs -->
+        <mxCell id="m3-autorun" value="autorun.brs&lt;br&gt;Registry Write" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="230" width="120" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Method 3: LDWS -->
+        <mxCell id="m3-ldws" value="LDWS Enabled&lt;br&gt;(No Password)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50c878;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="780" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Method 3: Arrows -->
+        <mxCell id="m3-arrow1" value="Launches" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m3-player" target="m3-autorun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="m3-arrow2" value="Write registry&lt;br&gt;http_server, dwse" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m3-autorun" target="m3-ldws">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Common Result Section -->
+        <mxCell id="result-label" value="Result: All Methods Enable LDWS" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="350" y="440" width="400" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Browser Access -->
+        <mxCell id="browser" value="Web Browser&lt;br&gt;https://&lt;device-ip&gt;/" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="450" y="490" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Arrows from LDWS to Browser -->
+        <mxCell id="result-arrow1" value="HTTP Access" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;entryX=0.25;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="m1-ldws" target="browser">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="515" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="result-arrow2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="m2-ldws" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="result-arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;entryX=0.75;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="m3-ldws" target="browser">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="515" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="950" y="480" width="200" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Title -->
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="950" y="485" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightSign Player -->
+        <mxCell id="legend-player-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="525" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-player-text" value="BrightSign Player" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="995" y="520" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightScript -->
+        <mxCell id="legend-brs-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="555" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-brs-text" value="BrightScript" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="995" y="550" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Node.js -->
+        <mxCell id="legend-node-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7b68ee;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="585" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-node-text" value="Node.js Application" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="995" y="580" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: LDWS/Service -->
+        <mxCell id="legend-service-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#50c878;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="615" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-service-text" value="Service/LDWS" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="995" y="610" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Browser -->
+        <mxCell id="legend-browser-box" value="" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="635" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-browser-text" value="Web Browser" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="995" y="640" width="145" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

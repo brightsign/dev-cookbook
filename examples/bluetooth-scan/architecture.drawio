@@ -1,0 +1,116 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="Claude" version="22.0.0">
+  <diagram name="Page-1" id="architecture">
+    <mxGraphModel dx="1434" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- BrightSign Player -->
+        <mxCell id="player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="260" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- autorun.brs -->
+        <mxCell id="autorun" value="autorun.brs&lt;br&gt;(BrightScript)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="260" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- index.html -->
+        <mxCell id="html" value="index.html&lt;br&gt;(HTML/JS)&lt;br&gt;Bluetooth API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="260" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Bluetooth Adapter -->
+        <mxCell id="bt-adapter" value="Bluetooth Adapter&lt;br&gt;(Hardware Module)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#34495e;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="400" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Nearby Bluetooth Devices -->
+        <mxCell id="bt-devices" value="Nearby Bluetooth&lt;br&gt;Devices" style="ellipse;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="160" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Display Output -->
+        <mxCell id="display" value="HDMI Display&lt;br&gt;(Shows scan results)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#34495e;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="120" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: Player to autorun -->
+        <mxCell id="arrow1" value="Boots &amp; Launches" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="player" target="autorun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: autorun to html -->
+        <mxCell id="arrow2" value="Creates roHtmlWidget&lt;br&gt;Loads HTML" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="autorun" target="html">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: html to display -->
+        <mxCell id="arrow3" value="Renders UI" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="html" target="display">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: html to bluetooth adapter -->
+        <mxCell id="arrow4" value="Scan Commands&lt;br&gt;via Bluetooth API" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;startArrow=classic;startFill=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="html" target="bt-adapter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: bluetooth adapter to devices -->
+        <mxCell id="arrow5" value="Scans for&lt;br&gt;BT devices" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;startArrow=classic;startFill=1;endArrow=classic;endFill=1;dashed=1;dashPattern=4 4;" edge="1" parent="1" source="bt-adapter" target="bt-devices">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="200" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Title -->
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="565" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightSign Player -->
+        <mxCell id="legend-player-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="605" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-player-text" value="BrightSign Player" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="600" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightScript -->
+        <mxCell id="legend-brs-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="635" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-brs-text" value="BrightScript" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="630" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: HTML/JS -->
+        <mxCell id="legend-html-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="665" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-html-text" value="HTML/JS Application" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="660" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Hardware -->
+        <mxCell id="legend-hw-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#34495e;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="695" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-hw-text" value="External Hardware" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="690" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Devices -->
+        <mxCell id="legend-devices-box" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="720" width="30" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-devices-text" value="External Devices" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="720" width="145" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

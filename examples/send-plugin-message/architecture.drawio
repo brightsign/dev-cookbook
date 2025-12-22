@@ -1,0 +1,131 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="Claude" version="22.0.0">
+  <diagram name="Page-1" id="architecture">
+    <mxGraphModel dx="1434" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- BrightSign Player -->
+        <mxCell id="player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="280" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Presentation File -->
+        <mxCell id="presentation" value="plugin-message-transfer.bpfx&lt;br&gt;(BA:c Presentation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="280" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Video Widgets -->
+        <mxCell id="widgets" value="Video Widgets&lt;br&gt;(TimeoutEvents)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecf0f1;strokeColor=#333333;strokeWidth=2;fontColor=#333333;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="300" y="420" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- BrightScript Handler -->
+        <mxCell id="brightscript" value="pluginMessageTransfer.brs&lt;br&gt;(Message Handler)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="520" y="280" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- HTML Application -->
+        <mxCell id="html" value="pluginMessageApp.html&lt;br&gt;(Message Receiver)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="180" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Backend Server (optional) -->
+        <mxCell id="backend" value="Backend Server&lt;br&gt;(Optional Processing)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;dashed=1;dashPattern=4 4;" vertex="1" parent="1">
+          <mxGeometry x="990" y="280" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- Plugin Message Format -->
+        <mxCell id="message-format" value="Plugin Message Format:&lt;br&gt;pluginMessage!!&lt;serialNumber&gt;!!&lt;filename&gt;" style="text;html=1;strokeColor=#333333;fillColor=#ffffff;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;strokeWidth=1;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="420" width="280" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: Player to presentation -->
+        <mxCell id="arrow1" value="Runs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="player" target="presentation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: presentation to widgets -->
+        <mxCell id="arrow2" value="Contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="presentation" target="widgets">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: widgets to brightscript -->
+        <mxCell id="arrow3" value="1. Triggers Plugin Message&lt;br&gt;(on TimeoutEvent)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="widgets" target="brightscript">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="370" y="520" />
+              <mxPoint x="610" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Arrow: brightscript to html -->
+        <mxCell id="arrow4" value="2. Forwards Message" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="brightscript" target="html">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: html to backend -->
+        <mxCell id="arrow5" value="3. Sends to Backend&lt;br&gt;(Optional)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;dashed=1;dashPattern=4 4;" edge="1" parent="1" source="html" target="backend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Example Flow -->
+        <mxCell id="flow-note" value="Example Flow:&lt;br&gt;1. Video plays in widget&lt;br&gt;2. TimeoutEvent fires&lt;br&gt;3. Plugin message sent:&lt;br&gt;   pluginMessage!!D5E86P001287!!1stVideo&lt;br&gt;4. BrightScript receives &amp; forwards&lt;br&gt;5. HTML app processes message&lt;br&gt;6. Optional: Forward to backend API" style="text;html=1;strokeColor=#333333;fillColor=#ffffff;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="560" width="200" height="210" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Title -->
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="565" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightSign Player -->
+        <mxCell id="legend-player-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="605" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-player-text" value="BrightSign Player" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="600" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightScript -->
+        <mxCell id="legend-brs-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="635" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-brs-text" value="BrightScript" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="630" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Presentation/HTML -->
+        <mxCell id="legend-presentation-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="665" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-presentation-text" value="Presentation/HTML" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="660" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: External Server -->
+        <mxCell id="legend-server-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="695" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-server-text" value="External Server" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="690" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Widget/Content -->
+        <mxCell id="legend-widget-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecf0f1;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="725" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-widget-text" value="Widget/Content" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="720" width="145" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
