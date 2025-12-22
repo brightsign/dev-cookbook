@@ -1,0 +1,88 @@
+<mxfile host="app.diagrams.net" modified="2024-01-01T00:00:00.000Z" agent="Claude" version="22.0.0">
+  <diagram name="Page-1" id="architecture">
+    <mxGraphModel dx="1434" dy="764" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- BrightSign Player -->
+        <mxCell id="player" value="BrightSign Player" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- autorun.brs -->
+        <mxCell id="autorun" value="autorun.brs&lt;br&gt;(BrightScript)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="280" y="300" width="140" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- index.js Node Server -->
+        <mxCell id="nodejs" value="index.js&lt;br&gt;(Node.js HTTP Server)&lt;br&gt;Port 3000" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7b68ee;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="290" width="180" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Browser/Client -->
+        <mxCell id="browser" value="Web Browser&lt;br&gt;or curl&lt;br&gt;http://&lt;device-ip&gt;:3000/" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=2;fontColor=#FFFFFF;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="730" y="270" width="200" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: Player to autorun -->
+        <mxCell id="arrow1" value="Boots &amp; Launches" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="player" target="autorun">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: autorun to nodejs -->
+        <mxCell id="arrow2" value="Starts Node.js Process&lt;br&gt;Runs index.js" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="autorun" target="nodejs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Arrow: nodejs to browser (bidirectional) -->
+        <mxCell id="arrow3" value="HTTP GET /&lt;br&gt;Response: Congratulations message" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;startArrow=classic;startFill=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="nodejs" target="browser">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="480" width="200" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Title -->
+        <mxCell id="legend-title" value="LEGEND" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="80" y="485" width="200" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightSign Player -->
+        <mxCell id="legend-player-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4a90e2;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="525" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-player-text" value="BrightSign Player" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="520" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: BrightScript -->
+        <mxCell id="legend-brs-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e67e22;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="555" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-brs-text" value="BrightScript" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="550" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Node.js -->
+        <mxCell id="legend-node-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7b68ee;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="585" width="30" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-node-text" value="Node.js Application" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="580" width="145" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Browser -->
+        <mxCell id="legend-browser-box" value="" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#95a5a6;strokeColor=#333333;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="605" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-browser-text" value="Network/Browser" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="125" y="610" width="145" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
