@@ -1,0 +1,18 @@
+# Build output
+autorun.zip
+autorun.zip.done
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test artifacts
+*.log

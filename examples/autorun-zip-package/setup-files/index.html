@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BrightSign autorun.zip Example</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 40px;
+            }
+
+            .container {
+                text-align: center;
+                max-width: 800px;
+                background: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(10px);
+                padding: 60px;
+                border-radius: 20px;
+                box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+
+            h1 {
+                font-size: 48px;
+                margin-bottom: 20px;
+                animation: fadeInDown 1s ease-in-out;
+            }
+
+            .subtitle {
+                font-size: 24px;
+                margin-bottom: 30px;
+                opacity: 0.9;
+                animation: fadeInUp 1s ease-in-out 0.3s both;
+            }
+
+            .info-box {
+                background: rgba(255, 255, 255, 0.15);
+                padding: 30px;
+                border-radius: 10px;
+                margin-top: 30px;
+                animation: fadeInUp 1s ease-in-out 0.6s both;
+            }
+
+            .info-item {
+                margin: 15px 0;
+                font-size: 18px;
+            }
+
+            .info-label {
+                font-weight: bold;
+                color: #ffd700;
+            }
+
+            .status-indicator {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                background: #00ff00;
+                border-radius: 50%;
+                margin-right: 8px;
+                animation: pulse 2s ease-in-out infinite;
+            }
+
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                50% {
+                    opacity: 0.5;
+                    transform: scale(1.2);
+                }
+            }
+
+            .footer {
+                margin-top: 40px;
+                font-size: 14px;
+                opacity: 0.7;
+                animation: fadeInUp 1s ease-in-out 0.9s both;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🎉 Success!</h1>
+            <p class="subtitle">Your autorun.zip package has been deployed</p>
+
+            <div class="info-box">
+                <div class="info-item">
+                    <span class="status-indicator"></span>
+                    <span class="info-label">Status:</span> Application Running
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Package Type:</span> autorun.zip
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Deployment Method:</span> Automated
+                    Extraction
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Device:</span> BrightSign Player
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>
+                    This application was deployed using the autorun.zip method
+                </p>
+                <p>See dev-cookbook for more examples and documentation</p>
+            </div>
+        </div>
+
+        <script>
+            // Log initialization
+            console.log(
+                "BrightSign autorun.zip example application initialized"
+            );
+            console.log("Application deployed via autorun.zip extraction");
+
+            // Send message to BrightScript
+            if (window.BrightSign) {
+                window.BrightSign.postMessage({
+                    reason: "app-initialized",
+                    message: "HTML application loaded successfully",
+                    timestamp: new Date().toISOString(),
+                });
+            }
+
+            // Update timestamp periodically
+            let startTime = Date.now();
+            setInterval(() => {
+                let uptime = Math.floor((Date.now() - startTime) / 1000);
+                console.log("Application uptime: " + uptime + " seconds");
+            }, 30000);
+        </script>
+    </body>
+</html>

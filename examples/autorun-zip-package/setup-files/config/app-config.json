@@ -1,0 +1,29 @@
+{
+    "application": {
+        "name": "BrightSign autorun.zip Example",
+        "version": "1.0.0",
+        "description": "Sample application deployed via autorun.zip"
+    },
+    "display": {
+        "orientation": "landscape",
+        "resolution": "auto"
+    },
+    "network": {
+        "enabled": true,
+        "dhcp": true
+    },
+    "logging": {
+        "enabled": true,
+        "logLevel": "info",
+        "logPath": "SD:/logs"
+    },
+    "features": {
+        "nodejs": false,
+        "autoUpdate": false
+    },
+    "partner": {
+        "name": "Your Company Name",
+        "contact": "support@yourcompany.com",
+        "galleryEnabled": false
+    }
+}

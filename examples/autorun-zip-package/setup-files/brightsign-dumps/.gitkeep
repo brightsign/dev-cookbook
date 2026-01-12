@@ -1,0 +1,19 @@
+# This file ensures the brightsign-dumps directory is included in version control
+
+# and remains part of the autorun.zip package structure.
+
+#
+
+# The brightsign-dumps directory is automatically used by BrightSignOS to store
+
+# crash dumps and diagnostic information when the application encounters issues.
+
+# This information is invaluable for BrightSign Support when troubleshooting problems.
+
+#
+
+# This directory is optional but highly recommended for production applications.
+
+#
+
+# You can safely delete this file once crash dumps are generated.

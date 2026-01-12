@@ -1,0 +1,7 @@
+# This file ensures the logs directory is included in version control
+# and remains part of the autorun.zip package structure.
+# 
+# The logs directory is used by applications to store log files
+# for debugging and monitoring purposes.
+#
+# You can safely delete this file once you have actual log files.
