@@ -13,7 +13,7 @@ Edit as needed for your environment:
 - **Domain**: `BrightSignDomain`
 - **Multicast Address**: `224.0.126.10`
 - **Port**: `1539`
-- **PTP Domain**: `0` (automatically configured by autorun.brs)
+- **PTP Domain**: `0` (configured by autorun.brs on first boot)
 
 ## Deployment Steps
 

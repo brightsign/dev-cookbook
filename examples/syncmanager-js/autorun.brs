@@ -7,7 +7,7 @@ sub main()
 
 	' Required for sync manager to work properly
 	' See https://docs.brightsign.biz/developers/rosyncmanager description for details
-    WritePtpDomain()
+	WritePtpDomain()
 
 	mp = CreateObject("roMessagePort")
 	widget = CreateHTMLWidget(mp)
