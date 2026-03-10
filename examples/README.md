@@ -67,7 +67,12 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 #### Send Plugin Message Example
 
 -   **Location**: `examples/send-plugin-message`
--   **Features**: Shows how to send plugin messages between BrightScript and HTML/JavaScript apps, useful for integrating BrightAuthor:connected presentations with custom logic.
+-   **Features**: Shows how to send plugin messages between BrightScript and HTML/JavaScript apps, useful for integrating BrightAuthor:connected presentations with custom logic.   
+
+#### Syncmanager Example
+
+-   **Location**: `examples/syncmanager`
+-   **Features**: Demonstrates using BrightSign's `@brightsign/syncmanager` JS API for synchronizing content across multiple players.
 
 ## Next Steps
 
