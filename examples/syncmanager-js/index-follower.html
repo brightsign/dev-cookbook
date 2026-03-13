@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Sync Manager - Follower</title>
+    </head>
+    <body>
+        <video
+            hwz="z-index: -1"
+            id="one"
+            style="
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 100%;
+                object-fit: fill;
+            "
+            >
+            <source src="test.mp4"/>
+        </video>
+
+        <script>
+            // Create the sync manager with provided multicast settings
+            const DOMAIN = "BrightSignDomain";
+            const MCAST_ADDR = "224.0.126.10";
+            const PORT = 1539;
+
+            const SyncManagerClass = require("@brightsign/syncmanager");
+            const sync = new SyncManagerClass("", DOMAIN, MCAST_ADDR, PORT);
+
+            // Follower does NOT set "leader" (defaults to follower mode)
+            console.log("Follower initialized. Waiting for synchronization events...");
+
+            // Track current sync ID to avoid reloading on every event
+            let currentSyncId = null;
+            sync.addEventListener("syncevent", function (e) {
+                // Only respond to new sync IDs (new sync sessions)
+                if (e.id !== currentSyncId) {
+                    currentSyncId = e.id;
+                    const videoElement = document.getElementById("one");
+                    videoElement.setSyncParams(e.domain, e.id, e.iso_timestamp);
+                    videoElement.load();
+                    videoElement.play();
+                    console.log("Follower video synchronized to sync ID:", currentSyncId);
+                }
+                // the video element handles ongoing synchronization internally
+            });
+        </script>
+    </body>
+</html>
