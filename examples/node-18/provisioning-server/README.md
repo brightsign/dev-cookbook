@@ -1,5 +1,8 @@
 # BrightSign Provisioning Server Example
 
+![Node.js: >=18](https://img.shields.io/badge/node.js-%3E%3D18-green)
+![Runs on: Dev Machine](https://img.shields.io/badge/runs_on-dev_machine-orange)
+
 A Docker-based provisioning server for BrightSign players on a local network. This server implements the BrightSign provisioning and recovery protocol, allowing players to automatically download and install content.
 
 ## Overview

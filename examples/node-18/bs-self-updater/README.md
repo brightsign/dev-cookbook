@@ -1,5 +1,8 @@
 # bs-self-updater
 
+![Node.js: >=18](https://img.shields.io/badge/node.js-%3E%3D18-green)
+![BrightSign OS: 9.x](https://img.shields.io/badge/BrightSign_OS-9.x-purple)
+
 A simple self-updating application written using TypeScript and designed to run on BrightSign players.
 
 ## Overview

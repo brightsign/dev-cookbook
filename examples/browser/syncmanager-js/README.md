@@ -1,5 +1,8 @@
 # Sync Manager Application
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Summary
 
 This application demonstrates synchronized video playback across multiple BrightSign players using the `@brightsign/syncmanager` JavaScript API. One player acts as the **leader** that initiates synchronization events, while other players act as **followers** that respond to those events. All players play the same video in sync using PTP (Precision Time Protocol) and multicast communication.

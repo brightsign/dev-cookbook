@@ -1,5 +1,8 @@
 # Hosting a Node.js Server Example
 
+![Node.js: 14.17.6](https://img.shields.io/badge/node.js-14.17.6-green)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Overview
 
 This example is designed to help you get familiarized with running Node.js on a BrightSign player. It demonstrates how to run a Node.js server directly on the player that can serve both static files and fetch device information. Additionally, it introduces tools and configurations that go beyond the basics covered in starter examples.

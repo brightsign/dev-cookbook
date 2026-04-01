@@ -1,5 +1,7 @@
-
 # Starter Node.js HTTP Server on BrightSign Device
+
+![Node.js: 14.17.6](https://img.shields.io/badge/node.js-14.17.6-green)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
 
 ## Introduction
 

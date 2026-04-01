@@ -1,5 +1,8 @@
 # Bluetooth scan example on BrightSign players
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Introduction
 
 The intention of this example is to show how to get a Bluetooth scanning application (HTML+JS) running on your BrightSign player.

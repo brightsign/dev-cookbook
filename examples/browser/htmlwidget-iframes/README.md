@@ -1,5 +1,8 @@
 # HTML Widget Iframes Example
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 To enhance security, the BrightSign OS has disabled the access to JavaScript APIs, BS-JS objects, and Node.js within iframes in BOS v9.1. However, a security parameter `trusted_iframes_enabled` has been added to the `roHtmlWidget` configuration, which will enable iframes to have access to that functionality. We DO NOT recommend this configuration as the content in these iframes can gain access to core player APIs, and this content is not always under the application's control.
 
 See the following pages for details:

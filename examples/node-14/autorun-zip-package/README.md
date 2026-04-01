@@ -1,5 +1,8 @@
 # BrightSign autorun.zip Package Example
 
+![Node.js: >=14.17.6](https://img.shields.io/badge/node.js-%3E%3D14.17.6-green)
+![Runs on: Dev Machine](https://img.shields.io/badge/runs_on-dev_machine-orange)
+
 A complete, version-controlled example of creating and deploying an `autorun.zip` package for BrightSign players. This example demonstrates the recommended structure and best practices for deploying applications to BrightSign devices using the autorun.zip method.
 
 ## Overview

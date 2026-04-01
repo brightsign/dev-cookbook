@@ -1,4 +1,8 @@
 # How to send a plugin message to your html application
+
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 This example demonstrates how to set up a presentation that sends plugin messages to your HTML application. Once received, these messages can be forwarded to your backend for processing.
 
 The setup consists of three components:

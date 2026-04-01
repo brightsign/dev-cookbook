@@ -1,5 +1,8 @@
 # Self-Signed Certificate Handling Example
 
+![Node.js: >=18](https://img.shields.io/badge/node.js-%3E%3D18-green)
+![Runs on: Dev Machine](https://img.shields.io/badge/runs_on-dev_machine-orange)
+
 ## Introduction
 
 This example demonstrates how to handle self-signed certificates when communicating with BrightSign players via the local Diagnostic Web Server (DWS). BrightSign players use self-signed certificates for HTTPS communication, which requires configuring your HTTP client to accept these certificates for successful player communication and management.

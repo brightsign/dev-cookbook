@@ -1,5 +1,8 @@
 # BrightSign SQLite Database Example
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 This example demonstrates how to use SQLite database functionality in a BrightSign application, showing the communication between BrightScript and JavaScript for database operations.
 
 ## Overview

@@ -1,5 +1,8 @@
 # Local Storage Image Slideshow Example
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Introduction
 
 This example demonstrates how to create an image slideshow application that caches images in the browser's localStorage and displays them in sequence. The application downloads and stores images persistently for smooth playback and implements a looping slideshow that automatically advances to the next image after a specified duration.

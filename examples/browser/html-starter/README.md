@@ -1,5 +1,8 @@
 # Example HTML App
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Introduction
 
 This example is the first stepping stone of the starter examples to get familiar with developing with a BrightSign. The intention of this example is to show how to get a simple HTML application running on your player.
