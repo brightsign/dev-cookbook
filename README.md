@@ -55,11 +55,11 @@ The examples in this repository are designed to help you get started with develo
 
 ### Learning the basics with examples
 
-If you've never worked with a BrightSign before, we recommend starting with a [barebones example](examples/README.md#1-starter-html-example).
+If you've never worked with a BrightSign before, we recommend starting with the [HTML starter example](examples/browser/html-starter/README.md).
 
-After this, we recommend integrating Node.js into the application on the BrightSign player. An example of this can be found in [html_node_example](examples/node-simple-server-example/README.md).
+After this, we recommend integrating Node.js into the application on the BrightSign player. An example of this can be found in [node-simple-server](examples/node-14/node-simple-server/README.md).
 
-Once this seems familiar, we recommend adding auxiliary tools to make the development experience smoother. This includes introducing a script to copy files to the player's SD card, defining multiple environments to develop locally rather than needing to only rely on the player for visibility, and a mock library for populating values when running the example locally. This can be found [here](robust_example).
+Once this seems familiar, explore more advanced examples like the [self-updater](examples/node-18/bs-self-updater/README.md) or [provisioning server](examples/node-18/provisioning-server/README.md) to learn about deployment and fleet management.
 
 From here, we recommend using one of the templates to start developing your own project!
 
@@ -73,14 +73,19 @@ The templates in this repository are starter projects that you can use to begin 
 
 The templates in this repository are intended for developers who are familiar with Node.js, React, and running scripts that connect to devices over a local network.
 
-We recommend managing your Node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). The preferred version is `14.17.6` since this is the version currently pre-installed on most BrightSign devices.
+We recommend managing your Node.js version using [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md). BrightSign devices ship with different Node.js versions depending on the OS:
+
+- **BrightSign OS 8.x**: Node.js `14.17.6`
+- **BrightSign OS 9.x**: Node.js `18`
+
+Each Node.js example includes an `.nvmrc` file. Run `nvm use` in the example directory to automatically switch to the correct version. See the [examples README](examples/README.md) for a full compatibility matrix.
 
 ## Project structure
 
 Here's an overview of the project structure and what each part is responsible for:
 
 - `templates/`         : React templates for new projects with custom configurations tailored for BrightSign development.
-- `examples/`          : A collection of examples demonstrating different capabilities and how to implement them on your BrightSign device.
+- `examples/`          : A collection of examples organized by runtime: `browser/` (HTML/BrightScript), `node-14/` (OS 8.x), and `node-18/` (OS 9.x).
 - `.github/`          : Contains GitHub Actions configurations for automated build and deployment processes.
 - `scripts/`          : Utility scripts to facilitate build, deployment, and development workflows.
 - `.eslintrc`         : Lint configuration to ensure code quality and consistency across the project.
@@ -100,7 +105,7 @@ Feel free to open an issue or submit a PR; see `CONTRIBUTING.MD` for further inf
 
 ## Building on M1 Mac
 
-You might see an error like `npm ERR! Error: Cannot find module 'node-bin-darwin-arm64/package.json'`
+When using Node 14.17.6 on Apple Silicon, you might see an error like `npm ERR! Error: Cannot find module 'node-bin-darwin-arm64/package.json'`
 
 Run the following commands:
 
@@ -113,7 +118,7 @@ arm64
 > nvm uninstall 14.17.6 && nvm install 14.17.6
 ```
 
-You might need to do this each time you restart your terminal.
+You might need to do this each time you restart your terminal. This issue does not affect Node 18+.
 
 For more details, see this [Stack Overflow thread](https://stackoverflow.com/questions/68896696/having-trouble-installing-npm-on-mac-m1).
 
