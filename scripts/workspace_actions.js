@@ -6,7 +6,7 @@
  *
  */
 const { execSync } = require("child_process");
-const { existsSync } = require("fs");
+const { existsSync, readFileSync } = require("fs");
 const path = require("path");
 
 const mainBranchName = "origin/main"; 
@@ -53,6 +53,20 @@ function isPathInWorkspace(filePath, workspacePath) {
     return isInWorkspace;
 }
 
+// Check if the current Node.js version is compatible with a workspace's .nvmrc
+function isNodeVersionCompatible(workspacePath) {
+    const nvmrcPath = path.join(workspacePath, ".nvmrc");
+    if (!existsSync(nvmrcPath)) {
+        return true;
+    }
+
+    const requiredVersion = readFileSync(nvmrcPath, "utf-8").trim();
+    const requiredMajor = parseInt(requiredVersion.split(".")[0], 10);
+    const currentMajor = parseInt(process.versions.node.split(".")[0], 10);
+
+    return currentMajor >= requiredMajor;
+}
+
 // Main function to run configurable commands in changed workspaces
 function runCommandsInChangedWorkspaces() {
     const workspaces = getWorkspacesInfo();
@@ -73,6 +87,12 @@ function runCommandsInChangedWorkspaces() {
         changedWorkspaces
     )) {
         if (existsSync(`${workspacePath}/package.json`)) {
+            if (!isNodeVersionCompatible(workspacePath)) {
+                console.log(
+                    `Skipping workspace '${workspace}': requires Node.js version not compatible with current ${process.versions.node}`
+                );
+                continue;
+            }
             for (const command of commandsToRun) {
                 try {
                     exec(`cd ${workspacePath} && yarn ${command}`);
