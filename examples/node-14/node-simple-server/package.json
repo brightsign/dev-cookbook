@@ -27,6 +27,9 @@
         "webpack": "^5.94.0",
         "webpack-cli": "^5.1.0"
     },
+    "engines": {
+        "node": "14.17.6"
+    },
     "dependencies": {
         "http": "^0.0.1-security",
         "node": "14.17.6"

@@ -8,6 +8,9 @@
         "lint": "eslint --no-error-on-unmatched-pattern --config ../../../.eslintrc template/src/**/*.{js,jsx}",
         "build": "webpack"
     },
+    "engines": {
+        "node": ">=18"
+    },
     "dependencies": {
         "@types/decompress": "^4.2.7",
         "@types/node-fetch": "^2.6.12",

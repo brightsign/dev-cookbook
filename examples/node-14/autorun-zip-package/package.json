@@ -8,6 +8,9 @@
         "format": "prettier . --write --config ../../../.prettierrc.js --cache --cache-location=../../../prettiercache",
         "lint": "echo 'No linting needed for BrightScript files'"
     },
+    "engines": {
+        "node": ">=14.17.6"
+    },
     "dependencies": {
         "archiver": "^6.0.0"
     },
