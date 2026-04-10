@@ -68,9 +68,10 @@
         const fs = require("fs");
         const { pipeline, Transform } = require("stream");
 
-        const VIDEO_URL = "http://repton/Media/8k/8K%20greaterthan%205gb.mp4"; // REPLACE WITH YOUR VIDEO URL
-        const OUTPUT_FILE = "/storage/sd/largevideo.mp4"; // REPLACE WITH YOUR OUTPUT PATH
-        // Keep buffers small — ~64 KB total across the three streams.
+        const VIDEO_URL = ""; // REPLACE WITH A PUBLIC OR OTHERWISE REACHABLE FILE URL
+        const OUTPUT_FILE = ""; // REPLACE WITH YOUR OUTPUT PATH, e.g. "/storage/sd/largevideo.mp4"
+        const MAX_REDIRECTS = 10;
+        // Keep buffers small — ~48 KB total across the three streams.
         const HWM = 16 * 1024;
 
         const progressDiv = document.getElementById("progress");
@@ -84,11 +85,9 @@
         let finished = false;
         let errorMsg = null;
 
-        function fmtMB(b) {
-          return (b / 1048576).toFixed(2);
-        }
-        function fmtGB(b) {
-          return (b / 1073741824).toFixed(2);
+        function fmtSize(b) {
+          if (b >= 1073741824) return (b / 1073741824).toFixed(2) + " GB";
+          return (b / 1048576).toFixed(2) + " MB";
         }
 
         // FPS measurement state
@@ -117,7 +116,7 @@
             progressDiv.textContent = "100%";
             barFill.style.width = "100%";
             statusDiv.textContent =
-              "Complete: " + fmtMB(downloadedBytes) + " MB";
+              "Complete: " + fmtSize(downloadedBytes);
             spinnerEl.style.display = "none";
             return;
           }
@@ -128,7 +127,7 @@
           barFill.style.width = pct + "%";
           if (totalBytes) {
             statusDiv.textContent =
-              fmtMB(downloadedBytes) + " / " + fmtGB(totalBytes) + " GB";
+              fmtSize(downloadedBytes) + " / " + fmtSize(totalBytes);
           }
           requestAnimationFrame(render);
         }
@@ -139,7 +138,8 @@
         function download() {
           requestAnimationFrame(render);
 
-          function doRequest(url) {
+          function doRequest(url, redirectCount) {
+            redirectCount = redirectCount || 0;
             var parsed = new URL(url);
             var mod =
               parsed.protocol === "https:"
@@ -155,7 +155,13 @@
                   res.headers.location
                 ) {
                   res.resume();
-                  doRequest(res.headers.location);
+                  if (redirectCount >= MAX_REDIRECTS) {
+                    errorMsg = "Too many redirects";
+                    return;
+                  }
+                  // Resolve relative Location headers against the current URL.
+                  var next = new URL(res.headers.location, url).href;
+                  doRequest(next, redirectCount + 1);
                   return;
                 }
 

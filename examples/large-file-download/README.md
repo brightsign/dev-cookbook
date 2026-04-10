@@ -10,7 +10,7 @@ The application is defined in `index.html` which uses Node.js streams via `roHtm
 
 The browser's Fetch API does not propagate backpressure to the network layer. When downloading from a fast network connection to a slow SD card, `fetch()` will buffer the entire response body in memory — causing an OOM kill on devices with limited RAM (500 MB or less).
 
-This example uses Node's `http`/`https` modules with `stream.pipeline()` instead. When the SD card's write buffer is full, backpressure propagates all the way back to the TCP socket, causing the sender to slow down. Memory usage stays bounded to roughly 48 KB regardless of file size.
+This example uses Node's `http`/`https` modules with `stream.pipeline()` instead. When the SD card's write buffer is full, backpressure propagates all the way back to the TCP socket, causing the sender to slow down. Memory usage stays bounded to roughly 48 KB (three stream buffers at 16 KB each) regardless of file size.
 
 ## How It Works
 
