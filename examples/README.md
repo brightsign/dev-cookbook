@@ -23,6 +23,11 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 -   **Location**: `examples/local-storage`
 -   **Features**: Image slideshow that caches images in browser localStorage for persistent, smooth playback and looping.
 
+#### Large File Download Example
+
+-   **Location**: `examples/large-file-download`
+-   **Features**: Downloads large files (multi-GB) to SD card on memory-constrained players without OOM or UI blocking. Uses Node.js streams with TCP-level backpressure via `roHtmlWidget`.
+
 ### Node.js Examples
 
 #### Node Starter Example

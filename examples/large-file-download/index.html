@@ -1,0 +1,218 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Download</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: monospace;
+        background: #000;
+        color: #0f0;
+      }
+      #progress {
+        padding: 10px;
+        font-size: 24px;
+      }
+      #status {
+        padding: 10px;
+        font-size: 14px;
+        color: #888;
+      }
+      #fps {
+        padding: 10px;
+        font-size: 14px;
+        color: #ff0;
+      }
+      #bar-track {
+        margin: 10px;
+        height: 20px;
+        background: #222;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      #bar-fill {
+        height: 100%;
+        width: 0%;
+        background: #0f0;
+        transition: width 0.3s linear;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      #spinner {
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin: 10px;
+        border: 3px solid #333;
+        border-top-color: #0f0;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <div><span id="spinner"></span><span id="progress">0%</span></div>
+    <div id="bar-track"><div id="bar-fill"></div></div>
+    <div id="status">Initializing...</div>
+    <div id="fps">FPS: --</div>
+    <script>
+      (function () {
+        "use strict";
+
+        const fs = require("fs");
+        const { pipeline, Transform } = require("stream");
+
+        const VIDEO_URL = ""; // REPLACE WITH A PUBLIC OR OTHERWISE REACHABLE FILE URL
+        const OUTPUT_FILE = ""; // REPLACE WITH YOUR OUTPUT PATH, e.g. "/storage/sd/largevideo.mp4"
+        const MAX_REDIRECTS = 10;
+        // Keep buffers small — ~48 KB total across the three streams.
+        const HWM = 16 * 1024;
+
+        const progressDiv = document.getElementById("progress");
+        const statusDiv = document.getElementById("status");
+        const fpsDiv = document.getElementById("fps");
+        const barFill = document.getElementById("bar-fill");
+        const spinnerEl = document.getElementById("spinner");
+
+        let totalBytes = 0;
+        let downloadedBytes = 0;
+        let finished = false;
+        let errorMsg = null;
+
+        function fmtSize(b) {
+          if (b >= 1073741824) return (b / 1073741824).toFixed(2) + " GB";
+          return (b / 1048576).toFixed(2) + " MB";
+        }
+
+        // FPS measurement state
+        let frameCount = 0;
+        let fpsLastTime = performance.now();
+        let currentFps = 0;
+
+        // Decoupled render loop — runs at display frame rate, never blocks I/O.
+        function render(now) {
+          frameCount++;
+          if (now - fpsLastTime >= 1000) {
+            currentFps = frameCount;
+            frameCount = 0;
+            fpsLastTime = now;
+          }
+          fpsDiv.textContent = "FPS: " + currentFps;
+
+          if (errorMsg !== null) {
+            progressDiv.textContent = "ERROR";
+            statusDiv.textContent = errorMsg;
+            barFill.style.background = "#f00";
+            spinnerEl.style.animationPlayState = "paused";
+            return;
+          }
+          if (finished) {
+            progressDiv.textContent = "100%";
+            barFill.style.width = "100%";
+            statusDiv.textContent =
+              "Complete: " + fmtSize(downloadedBytes);
+            spinnerEl.style.display = "none";
+            return;
+          }
+          var pct = totalBytes
+            ? Math.floor((downloadedBytes / totalBytes) * 100)
+            : 0;
+          progressDiv.textContent = pct + "%";
+          barFill.style.width = pct + "%";
+          if (totalBytes) {
+            statusDiv.textContent =
+              fmtSize(downloadedBytes) + " / " + fmtSize(totalBytes);
+          }
+          requestAnimationFrame(render);
+        }
+
+        // Use Node's http/https — unlike fetch(), Node streams support
+        // real TCP-level backpressure so the sender slows down when the
+        // SD card can't keep up.  No data accumulates in memory.
+        function download() {
+          requestAnimationFrame(render);
+
+          function doRequest(url, redirectCount) {
+            redirectCount = redirectCount || 0;
+            var parsed = new URL(url);
+            var mod =
+              parsed.protocol === "https:"
+                ? require("https")
+                : require("http");
+
+            mod
+              .get(url, function (res) {
+                // Follow redirects (301/302/307/308)
+                if (
+                  res.statusCode >= 300 &&
+                  res.statusCode < 400 &&
+                  res.headers.location
+                ) {
+                  res.resume();
+                  if (redirectCount >= MAX_REDIRECTS) {
+                    errorMsg = "Too many redirects";
+                    return;
+                  }
+                  // Resolve relative Location headers against the current URL.
+                  var next = new URL(res.headers.location, url).href;
+                  doRequest(next, redirectCount + 1);
+                  return;
+                }
+
+                if (res.statusCode !== 200) {
+                  res.resume();
+                  errorMsg = "HTTP " + res.statusCode;
+                  return;
+                }
+
+                totalBytes =
+                  parseInt(res.headers["content-length"], 10) || 0;
+
+                // A tiny Transform that only counts bytes — zero-copy
+                // passthrough, adds no buffering beyond its highWaterMark.
+                var meter = new Transform({
+                  highWaterMark: HWM,
+                  transform: function (chunk, _enc, cb) {
+                    downloadedBytes += chunk.length;
+                    cb(null, chunk);
+                  },
+                });
+
+                var out = fs.createWriteStream(OUTPUT_FILE, {
+                  highWaterMark: HWM,
+                });
+
+                // pipeline wires up backpressure (res ← meter ← out)
+                // and tears down every stream on error or completion.
+                pipeline(res, meter, out, function (err) {
+                  if (err) {
+                    errorMsg = err.message;
+                    console.error(err);
+                  } else {
+                    finished = true;
+                    console.log(
+                      "Download complete: " + downloadedBytes + " bytes"
+                    );
+                  }
+                });
+              })
+              .on("error", function (err) {
+                errorMsg = err.message;
+                console.error(err);
+              });
+          }
+
+          doRequest(VIDEO_URL);
+        }
+
+        download();
+      })();
+    </script>
+  </body>
+</html>
