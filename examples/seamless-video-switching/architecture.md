@@ -5,7 +5,7 @@ graph TD
     Player["BrightSign Player"]
     Autorun["autorun.brs<br/>(BrightScript)"]
     HTML["index.html<br/>(Dual Video Elements)"]
-    Bundle["bundle.js<br/>(Switching Logic)"]
+    Bundle["index.js<br/>(Switching Logic)"]
     Display["HDMI Display<br/>(Video Output)"]
     Assets[("assets/<br/>(Video Files<br/>.mp4, .ts)")]
     Player1["Video Player 1<br/>(Visible/Hidden)"]
