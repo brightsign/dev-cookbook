@@ -13,6 +13,7 @@
         "examples/node-simple-server",
         "examples/node-starter",
         "examples/nodejs-web-app",
+        "examples/seamless-video-switching",
         "examples/self-signed-certs",
         "examples/send-plugin-message",
         "templates/**"
