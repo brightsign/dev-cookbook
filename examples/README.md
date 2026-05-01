@@ -28,6 +28,11 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 -   **Location**: `examples/large-file-download`
 -   **Features**: Downloads large files (multi-GB) to SD card on memory-constrained players without OOM or UI blocking. Uses Node.js streams with TCP-level backpressure via `roHtmlWidget`.
 
+#### Seamless Video Switching Example
+
+-   **Location**: `examples/seamless-video-switching`
+-   **Features**: HTML5 video player with dual video elements for seamless, gap-free transitions between videos. Preloads next video in the background for instant switching.
+
 ### Node.js Examples
 
 #### Node Starter Example
