@@ -1,5 +1,8 @@
 # Large File Download Example
 
+![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)
+![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)
+
 ## Introduction
 
 This example demonstrates how to download a large file (multi-GB) to an SD card on a memory-constrained BrightSign player without running out of memory or blocking the UI.
