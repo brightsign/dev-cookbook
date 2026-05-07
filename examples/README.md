@@ -1,83 +1,57 @@
 # Examples
 
-Welcome to the examples directory! This guide will help you get started with the provided examples. Each example is independent and can be used based on your specific needs.
+Welcome to the examples directory! Each example is independent and can be used based on your specific needs.
 
-## Available Examples
+## Node Version Compatibility
+
+BrightSign players ship with different Node.js versions depending on the OS:
+
+- **BrightSign OS 8.x**: Node.js 14.17.6
+- **BrightSign OS 9.x**: Node.js 18
+
+Examples are organized into subdirectories based on their runtime requirements:
+
+- **`browser/`** - HTML and BrightScript examples that run in the player's browser. No Node.js dependency.
+- **`node-14/`** - Node.js examples compatible with BrightSign OS 8.x (Node 14.17.6).
+- **`node-18/`** - Node.js examples requiring BrightSign OS 9.x (Node 18) or a dev machine with Node 18+.
+
+Each Node.js example includes an `.nvmrc` file. Run `nvm use` in the example directory to switch to the correct version.
 
 Note that some starter examples include the creation of a `brightsign-dumps` folder, which is used by the BrightSign OS to store crash information and is very useful to BrightSign Support when troubleshooting. The creation of this folder is an optional but recommended step to help with diagnosing application issues.
 
-### HTML & Web Storage Examples
+## Compatibility Matrix
 
-#### HTML Starter Example
+### Browser Examples (`browser/`)
 
--   **Location**: `examples/html-starter`
--   **Features**: Simple HTML application for BrightSign, demonstrates running HTML and displaying images using a static directory. Great for getting started with HTML on BrightSign.
+| Example | Description | BrightSign OS |
+|---------|-------------|---------------|
+| [html-starter](browser/html-starter) | Simple HTML app, displays images using a static directory | 8.x, 9.x |
+| [indexeddb-caching](browser/indexeddb-caching) | Video caching using IndexedDB with smart playlist and background caching | 8.x, 9.x |
+| [local-storage](browser/local-storage) | Image slideshow with localStorage caching for persistent playback | 8.x, 9.x |
+| [bluetooth-scan](browser/bluetooth-scan) | Bluetooth device scanning using BrightSign's JS API | 8.x, 9.x |
+| [bs-sqlite-db](browser/bs-sqlite-db) | SQLite database usage with BrightScript/JavaScript communication | 8.x, 9.x |
+| [cec-interface](browser/cec-interface) | CEC commands via BrightScript and JavaScript implementations | 8.x, 9.x |
+| [enable-ldws](browser/enable-ldws) | Enable Local Diagnostic Web Server with multiple approaches | 8.x, 9.x |
+| [htmlwidget-iframes](browser/htmlwidget-iframes) | HTML widgets with iframes and security configuration | 8.x, 9.x |
+| [send-plugin-message](browser/send-plugin-message) | Plugin message communication between BrightScript and HTML/JS | 8.x, 9.x |
+| [syncmanager-js](browser/syncmanager-js) | Multi-player content synchronization using SyncManager JS API | 8.x, 9.x |
+| [large-file-download](browser/large-file-download) | Memory-bounded multi-GB download using Node streams in roHtmlWidget | 8.x, 9.x |
 
-#### IndexedDB Caching Example
 
--   **Location**: `examples/indexeddb-caching`
--   **Features**: Demonstrates video caching using IndexedDB in a BrightSign HTML5 app. Implements a smart playlist and background caching for smooth video playback.
+### Node.js 14 Examples (`node-14/`)
 
-#### Local Storage Example
+| Example | Description | Node Version | Runs On |
+|---------|-------------|-------------|---------|
+| [node-starter](node-14/node-starter) | Minimal Node.js HTTP server for BrightSign | 14.17.6 | Player |
+| [node-simple-server](node-14/node-simple-server) | Advanced Node.js server with REST API, Jest tests, and webpack | 14.17.6 | Player |
 
--   **Location**: `examples/local-storage`
--   **Features**: Image slideshow that caches images in browser localStorage for persistent, smooth playback and looping.
+### Node.js 18 Examples (`node-18/`)
 
-#### Large File Download Example
-
--   **Location**: `examples/large-file-download`
--   **Features**: Downloads large files (multi-GB) to SD card on memory-constrained players without OOM or UI blocking. Uses Node.js streams with TCP-level backpressure via `roHtmlWidget`.
-
-### Node.js Examples
-
-#### Node Starter Example
-
--   **Location**: `examples/node-starter`
--   **Features**: Minimal Node.js HTTP server for BrightSign. Boots a simple server and responds to requests at the root endpoint.
-
-#### Node Simple Server Example
-
--   **Location**: `examples/node-simple-server`
--   **Features**: Advanced Node.js server with static file serving, device info REST API, Jest tests, and webpack config. Good for learning about full-featured Node.js deployments on BrightSign.
-
-### Deployment & Provisioning Examples
-
-#### autorun.zip Package Example
-
--   **Location**: `examples/autorun-zip-package`
--   **Features**: Complete example of creating and deploying an `autorun.zip` package for BrightSign players. Includes the `autozip.brs` unpacking script, sample application files, build script, and comprehensive documentation for Partner Gallery integration. Essential for CMS providers and partners deploying applications to fleets of BrightSign players.
-
-#### Provisioning Server Example
-
--   **Location**: `examples/provisioning-server`
--   **Features**: Docker-based provisioning server implementing BrightSign's provisioning protocol. Demonstrates automated content delivery to players on a local network with player tracking and deployment management.
-
-### Device & Plugin Integration Examples
-
-#### Bluetooth Scan Example
-
--   **Location**: `examples/bluetooth-scan`
--   **Features**: HTML+JS app for scanning Bluetooth devices on BrightSign. Requires a compatible Bluetooth adapter and uses BrightSign's proprietary JS API.
-
-#### BS Self Updater Example
-
--   **Location**: `examples/bs-self-updater`
--   **Features**: TypeScript utility for self-updating BrightSign apps by downloading and applying new `autorun.zip` packages from a server. Works in conjunction with the autorun.zip package example.
-
-#### BS SQLite DB Example
-
--   **Location**: `examples/bs-sqlite-db`
--   **Features**: Demonstrates SQLite database usage on BrightSign, including table creation, data insertion, querying, and cleanup via BrightScript and JavaScript communication.
-
-#### Send Plugin Message Example
-
--   **Location**: `examples/send-plugin-message`
--   **Features**: Shows how to send plugin messages between BrightScript and HTML/JavaScript apps, useful for integrating BrightAuthor:connected presentations with custom logic.   
-
-#### Syncmanager Example
-
--   **Location**: `examples/syncmanager`
--   **Features**: Demonstrates using BrightSign's `@brightsign/syncmanager` JS API for synchronizing content across multiple players.
+| Example | Description | Node Version | Runs On |
+|---------|-------------|-------------|---------|
+| [bs-self-updater](node-18/bs-self-updater) | TypeScript self-updating app that downloads and applies new autorun.zip packages | >=18 | Player |
+| [provisioning-server](node-18/provisioning-server) | Docker-based provisioning server implementing BrightSign's provisioning protocol | >=18 | Dev Machine |
+| [self-signed-certs](node-18/self-signed-certs) | Self-signed certificate handling using native fetch and undici | >=18 | Dev Machine |
 
 ## Next Steps
 
@@ -86,3 +60,4 @@ After exploring these examples, you can:
 1. Combine concepts from different examples to build more complex applications
 2. Add testing to your applications following the `node-simple-server` example
 3. Implement plugin message communication for advanced BrightScript integration
+4. Use one of the [templates](../templates) to start a production project

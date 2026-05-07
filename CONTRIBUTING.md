@@ -11,6 +11,32 @@ Thank you for contributing to the BrightSign Dev Cookbook!
 We look forward to your contributions and suggestions!
 
 
+# Adding new examples
+
+When adding a new example, follow these conventions:
+
+1. **Place it in the correct subdirectory** based on its Node.js requirement:
+   - `examples/browser/` for HTML/BrightScript examples with no Node.js dependency
+   - `examples/node-14/` for examples targeting BrightSign OS 8.x (Node 14.17.6)
+   - `examples/node-18/` for examples requiring BrightSign OS 9.x (Node 18+)
+
+2. **Include an `.nvmrc` file** in every Node.js example declaring the minimum required version (e.g., `14.17.6` or `18`).
+
+3. **Add an `engines` field** in `package.json` (if the example has one):
+   ```json
+   "engines": {
+       "node": ">=18"
+   }
+   ```
+
+4. **Add version badges** at the top of the example's README, right after the title:
+   - Browser: `![Runtime: Browser](https://img.shields.io/badge/runtime-browser-blue)` and `![BrightSign OS: 8.x | 9.x](https://img.shields.io/badge/BrightSign_OS-8.x_%7C_9.x-purple)`
+   - Node on player: `![Node.js: >=18](https://img.shields.io/badge/node.js-%3E%3D18-green)` and `![BrightSign OS: 9.x](https://img.shields.io/badge/BrightSign_OS-9.x-purple)`
+   - Dev machine tool: `![Node.js: >=18](https://img.shields.io/badge/node.js-%3E%3D18-green)` and `![Runs on: Dev Machine](https://img.shields.io/badge/runs_on-dev_machine-orange)`
+
+5. **Update the compatibility matrix** in `examples/README.md` with the new example.
+
+
 # How to submit changes
 
 To contribute enhancements or fixes to `dev-cookbook`, please follow these steps:

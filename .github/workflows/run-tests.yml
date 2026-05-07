@@ -5,18 +5,22 @@ on: [push]
 jobs:
   install_and_test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14.17.6', '18']
     steps:
       - uses: actions/checkout@v4
         with:
             fetch-depth: 1
       - name: Fetch latest main branch commit
         run: git fetch --no-tags --depth=1 origin +refs/heads/main:refs/remotes/origin/main
-      - name: Use Node.js
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: '14.17.6'
+          node-version: ${{ matrix.node-version }}
           cache: 'yarn'
-      - run: yarn --frozen-lockfile
+      - name: Install dependencies
+        run: yarn --frozen-lockfile --ignore-engines ${{ matrix.node-version == '14.17.6' && '--ignore-scripts' || '' }}
       - run: node ./scripts/workspace_actions.js test
 
   format_all:
@@ -31,9 +35,9 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14.17.6'
+          node-version: '18'
           cache: 'yarn'
-      - run: yarn --frozen-lockfile
+      - run: yarn --frozen-lockfile --ignore-engines
       - run: node ./scripts/workspace_actions.js format
       - name: Commit formatting changes
         uses: stefanzweifel/git-auto-commit-action@v5
