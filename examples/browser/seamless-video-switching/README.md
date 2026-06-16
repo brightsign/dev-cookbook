@@ -65,3 +65,8 @@ The application will automatically:
 - Sort them alphabetically
 - Play them in sequence with seamless transitions
 - Loop back to the first video after the last one finishes
+
+## Notes
+
+- **Supported video formats**: See [BrightSign video formats and codecs](https://docs.brightsign.biz/advanced/video-formats-and-codecs) for the list of containers, codecs, and profiles supported by each player series.
+- **Performance**: Playback smoothness and switching behavior may vary depending on player model, OS version, video mode (resolution/framerate), and the encoding of your source files. Adjust the code (e.g., preload behavior, number of preloaded players) to fit your specific use-case.
