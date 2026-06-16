@@ -86,22 +86,25 @@ function switchToNextVideo() {
   // Ensure next player starts from beginning
   nextPlayer.currentTime = 0;
 
-  // Start playing the next video (while still hidden)
+  // Defer the visibility swap until the hidden player is actually playing
+  // so we never reveal an unrendered frame.
+  nextPlayer.addEventListener('playing', () => {
+    currentPlayer.pause();
+    currentPlayer.muted = true; // Mute the outgoing player
+    currentPlayer.classList.add('hidden');
+
+    nextPlayer.muted = false; // Unmute the incoming player
+    nextPlayer.classList.remove('hidden');
+
+    // Toggle which player is visible
+    visibleVideoPlayer = visibleVideoPlayer === 1 ? 2 : 1;
+
+    // Preload the next video in the now-hidden player
+    preloadNextVideo();
+  }, { once: true });
+
+  // Start playing the next video (still hidden)
   nextPlayer.play().catch(e => console.error('Play error:', e));
-
-  // Switch visibility and audio immediately - the video is already preloaded
-  currentPlayer.pause();
-  currentPlayer.muted = true; // Mute the outgoing player
-  currentPlayer.classList.add('hidden');
-
-  nextPlayer.muted = false; // Unmute the incoming player
-  nextPlayer.classList.remove('hidden');
-
-  // Toggle which player is visible
-  visibleVideoPlayer = visibleVideoPlayer === 1 ? 2 : 1;
-
-  // Preload the next video in the now-hidden player
-  preloadNextVideo();
 }
 
 // Call main when DOM is ready
