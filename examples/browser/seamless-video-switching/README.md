@@ -70,3 +70,4 @@ The application will automatically:
 
 - **Supported video formats**: See [BrightSign video formats and codecs](https://docs.brightsign.biz/advanced/video-formats-and-codecs) for the list of containers, codecs, and profiles supported by each player series.
 - **Performance**: Playback smoothness and switching behavior may vary depending on player model, OS version, video mode (resolution/framerate), and the encoding of your source files. Adjust the code (e.g., preload behavior, number of preloaded players) to fit your specific use-case.
+- **Multi-decoder hardware**: On mid-to-high-end players (XT, 4K series) that support simultaneous decode pipelines, see [seamless-video-switching-multi-decoder](../seamless-video-switching-multi-decoder/) for near-zero-gap transitions using decoder pre-warming and early start.

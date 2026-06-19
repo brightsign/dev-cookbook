@@ -27,15 +27,29 @@ function preloadNextVideo() {
   hidden.muted = true;
   hidden.src = `${assetsFolder}/${videoFiles[nextVideoIndex]}`;
   hidden.load();
+
+  // Warm the decode pipeline so play() starts near-instantly at switch time
+  hidden.addEventListener('canplay', () => {
+    hidden.play().then(() => { hidden.pause(); hidden.currentTime = 0; }).catch(() => {});
+  }, { once: true });
+}
+
+// Start hidden player 0.5s before end so it's already playing when the swap happens
+function armEarlyStart() {
+  const { visible } = getPlayers();
+  visible.addEventListener('timeupdate', function onNearEnd() {
+    if (visible.duration - visible.currentTime <= 0.5) {
+      visible.removeEventListener('timeupdate', onNearEnd);
+      getPlayers().hidden.play().catch(() => {});
+    }
+  });
 }
 
 function switchToNextVideo() {
   currentVideoIndex = (currentVideoIndex + 1) % videoFiles.length;
   const { visible: currentPlayer, hidden: nextPlayer } = getPlayers();
 
-  // Defer visibility swap until the hidden player is actually playing
-  // to avoid revealing an unrendered frame
-  nextPlayer.addEventListener('playing', () => {
+  const doSwap = () => {
     currentPlayer.pause();
     currentPlayer.muted = true;
     currentPlayer.classList.add('hidden');
@@ -43,9 +57,16 @@ function switchToNextVideo() {
     nextPlayer.classList.remove('hidden');
     visibleVideoPlayer = visibleVideoPlayer === 1 ? 2 : 1;
     preloadNextVideo();
-  }, { once: true });
+    armEarlyStart();
+  };
 
-  nextPlayer.play().catch(e => console.error('Play error:', e));
+  // If early start worked, swap is instant; otherwise wait for playing
+  if (!nextPlayer.paused) {
+    doSwap();
+  } else {
+    nextPlayer.play().catch(e => console.error('Play error:', e));
+    nextPlayer.addEventListener('playing', doSwap, { once: true });
+  }
 }
 
 async function main() {
@@ -75,6 +96,7 @@ async function main() {
     player1.addEventListener('playing', () => {
       console.log('Player 1 playing');
       preloadNextVideo();
+      armEarlyStart();
     }, { once: true });
 
   } catch (e) {
