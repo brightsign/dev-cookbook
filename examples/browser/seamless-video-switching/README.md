@@ -18,6 +18,10 @@
 4. Video 1 (now hidden) loads the next file in the background
 5. The cycle repeats for seamless continuous playback
 
+## Which example should I use?
+
+This example works on any BrightSign player and is the recommended starting point. If your hardware supports multiple simultaneous decode pipelines, see [seamless-video-switching-multi-decoder](../seamless-video-switching-multi-decoder/) for near-zero-gap transitions using decoder pre-warming and early start. Refer to the [BrightSign model and series reference](https://docs.brightsign.biz/hardware/model-and-series-reference) to check your player's capabilities.
+
 ## Configuration
 
 You can customize the following settings in `index.js` before deploying:
