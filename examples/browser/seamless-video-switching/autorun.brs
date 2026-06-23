@@ -26,6 +26,8 @@ function CreateHTMLWidget(mp as object) as object
 
   ' Create HTML Widget config
   config = {
+    javascript_enabled: true,
+    brightsign_js_objects_enabled: true,
     nodejs_enabled: true,
     url: "file:///sd:/index.html",
     port: mp
