@@ -25,12 +25,14 @@ You can customize the following settings in `index.js` before deploying:
 - **`rootStoragePath`** - The root storage path on the BrightSign player (default: `/storage/sd`)
 - **`assetsFolder`** - The folder name containing your video files (default: `assets`)
 - **`MULTI_DECODER`** - Set to `true` on players with multiple hardware decode pipelines to enable near-zero-gap transitions (default: `false`). See [Multi-decoder mode](#multi-decoder-mode) below.
+- **`EARLY_START_LEAD_SECONDS`** - Multi-decoder only. How many seconds before the visible video ends to start the hidden player (default: `0.5`). Raise if the swap reveals unrendered frames; lower for a tighter cut.
 
 Example:
 ```javascript
 const rootStoragePath = '/storage/sd';
-const assetsFolder = 'assets'; // Change this to use a different folder name
-const MULTI_DECODER = false;   // Set to true on XT/4K series players
+const assetsFolder = 'assets';        // Change this to use a different folder name
+const MULTI_DECODER = false;          // Set to true on XT/4K series players
+const EARLY_START_LEAD_SECONDS = 0.5; // Multi-decoder only
 ```
 
 If you change `assetsFolder` to a different name (e.g., `videos`), make sure to create that folder on your SD card and place your video files there instead.
@@ -40,7 +42,7 @@ If you change `assetsFolder` to a different name (e.g., `videos`), make sure to 
 On BrightSign players with multiple hardware decode pipelines (mid-to-high-end XT and 4K series), set `MULTI_DECODER = true` in `index.js` to enable two optimizations that further reduce the transition gap:
 
 1. **Decoder pre-warming** — after the hidden player buffers (`canplay`), it plays briefly then pauses at frame 0. This initializes the hardware decode pipeline so `play()` at switch time starts near-instantly.
-2. **Early start** — the hidden player begins playing (muted, hidden) 0.5s before the visible video ends. By the time `ended` fires, the hidden player is already producing frames and the swap is immediate.
+2. **Early start** — the hidden player begins playing (muted, hidden) `EARLY_START_LEAD_SECONDS` before the visible video ends (default 0.5s). By the time `ended` fires, the hidden player is already producing frames and the swap is immediate.
 
 If the early start does not complete in time, the swap falls back to awaiting the `playing` event, preventing a swap onto an unrendered frame.
 
@@ -89,4 +91,4 @@ The application will automatically:
 
 - **Supported video formats**: See [BrightSign video formats and codecs](https://docs.brightsign.biz/advanced/video-formats-and-codecs) for the list of containers, codecs, and profiles supported by each player series.
 - **Performance**: Playback smoothness and switching behavior may vary depending on player model, OS version, video mode (resolution/framerate), and the encoding of your source files. Adjust the code (e.g., preload behavior, number of preloaded players) to fit your specific use-case.
-- **Early start threshold (multi-decoder mode)**: The 0.5s window in `armEarlyStart()` can be adjusted to trade content budget against transition reliability on your specific hardware and content type.
+- **Early start threshold (multi-decoder mode)**: Adjust `EARLY_START_LEAD_SECONDS` (default `0.5`) to trade content budget against transition reliability on your specific hardware and content type.

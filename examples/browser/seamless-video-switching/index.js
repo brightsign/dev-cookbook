@@ -10,6 +10,11 @@ const assetsFolder = 'assets';
 // player's decoder and may cause stuttering. See README for details.
 const MULTI_DECODER = false;
 
+// Multi-decoder only: how many seconds before the visible video ends to start
+// the hidden player. Trades content budget against transition reliability —
+// raise if the swap is revealing unrendered frames, lower for a tighter cut.
+const EARLY_START_LEAD_SECONDS = 0.5;
+
 // State tracking
 let currentVideoIndex = 0;
 let visibleVideoPlayer = 1;
@@ -42,12 +47,12 @@ function preloadNextVideo() {
   }
 }
 
-// Multi-decoder only: start hidden player 0.5s before end so it's already
-// playing when the swap happens, eliminating decoder handoff gap.
+// Multi-decoder only: start hidden player EARLY_START_LEAD_SECONDS before end
+// so it's already playing when the swap happens, eliminating decoder handoff gap.
 function armEarlyStart() {
   const { visible } = getPlayers();
   visible.addEventListener('timeupdate', function onNearEnd() {
-    if (visible.duration - visible.currentTime <= 0.5) {
+    if (visible.duration - visible.currentTime <= EARLY_START_LEAD_SECONDS) {
       visible.removeEventListener('timeupdate', onNearEnd);
       getPlayers().hidden.play().catch(() => {});
     }
