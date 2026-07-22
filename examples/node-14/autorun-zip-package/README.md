@@ -378,7 +378,7 @@ For issues, questions, or contributions:
 
 ## License
 
-See the [LICENSE.txt](../../LICENSE.txt) file in the root of the dev-cookbook repository.
+See the [LICENSE.txt](../../../LICENSE.txt) file in the root of the dev-cookbook repository.
 
 ---
 
