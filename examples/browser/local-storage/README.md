@@ -16,7 +16,7 @@ This example demonstrates how to create an image slideshow application that cach
 5. **Session Persistence**: Cached images persist across browser sessions and page reloads
 6. **Loop Behavior**: After the last image, the slideshow loops back to the first image
 
-**Note**: Browser localStorage has a storage limit of approximately 5MB. For caching larger amounts of content, consider using IndexedDB which offers much larger storage capacity. Check out our [IndexedDB caching example](https://github.com/brightsign/dev-cookbook/tree/main/examples/indexeddb-caching-example) for an alternative approach.
+**Note**: Browser localStorage has a storage limit of approximately 5MB. For caching larger amounts of content, consider using IndexedDB which offers much larger storage capacity. Check out our [IndexedDB caching example](https://github.com/brightsign/dev-cookbook/tree/main/examples/browser/indexeddb-caching) for an alternative approach.
 
 ## How to Run on a Player
 
