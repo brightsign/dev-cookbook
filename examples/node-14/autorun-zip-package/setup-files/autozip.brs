@@ -64,8 +64,23 @@ function main()
 end function
 
 ' Check if a file exists at the specified path
+' MatchFiles() requires a directory as its first argument and a
+' separator-free pattern as its second, so the path must be split
+' into its directory and filename parts before matching.
 function DoesFileExist(filePath$ as string) as boolean
-    fileInfo = MatchFiles(filePath$, filePath$)
+    dirPath$ = "SD:/"
+    fileName$ = filePath$
+    lastSlashPos% = 0
+    for i% = 1 to Len(filePath$)
+        if Mid(filePath$, i%, 1) = "/" then
+            lastSlashPos% = i%
+        end if
+    next
+    if lastSlashPos% > 0 then
+        dirPath$ = Left(filePath$, lastSlashPos%)
+        fileName$ = Mid(filePath$, lastSlashPos% + 1)
+    end if
+    fileInfo = MatchFiles(dirPath$, fileName$)
     if fileInfo.Count() > 0 then
         return true
     end if
