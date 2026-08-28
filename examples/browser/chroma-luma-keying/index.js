@@ -8,9 +8,7 @@ const videoPath = 'assets/chroma-key-test.webm';
 // 'chroma' - key based on color (cb-key + cr-key). Works even when the
 //            foreground contains dark or black content, as long as the
 //            background is a saturated color not used anywhere in the
-//            foreground (classic green/blue-screen approach). Requires a
-//            companion luma-key workaround - see CHROMA_WORKAROUND below
-//            and the README's "Chroma-keying requires a workaround" section.
+//            foreground (classic green/blue-screen approach).
 const keyingMode = 'chroma';
 
 // Luma range to key out in 'luma' mode, as [low, high] (0-255).
