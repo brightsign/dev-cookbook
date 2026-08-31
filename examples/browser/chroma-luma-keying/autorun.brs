@@ -7,6 +7,14 @@ function main()
 
 	mp = CreateObject("roMessagePort")
 
+	' Set BrightSign native media player
+	regHtml = CreateObject("roRegistrySection", "html")
+	if regHtml.Read("use-brightsign-media-player") <> "1" then
+		regHtml.Write("use-brightsign-media-player", "1")
+		wait(1000) ' Wait for 1 second before rebooting
+		RebootSystem()
+	end if
+
 	' Create HTML Widget
 	widget = CreateHTMLWidget(mp)
 	widget.Show()

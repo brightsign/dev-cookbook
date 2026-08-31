@@ -10,7 +10,7 @@ This example shows:
 - How to enable and configure `hwz` on a `<video>` element, in both luma-key and chroma-key (`cb-key`/`cr-key`) modes
 - How each mode actually encodes its key values and how to prepare source video for each
 
-> **This only works on BrightSign hardware.** `hwz` is a BrightSign-specific attribute. In a desktop browser it's simply ignored, so the video will just play normally with no transparency — you must test on a player.
+> **This only works on BrightSign hardware.** `hwz` is a BrightSign-specific attribute supported with the default native media player (`use-brightsign-media-player = '1'`). Desktop or any Chromium-based browsers will simply ignore this attribute. To see the transparency effect, test on BrightSign hardware with the native player enabled.
 
 ## How `hwz` works
 
