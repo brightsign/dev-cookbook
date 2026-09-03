@@ -20,7 +20,7 @@ const lumaRange = [0, 32];
 
 // Cb/Cr ranges to key out in 'chroma' mode, as [low, high] (0-255).
 // Centered on the measured background of assets/chroma-key-test.webm
-// (Cb=54, Cr=34 via `ffprobe`/`signalstats`) with margin for encoding noise.
+// (Cb=54, Cr=34 via `ffprobe`) with margin for encoding noise.
 const cbRange = [40, 70];
 const crRange = [20, 50];
 
