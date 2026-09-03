@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chroma/Luma Keying Transparent Video</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      /* Stand-in for the player's graphics layer. When the video's keyed-out
+         pixels become transparent, this is what shows through underneath.
+         Colors are chosen to be visually distinct from this example's
+         source video content - adjust to stay clear of your own video's
+         colors (and hues adjacent to them, e.g. yellow/orange sit next to
+         brown) so keyed vs. non-keyed areas are unambiguous at a glance. */
+      #graphics-layer {
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          #3f6b4a,
+          #3f6b4a 40px,
+          #6f8f6f 40px,
+          #6f8f6f 80px
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #graphics-layer span {
+        font-size: 48px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      #keyed-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: transparent;
+      }
+
+      #readout {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+        padding: 10px 14px;
+        background: rgba(0, 0, 0, 0.65);
+        border-radius: 6px;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: #9be07f;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Simulated "graphics layer" so you can see keyed-out video pixels turn transparent -->
+    <div id="graphics-layer"><span>GRAPHICS LAYER</span></div>
+
+    <!-- hwz is a BrightSign-specific attribute; it is ignored by desktop browsers.
+         index.js sets/overwrites this attribute from the config constants at
+         the top of the file before playback starts. -->
+    <video id="keyed-video" autoplay loop muted playsinline></video>
+
+    <div id="readout"></div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
