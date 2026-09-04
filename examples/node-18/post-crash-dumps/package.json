@@ -1,0 +1,9 @@
+{
+    "name": "post-crash-dumps",
+    "version": "1.0.0",
+    "description": "BrightSign Node.js app that uploads new crash dump files after boot.",
+    "main": "index.js",
+    "engines": {
+        "node": ">=18"
+    }
+}

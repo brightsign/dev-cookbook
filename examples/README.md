@@ -51,6 +51,7 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 | Example | Description | Node Version | Runs On |
 |---------|-------------|-------------|---------|
 | [bs-self-updater](node-18/bs-self-updater) | TypeScript self-updating app that downloads and applies new autorun.zip packages | >=18 | Player |
+| [post-crash-dumps](node-18/post-crash-dumps) | Node.js app that uploads new BrightSign crash dumps after boot, with a local test server | >=18 | Player / Dev Machine |
 | [provisioning-server](node-18/provisioning-server) | Docker-based provisioning server implementing BrightSign's provisioning protocol | >=18 | Dev Machine |
 | [self-signed-certs](node-18/self-signed-certs) | Self-signed certificate handling using native fetch and undici | >=18 | Dev Machine |
 
