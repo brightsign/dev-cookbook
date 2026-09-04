@@ -4,6 +4,7 @@
         "examples/node-14/autorun-zip-package",
         "examples/node-14/node-simple-server",
         "examples/node-18/bs-self-updater",
+        "examples/node-18/post-crash-dumps",
         "examples/node-18/provisioning-server",
         "templates/**"
     ],
