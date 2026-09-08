@@ -37,6 +37,7 @@ Note that some starter examples include the creation of a `brightsign-dumps` fol
 | [syncmanager-js](browser/syncmanager-js) | Multi-player content synchronization using SyncManager JS API | 8.x, 9.x |
 | [large-file-download](browser/large-file-download) | Memory-bounded multi-GB download using Node streams in roHtmlWidget | 8.x, 9.x |
 | [seamless-video-switching](browser/seamless-video-switching) | Gap-free HTML5 video playback using dual video elements with background preloading; reads asset list via Node `fs` in roHtmlWidget | 8.x, 9.x |
+| [chroma-luma-keying](browser/chroma-luma-keying) | Transparent video compositing over the graphics layer using `hwz` luma-key or chroma-key (cb-key/cr-key) | 8.x, 9.x |
 
 
 ### Node.js 14 Examples (`node-14/`)

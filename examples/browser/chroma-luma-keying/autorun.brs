@@ -1,0 +1,52 @@
+function main()
+	' Create directory to store crash-dumps (optional)
+	dir = CreateDirectory("SD:/brightsign-dumps")
+	if not dir then
+		print "Could not create directory"
+	end if
+
+	mp = CreateObject("roMessagePort")
+
+	' Set BrightSign native media player
+	regHtml = CreateObject("roRegistrySection", "html")
+	if regHtml.Read("use-brightsign-media-player") <> "1" then
+		regHtml.Write("use-brightsign-media-player", "1")
+		wait(1000) ' Wait for 1 second before rebooting
+		RebootSystem()
+	end if
+
+	' Create HTML Widget
+	widget = CreateHTMLWidget(mp)
+	widget.Show()
+
+	'Event Loop
+	while true
+		msg = wait(0, mp)
+		print "msg received - type=";type(msg)
+		if type(msg) = "roHtmlWidgetEvent" then
+			print "msg: ";msg
+		end if
+	end while
+
+end function
+
+function CreateHTMLWidget(mp as object) as object
+	' Get Screen Resolution
+	vidmode = CreateObject("roVideoMode")
+	width = vidmode.GetResX()
+	height = vidmode.GetResY()
+
+	r = CreateObject("roRectangle", 0, 0, width, height)
+
+	' Create HTML Widget config
+	config = {
+		javascript_enabled: true,
+		url: "file:///sd:/index.html",
+		port: mp
+	}
+
+	' Create HTML Widget
+	h = CreateObject("roHtmlWidget", r, config)
+	return h
+
+end function
