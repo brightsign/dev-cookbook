@@ -36,8 +36,14 @@ app.post("/crashdump", (req, res) => {
     console.log(`--- Body: ${bodyBuffer.length} bytes ---`);
 
     if (bodyBuffer.length > 0) {
-        fs.writeFileSync(savedFile, bodyBuffer);
-        console.log(`--- Body saved to: ${savedFile} ---`);
+        try {
+            fs.writeFileSync(savedFile, bodyBuffer);
+            console.log(`--- Body saved to: ${savedFile} ---`);
+        } catch (error) {
+            console.error(`Failed to save crash dump to ${savedFile}: ${error.message}`);
+            res.status(500).json({ message: "Failed to save crash dump." });
+            return;
+        }
     }
     console.log("=================================================");
 

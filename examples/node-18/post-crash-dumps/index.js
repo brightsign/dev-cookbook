@@ -90,7 +90,10 @@ async function loadLastUploadedDump() {
         }
 
         const dump = JSON.parse(dumpText);
-        if (!dump || typeof dump.modifiedTime !== "string") {
+        if (!dump ||
+            typeof dump.modifiedTime !== "string" ||
+            Number.isNaN(Date.parse(dump.modifiedTime))
+        ) {
             return null;
         }
         return dump;
@@ -185,6 +188,10 @@ function headersForDump(dumpFile, deviceInfo) {
 function uploadDump(uploadUrl, dumpFile, deviceInfo, requestTimeoutMs) {
     return new Promise((resolve, reject) => {
         const url = new URL(uploadUrl);
+        if (url.protocol !== "http:" && url.protocol !== "https:") {
+            reject(new Error(`Unsupported upload URL protocol: ${url.protocol}`));
+            return;
+        }
         const client = url.protocol === "https:" ? https : http;
         const request = client.request(
             url,
@@ -222,7 +229,13 @@ function uploadDump(uploadUrl, dumpFile, deviceInfo, requestTimeoutMs) {
         });
         request.on("error", reject);
 
-        fs.createReadStream(dumpFile.fullPath).pipe(request);
+        // Create read stream and its error handler
+        const stream = fs.createReadStream(dumpFile.fullPath);
+         stream.on("error", (error) => {
+             request.destroy(error);
+             reject(error);
+         });
+         stream.pipe(request);
     });
 }
 
