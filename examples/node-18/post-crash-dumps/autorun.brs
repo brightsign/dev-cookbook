@@ -1,6 +1,6 @@
 function main()
 
-    CRASH_DUMP_UPLOAD_URL = "http://YOUR_SERVER_IP:8080/crashdump"
+    CRASH_DUMP_UPLOAD_URL = "http://10.0.4.33:8080/crashdump"
     REGISTRY_SECTION_NAME = "crash_dump_example"
     UPLOAD_URL_REGISTRY_KEY = "upload_url"
 

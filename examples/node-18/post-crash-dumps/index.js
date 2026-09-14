@@ -12,25 +12,22 @@ const UPLOAD_URL_REGISTRY_KEY = "upload_url";
 const LAST_UPLOADED_DUMP_REGISTRY_KEY = "last_uploaded_dump"; // Stores the last successfully uploaded dump file and timestamp.
 const DELETE_AFTER_UPLOAD = false; // Whether to delete the dump files from brightsign-dumps folder after upload.
 const REQUEST_TIMEOUT_MS = 30000;
-const rootPrefix = "/storage";
 
 function getDefaultStorage() {
-    let storageDeviceList = ["usb1", "sd", "sd2", "ssd"]; // default list
+    let storagePaths = ["/storage/usb1", "/storage/sd", "/storage/sd2", "/storage/ssd"];
     try {
         const priorityOrder = new StorageClass().priorityOrder;
         if (Array.isArray(priorityOrder) && priorityOrder.length > 0) {
-            storageDeviceList = priorityOrder.map((storagePath) =>
-                path.relative(rootPrefix, storagePath)
-            );
+            storagePaths = priorityOrder;
         }
-    } catch {
+    } catch (ex) {
         // Fall back to default list.
     }
-    for (let index = 0; index < storageDeviceList.length; index += 1) {
+
+    for (const storagePath of storagePaths) {
         try {
-            fs.realpathSync(path.join(rootPrefix, storageDeviceList[index]));
-            return path.join(rootPrefix, storageDeviceList[index]);
-        } catch {
+            return fs.realpathSync(storagePath);
+        } catch (ex) {
             // The storage device is not present on this system.
         }
     }
