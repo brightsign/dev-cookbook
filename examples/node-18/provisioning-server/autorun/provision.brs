@@ -68,36 +68,16 @@ function DownloadContent(serverUrl$ as string) as boolean
     
     ' Create URL transfer object
     urlTransfer = CreateObject("roUrlTransfer")
-    urlTransfer.SetUrl(serverUrl$ + "/content/index.html")
+    urlTransfer.SetUrl(serverUrl$ + "/content/autorun.zip")
     
-    ' Download index.html
-    Notify("Downloading HTML files...")
-    if not DownloadFile(urlTransfer, serverUrl$ + "/content/index.html", "SD:/index.html") then
-        Notify("Error: Failed to download HTML files")
+    ' Download autorun.zip
+    Notify("Downloading autorun.zip...")
+    if not DownloadFile(urlTransfer, serverUrl$ + "/content/autorun.zip", "SD:/autorun.zip") then
+        Notify("Error: Failed to download autorun.zip")
         return false
     end if
     
-    ' Download autorun.brs (the application autorun, not this provisioning script)
-    Notify("Downloading application script...")
-    if not DownloadFile(urlTransfer, serverUrl$ + "/content/autorun.brs", "SD:/autorun.brs") then
-        Notify("Error: Failed to download application script")
-        return false
-    end if
-    
-    ' Create static directory
-    CreateDirectory("SD:/static")
-    
-    ' Download static assets
-    Notify("Downloading assets...")
-    if not DownloadFile(urlTransfer, serverUrl$ + "/content/static/logo192.png", "SD:/static/logo192.png") then
-        print "Warning: Could not download logo192.png"
-    end if
-    
-    if not DownloadFile(urlTransfer, serverUrl$ + "/content/static/XD-1035.png", "SD:/static/XD-1035.png") then
-        print "Warning: Could not download XD-1035.png"
-    end if
-    
-    print "✓ All content downloaded successfully"
+    print "✓ Content downloaded successfully"
     return true
 end function
 

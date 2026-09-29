@@ -213,9 +213,7 @@ To serve different content:
 
 1. Place your files in the `content/` directory:
 
-    - `content/autorun.brs` - Application autorun script
-    - `content/index.html` - HTML content
-    - `content/static/*` - Static assets
+    - `content/autorun.zip` - All application files in zip format (must contain `autozip.brs`)
 
 2. The provisioning script (`autorun/provision.brs`) will download these files
 
@@ -306,6 +304,12 @@ CREATE TABLE check_ins (
 -   Check server logs to see if provisioning script is being delivered
 -   Verify content files exist in `content/` directory
 -   Test provisioning script syntax on player directly
+
+### Autorun.zip not unzipping
+
+-   Ensure the zip file contains `autozip.brs` at the root level
+    -   Refer to [this docs page](https://docs.brightsign.biz/technical/create-install-an-autorunzip) to ensure the zip file is correctly structured
+-   Check player logs for any errors related to unzipping
 
 ### Database Issues
 
