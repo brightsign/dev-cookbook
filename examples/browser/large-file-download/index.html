@@ -274,15 +274,21 @@
             var http = require("http");
             var https = require("https");
             var targetPort = target.port || 443;
+            // Explicit host:port authority. target.host already brackets
+            // IPv6 hosts; target.port is empty when the default port is
+            // implicit, so add it back for the CONNECT authority-form.
+            var authority = target.port
+              ? target.host
+              : target.host + ":" + targetPort;
 
-            var connectHeaders = { Host: target.host };
+            var connectHeaders = { Host: authority };
             if (authHdr) connectHeaders["Proxy-Authorization"] = authHdr;
 
             var connectReq = http.request({
               host: proxy.hostname,
               port: proxy.port || 80,
               method: "CONNECT",
-              path: target.hostname + ":" + targetPort,
+              path: authority,
               headers: connectHeaders,
             });
 
