@@ -81,6 +81,9 @@
         const MAX_REDIRECTS = 10;
         // Keep buffers small — ~48 KB total across the three streams.
         const HWM = 16 * 1024;
+        // Inactivity timeout per request.  Resets on any I/O activity, so
+        // long downloads work as long as bytes keep flowing.
+        const TIMEOUT_MS = 30 * 1000;
 
         const progressDiv = document.getElementById("progress");
         const statusDiv = document.getElementById("status");
@@ -229,6 +232,14 @@
             console.error(err);
           }
 
+          function armTimeout(req, label) {
+            req.setTimeout(TIMEOUT_MS, function () {
+              req.destroy(
+                new Error(label + " timed out after " + TIMEOUT_MS + " ms")
+              );
+            });
+          }
+
           function doRequest(url, redirectCount) {
             redirectCount = redirectCount || 0;
             var target = new URL(url);
@@ -240,11 +251,12 @@
                 target.protocol === "https:"
                   ? require("https")
                   : require("http");
-              mod
+              var req = mod
                 .get(url, function (res) {
                   handleResponse(url, redirectCount, res);
                 })
                 .on("error", onError);
+              armTimeout(req, "Request");
               return;
             }
 
@@ -261,11 +273,12 @@
                 headers: { Host: target.host },
               };
               if (authHdr) options.headers["Proxy-Authorization"] = authHdr;
-              http
+              var httpReq = http
                 .get(options, function (res) {
                   handleResponse(url, redirectCount, res);
                 })
                 .on("error", onError);
+              armTimeout(httpReq, "Proxied HTTP request");
               return;
             }
 
@@ -291,6 +304,7 @@
               path: authority,
               headers: connectHeaders,
             });
+            armTimeout(connectReq, "Proxy CONNECT");
 
             connectReq.on("connect", function (res, socket) {
               if (res.statusCode !== 200) {
@@ -298,7 +312,7 @@
                 socket.destroy();
                 return;
               }
-              https
+              var tlsReq = https
                 .get(
                   {
                     host: target.hostname,
@@ -313,6 +327,7 @@
                   }
                 )
                 .on("error", onError);
+              armTimeout(tlsReq, "Tunneled HTTPS request");
             });
 
             connectReq.on("error", onError);
