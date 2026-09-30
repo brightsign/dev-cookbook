@@ -70,9 +70,20 @@
 
         const VIDEO_URL = ""; // REPLACE WITH A PUBLIC OR OTHERWISE REACHABLE FILE URL
         const OUTPUT_FILE = ""; // REPLACE WITH YOUR OUTPUT PATH, e.g. "/storage/sd/largevideo.mp4"
+        // Optional HTTP/HTTPS proxy. Leave empty for a direct connection.
+        // Form: "http://user:pass@host:port" (auth optional).
+        // If empty, the sample also checks HTTPS_PROXY / HTTP_PROXY in
+        // process.env (Node convention). The player's OS-level proxy
+        // (set via roNetworkConfiguration.SetProxy or the DWS) is NOT
+        // inherited by Node's http/https modules, so it must be set here
+        // or via those env vars.
+        const PROXY_URL = "";
         const MAX_REDIRECTS = 10;
         // Keep buffers small — ~48 KB total across the three streams.
         const HWM = 16 * 1024;
+        // Inactivity timeout per request.  Resets on any I/O activity, so
+        // long downloads work as long as bytes keep flowing.
+        const TIMEOUT_MS = 30 * 1000;
 
         const progressDiv = document.getElementById("progress");
         const statusDiv = document.getElementById("status");
@@ -138,74 +149,189 @@
         function download() {
           requestAnimationFrame(render);
 
-          function doRequest(url, redirectCount) {
-            redirectCount = redirectCount || 0;
-            var parsed = new URL(url);
-            var mod =
-              parsed.protocol === "https:"
-                ? require("https")
-                : require("http");
+          function resolveProxy() {
+            if (PROXY_URL) return PROXY_URL;
+            var env =
+              (typeof process !== "undefined" && process.env) || {};
+            return (
+              env.HTTPS_PROXY ||
+              env.https_proxy ||
+              env.HTTP_PROXY ||
+              env.http_proxy ||
+              ""
+            );
+          }
 
-            mod
-              .get(url, function (res) {
-                // Follow redirects (301/302/307/308)
-                if (
-                  res.statusCode >= 300 &&
-                  res.statusCode < 400 &&
-                  res.headers.location
-                ) {
-                  res.resume();
-                  if (redirectCount >= MAX_REDIRECTS) {
-                    errorMsg = "Too many redirects";
-                    return;
-                  }
-                  // Resolve relative Location headers against the current URL.
-                  var next = new URL(res.headers.location, url).href;
-                  doRequest(next, redirectCount + 1);
-                  return;
-                }
+          function proxyAuthHeader(proxy) {
+            if (!proxy.username) return null;
+            var user = decodeURIComponent(proxy.username);
+            var pass = decodeURIComponent(proxy.password || "");
+            return (
+              "Basic " + Buffer.from(user + ":" + pass).toString("base64")
+            );
+          }
 
-                if (res.statusCode !== 200) {
-                  res.resume();
-                  errorMsg = "HTTP " + res.statusCode;
-                  return;
-                }
+          function handleResponse(url, redirectCount, res) {
+            // Follow redirects (301/302/307/308)
+            if (
+              res.statusCode >= 300 &&
+              res.statusCode < 400 &&
+              res.headers.location
+            ) {
+              res.resume();
+              if (redirectCount >= MAX_REDIRECTS) {
+                errorMsg = "Too many redirects";
+                return;
+              }
+              // Resolve relative Location headers against the current URL.
+              var next = new URL(res.headers.location, url).href;
+              doRequest(next, redirectCount + 1);
+              return;
+            }
 
-                totalBytes =
-                  parseInt(res.headers["content-length"], 10) || 0;
+            if (res.statusCode !== 200) {
+              res.resume();
+              errorMsg = "HTTP " + res.statusCode;
+              return;
+            }
 
-                // A tiny Transform that only counts bytes — zero-copy
-                // passthrough, adds no buffering beyond its highWaterMark.
-                var meter = new Transform({
-                  highWaterMark: HWM,
-                  transform: function (chunk, _enc, cb) {
-                    downloadedBytes += chunk.length;
-                    cb(null, chunk);
-                  },
-                });
+            totalBytes =
+              parseInt(res.headers["content-length"], 10) || 0;
 
-                var out = fs.createWriteStream(OUTPUT_FILE, {
-                  highWaterMark: HWM,
-                });
+            // A tiny Transform that only counts bytes — zero-copy
+            // passthrough, adds no buffering beyond its highWaterMark.
+            var meter = new Transform({
+              highWaterMark: HWM,
+              transform: function (chunk, _enc, cb) {
+                downloadedBytes += chunk.length;
+                cb(null, chunk);
+              },
+            });
 
-                // pipeline wires up backpressure (res ← meter ← out)
-                // and tears down every stream on error or completion.
-                pipeline(res, meter, out, function (err) {
-                  if (err) {
-                    errorMsg = err.message;
-                    console.error(err);
-                  } else {
-                    finished = true;
-                    console.log(
-                      "Download complete: " + downloadedBytes + " bytes"
-                    );
-                  }
-                });
-              })
-              .on("error", function (err) {
+            var out = fs.createWriteStream(OUTPUT_FILE, {
+              highWaterMark: HWM,
+            });
+
+            // pipeline wires up backpressure (res ← meter ← out)
+            // and tears down every stream on error or completion.
+            pipeline(res, meter, out, function (err) {
+              if (err) {
                 errorMsg = err.message;
                 console.error(err);
-              });
+              } else {
+                finished = true;
+                console.log(
+                  "Download complete: " + downloadedBytes + " bytes"
+                );
+              }
+            });
+          }
+
+          function onError(err) {
+            errorMsg = err.message;
+            console.error(err);
+          }
+
+          function armTimeout(req, label) {
+            req.setTimeout(TIMEOUT_MS, function () {
+              req.destroy(
+                new Error(label + " timed out after " + TIMEOUT_MS + " ms")
+              );
+            });
+          }
+
+          function doRequest(url, redirectCount) {
+            redirectCount = redirectCount || 0;
+            var target = new URL(url);
+            var proxyStr = resolveProxy();
+
+            if (!proxyStr) {
+              // Direct connection — original path.
+              var mod =
+                target.protocol === "https:"
+                  ? require("https")
+                  : require("http");
+              var req = mod
+                .get(url, function (res) {
+                  handleResponse(url, redirectCount, res);
+                })
+                .on("error", onError);
+              armTimeout(req, "Request");
+              return;
+            }
+
+            var proxy = new URL(proxyStr);
+            var authHdr = proxyAuthHeader(proxy);
+
+            if (target.protocol === "http:") {
+              // HTTP through a proxy: send the absolute URL as the path.
+              var http = require("http");
+              var options = {
+                host: proxy.hostname,
+                port: proxy.port || 80,
+                path: url,
+                headers: { Host: target.host },
+              };
+              if (authHdr) options.headers["Proxy-Authorization"] = authHdr;
+              var httpReq = http
+                .get(options, function (res) {
+                  handleResponse(url, redirectCount, res);
+                })
+                .on("error", onError);
+              armTimeout(httpReq, "Proxied HTTP request");
+              return;
+            }
+
+            // HTTPS through a proxy: open a CONNECT tunnel, then run
+            // TLS over the returned socket.
+            var http = require("http");
+            var https = require("https");
+            var targetPort = target.port || 443;
+            // Explicit host:port authority. target.host already brackets
+            // IPv6 hosts; target.port is empty when the default port is
+            // implicit, so add it back for the CONNECT authority-form.
+            var authority = target.port
+              ? target.host
+              : target.host + ":" + targetPort;
+
+            var connectHeaders = { Host: authority };
+            if (authHdr) connectHeaders["Proxy-Authorization"] = authHdr;
+
+            var connectReq = http.request({
+              host: proxy.hostname,
+              port: proxy.port || 80,
+              method: "CONNECT",
+              path: authority,
+              headers: connectHeaders,
+            });
+            armTimeout(connectReq, "Proxy CONNECT");
+
+            connectReq.on("connect", function (res, socket) {
+              if (res.statusCode !== 200) {
+                errorMsg = "Proxy CONNECT failed: HTTP " + res.statusCode;
+                socket.destroy();
+                return;
+              }
+              var tlsReq = https
+                .get(
+                  {
+                    host: target.hostname,
+                    port: targetPort,
+                    path: target.pathname + target.search,
+                    socket: socket,
+                    agent: false,
+                    servername: target.hostname,
+                  },
+                  function (res) {
+                    handleResponse(url, redirectCount, res);
+                  }
+                )
+                .on("error", onError);
+              armTimeout(tlsReq, "Tunneled HTTPS request");
+            });
+
+            connectReq.on("error", onError);
+            connectReq.end();
           }
 
           doRequest(VIDEO_URL);
